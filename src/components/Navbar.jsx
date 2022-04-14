@@ -6,16 +6,14 @@ import { mobile } from "../Responsive";
 
 
 const Container = styled.div`
-  height: 100px;
   ${mobile({ height: "50px" })}
 `;
 
 const Wrapper = styled.div`
-  padding: 20px 20px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  ${mobile({ padding: "10px 0px" })}
+  align-items: center;
+  ${mobile({ padding: "10px 1px" })}
 `;
 
 const Left = styled.div`
@@ -27,7 +25,6 @@ const Left = styled.div`
 const Language = styled.span`
   font-size: 14px;
   cursor: pointer;
-  ${mobile({ display: "none" })}
 `;
 
 const SearchContainer = styled.div`
@@ -45,13 +42,14 @@ const Input = styled.input`
 `;
 
 const Center = styled.div`
-  flex: 1;
+  ${'' /* flex: 1; */}
   text-align: center;
 `;
 
-const Logo = styled.h1`
-  font-weight: bold;
-  ${mobile({ fontSize: "24px" })}
+const Logo = styled.img`
+    width: 200px;
+    background-size: cover;
+  ${mobile({ width: '80px', height: '80px' })}
 `;
 const Right = styled.div`
   flex: 1;
@@ -67,6 +65,7 @@ const MenuItem = styled.div`
   margin-left: 25px;
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
+
 const Navbar = () => {
   return (
     <Container>
@@ -79,10 +78,8 @@ const Navbar = () => {
         </SearchContainer>
       </Left>
       <Center>
-        <Logo>
-          Iron Bike
-          {/* <img src="../../public/images/logo.png" alt=""/> */}
-        </Logo>
+      <Logo src='https://res.cloudinary.com/ironbike/image/upload/v1649976046/Logo/Capture_d_e%CC%81cran_2022-04-15_a%CC%80_00.40.07_juglsm.png'  alt='logo'>
+      </Logo>
       </Center>
       <Right>
         <MenuItem>LOG IN</MenuItem>
