@@ -74,9 +74,8 @@ const Desc = styled.p`
 `;
 
 const Button = styled.button`
-  padding: 10px;
-  font-size: 20px;
   background-color: transparent;
+  border: none;
   cursor: pointer;
 `;
 
@@ -106,7 +105,7 @@ const Wrapper = () => {
             <InfoContainer>
               <Title>{item.title}</Title>
               <Desc>{item.description}</Desc>
-              <Button>SHOP NOW</Button>
+              <Button className='btn'>SHOP NOW</Button>
             </InfoContainer>
           </Slide>
         ))}

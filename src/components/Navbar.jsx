@@ -78,7 +78,7 @@ const Navbar = () => {
         </SearchContainer>
       </Left>
       <Center>
-      <Logo src='https://res.cloudinary.com/ironbike/image/upload/v1649976046/Logo/Capture_d_e%CC%81cran_2022-04-15_a%CC%80_00.40.07_juglsm.png'  alt='logo'>
+      <Logo src='https://res.cloudinary.com/ironbike/image/upload/v1649979569/Logo/Capture_d_e%CC%81cran_2022-04-15_a%CC%80_01.38.40_dmoy47.png'  alt='logo'>
       </Logo>
       </Center>
       <Right>
