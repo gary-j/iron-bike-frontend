@@ -172,3 +172,45 @@ Footer {
   font-weight: 300;
   font-size: 24px;
 }
+
+/* Advertisement Show Time */
+.ShowTime{
+  color:  rgb(255, 255, 255);
+  animation: blink 3s infinite;
+  -webkit-animation: blink 6s infinite;
+}
+
+@-webkit-keyframes blink {
+  20%,
+  24%,
+  55% {
+    color: #d32f2f;
+  }
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+    color: blanchedalmond;
+  }
+}
+@keyframes blink {
+  20%,
+  24%,
+  55% {
+    color: #d32f2f;
+  }
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+    color: blanchedalmond;
+  }
+}
