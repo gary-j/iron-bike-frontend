@@ -1,10 +1,11 @@
+import "./App.css"
 import LandingPage from "./pages/LandingPage";
 
 
 const App = () => {
-  return (<>
+  return (<div className="App">
     <LandingPage/>
-  </>
+  </div>
   )};
 
 export default App;

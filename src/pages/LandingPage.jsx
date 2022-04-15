@@ -1,12 +1,16 @@
-import React from 'react'
-import Navbar from '../components/Navbar'
+import React from "react";
+import GridCategory from "../components/GridCategory";
+import Navbar from "../components/Navbar";
+import Wrapper from "../components/Wrapper";
 
 const LandingPage = () => {
   return (
     <div>
-      <Navbar/>
+      <Navbar />
+      <Wrapper />
+      <GridCategory />
     </div>
-  )
-}
+  );
+};
 
-export default LandingPage
+export default LandingPage;

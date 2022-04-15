@@ -1,21 +1,20 @@
 import React from 'react'
 import { Badge } from "@material-ui/core";
-import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import styled from "styled-components";
 import { mobile } from "../Responsive";
+import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 
 
 const Container = styled.div`
-  height: 100px;
   ${mobile({ height: "50px" })}
 `;
 
 const Wrapper = styled.div`
-  padding: 20px 20px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  ${mobile({ padding: "10px 0px" })}
+  align-items: center;
+  ${mobile({ padding: "10px 1px" })}
 `;
 
 const Left = styled.div`
@@ -27,7 +26,6 @@ const Left = styled.div`
 const Language = styled.span`
   font-size: 14px;
   cursor: pointer;
-  ${mobile({ display: "none" })}
 `;
 
 const SearchContainer = styled.div`
@@ -45,13 +43,14 @@ const Input = styled.input`
 `;
 
 const Center = styled.div`
-  flex: 1;
+  ${'' /* flex: 1; */}
   text-align: center;
 `;
 
-const Logo = styled.h1`
-  font-weight: bold;
-  ${mobile({ fontSize: "24px" })}
+const Logo = styled.img`
+    width: 200px;
+    background-size: cover;
+  ${mobile({ width: '80px', height: '80px' })}
 `;
 const Right = styled.div`
   flex: 1;
@@ -67,6 +66,7 @@ const MenuItem = styled.div`
   margin-left: 25px;
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
+
 const Navbar = () => {
   return (
     <Container>
@@ -75,21 +75,19 @@ const Navbar = () => {
         <Language>EN</Language>
         <SearchContainer>
           <Input placeholder="Search" />
-          <Search style={{ color: "gray", fontSize: 16 }} />
+          <SearchOutlinedIcon style={{ color: "gray", fontSize: 16 }} />
         </SearchContainer>
       </Left>
       <Center>
-        <Logo>
-          Iron Bike
-          {/* <img src="../../public/images/logo.png" alt=""/> */}
-        </Logo>
+      <Logo src='https://res.cloudinary.com/ironbike/image/upload/v1649979569/Logo/Capture_d_e%CC%81cran_2022-04-15_a%CC%80_01.38.40_dmoy47.png'  alt='logo'>
+      </Logo>
       </Center>
       <Right>
         <MenuItem>LOG IN</MenuItem>
         <MenuItem>SIGN UP</MenuItem>
         <MenuItem>
           <Badge badgeContent={10} color="primary">
-            <ShoppingCartOutlined />
+            <ShoppingCartTwoToneIcon />
           </Badge>
         </MenuItem>
       </Right>
