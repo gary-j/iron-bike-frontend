@@ -1,5 +1,7 @@
 import React from "react";
 import Advertisement from "../components/Advertisement";
+import Features from "../components/Features";
+import Footer from "../components/Footer";
 import GridCategory from "../components/GridCategory";
 import Navbar from "../components/Navbar";
 import Wrapper from "../components/Wrapper";
@@ -7,14 +9,12 @@ import Wrapper from "../components/Wrapper";
 const LandingPage = () => {
   return (
     <div className="LandingPage">
-      {/* <nav> */}
-        <Navbar />
-      {/* </nav> */}
-      {/* <main> */}
-        <Wrapper />
         <Advertisement/>
+        <Navbar />
+        <Wrapper />
         <GridCategory />
-      {/* </main> */}
+        <Features/>
+        <Footer/>
     </div>
   );
 };

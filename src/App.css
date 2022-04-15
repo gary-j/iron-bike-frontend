@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 .App {
   padding: 0px 100px 20px 100px;
 }
@@ -7,7 +11,7 @@
 .LandingPage {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 /* Component Advertisement */
@@ -78,4 +82,93 @@
   border-right: 2px solid #000000;
   transition: 0.5s;
   transition-delay: 0.5s;
+}
+ 
+ /* features */
+
+ .features {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 80px;
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.featureIcon {
+  width: 50px;
+  height: 50px;
+}
+
+.featureTitle {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 20px;
+}
+
+.featureDesc {
+  color: gray;
+  width: 50%;
+  height: 100px;
+}
+
+/* footer */
+
+Footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-top: 5px solid;
+}
+
+.footerUp {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px;
+}
+
+.fMenuTitle {
+  font-size: 24px;
+  padding-bottom: 24px;
+}
+
+.fList {
+  padding: 0;
+  list-style: none;
+}
+
+.fListItem {
+  margin-bottom: 10px;
+  color: gray;
+  cursor: pointer;
+}
+
+.footerDown {
+  flex: 1;
+  padding: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fIcons{
+  display: flex;
+  flex-direction: row;
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+.fIcons img{
+  margin-right: 15px;
+}
+
+.copyright{
+  font-weight: 300;
+  font-size: 24px;
 }

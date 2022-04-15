@@ -6,9 +6,9 @@ const Container = styled.div`
   margin: 3px;
   height: 70vh;
   position: relative;
-  &:hover{
+  ${'' /* &:hover{
   bottom: 10px;
-  }
+  } */}
 `;
 
 const Image = styled.img`
@@ -34,6 +34,7 @@ const Info = styled.div`
 const Title = styled.h2`
     color:#404040;
     margin-bottom: 10px;
+    text-decoration: 3px underline  #4d4b4b;
 `;
 
 const Button = styled.button`
