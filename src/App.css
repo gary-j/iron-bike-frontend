@@ -17,7 +17,7 @@
   .btn:hover{
     background-color: #000000;
     color: whitesmoke;
-    box-shadow: 0 10px 10px #000000;
+    box-shadow: 0 10px 10px #4d4b4b;
     transition-delay: 0.2s;
   }
   .btn:before{

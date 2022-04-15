@@ -1,9 +1,10 @@
 import React from 'react'
-import { ArrowLeftOutlined, ArrowRightOutlined } from "@material-ui/icons";
 import { useState } from "react";
 import styled from "styled-components";
 import { mobile } from "../Responsive";
 import { wrapperList } from "../dataTest";
+import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
+import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 
 const Container = styled.div`
   width: 100%;
@@ -94,7 +95,7 @@ const Wrapper = () => {
   return (
 <Container>
       <Arrow direction="left" onClick={() => handleClick("left")}>
-        <ArrowLeftOutlined />
+        <ArrowCircleLeftOutlinedIcon />
       </Arrow>
       <Slider slideIndex={slideIndex}>
         {wrapperList.map((item) => (
@@ -111,7 +112,7 @@ const Wrapper = () => {
         ))}
       </Slider>
       <Arrow direction="right" onClick={() => handleClick("right")}>
-        <ArrowRightOutlined />
+        <ArrowCircleRightOutlinedIcon />
       </Arrow>
     </Container>  )
 }
