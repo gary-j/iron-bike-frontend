@@ -43,18 +43,20 @@ const Slider = styled.div`
 
 const Slide = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   display: flex;
   align-items: center;
 `;
 
 const ImgContainer = styled.div`
   flex: 1;
+  ${'' /* height:100%; */}
 `;
 
 const Image = styled.img`
-  height: 80%;
+  height: 100%;
   width: 100%;
+  border:1px;
   border-radius: 10px;
 `;
 

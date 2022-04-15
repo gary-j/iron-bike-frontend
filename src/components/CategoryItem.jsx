@@ -7,11 +7,7 @@ const Container = styled.div`
   height: 70vh;
   position: relative;
   &:hover{
-  ${'' /* border: 0.5px solid black;
-  border-radius: 10px; */}
-  transition: all 5s ease;
-  bottom: 50px;
-  ${'' /* need work in transition */}
+  bottom: 10px;
   }
 `;
 
@@ -25,7 +21,7 @@ const Image = styled.img`
 
 const Info = styled.div`
   position: absolute;
-  top: 160px;
+  top: 220px;
   right: 20px;
   width: 100%;
   height: 100%;
@@ -36,7 +32,7 @@ const Info = styled.div`
 `;
 
 const Title = styled.h2`
-    color:#e57373;
+    color:#404040;
     margin-bottom: 10px;
 `;
 
@@ -52,9 +48,9 @@ const Button = styled.button`
 const CategoryItem = ({ item }) => {
   return (
     <Container>
+        <Title>{item.title}</Title>
       <Image src={item.img} />
       <Info>
-        <Title>{item.title}</Title>
         <Button className="btn">SHOP NOW</Button>
       </Info>
     </Container>

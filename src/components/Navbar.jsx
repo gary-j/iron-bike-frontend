@@ -23,13 +23,14 @@ const Left = styled.div`
   align-items: center;
 `;
 
-const Language = styled.span`
-  font-size: 14px;
-  cursor: pointer;
+const Flag = styled.img`
+  height: 27px;
+  width: 27px;
+  background-size: cover;
 `;
 
 const SearchContainer = styled.div`
-  border: 0.5px solid lightgray;
+  border: 0.5px solid #D3D3D3;
   border-radius: 3px;
   display: flex;
   align-items: center;
@@ -72,7 +73,8 @@ const Navbar = () => {
     <Container>
     <Wrapper>
       <Left>
-        <Language>EN</Language>
+        <Flag src='https://res.cloudinary.com/ironbike/image/upload/v1650010645/Logo/united-kingdom_g7bjfr.png'>
+        </Flag>
         <SearchContainer>
           <Input placeholder="Search" />
           <SearchOutlinedIcon style={{ color: "gray", fontSize: 16 }} />

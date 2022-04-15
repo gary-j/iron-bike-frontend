@@ -21,8 +21,8 @@ export const  wrapperList = [
 export const categories = [
     {
       id: 1,
-      img: "https://res.cloudinary.com/ironbike/image/upload/v1649969273/Products/Bike/MTB/Kona_Process_134_DL_27_5__orange_600x600_b6cuua.jpg",
-      title: "ALL CATEGORY BIKE",
+      img: "https://res.cloudinary.com/ironbike/image/upload/v1650012282/Products/Nutrition/Drinks/olimp-sport-nutrition-vita-min-plus-e1574409697684_pibm9q.jpg",
+      title: "SPORT NUTRITION",
     },
     {
       id: 2,

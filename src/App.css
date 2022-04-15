@@ -1,56 +1,73 @@
-
-.App{
-    padding: 0px 100px 20px 100px;
+.App {
+  padding: 0px 100px 20px 100px;
 }
+
+/* Component LandingPage */
+
+.LandingPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Component Advertisement */
+
+.LoyaltyIcon {
+  margin-left: 10px;
+  padding-top: 10px;
+}
+
+/* Special Button */
+
 .btn {
-    color: #000000;
-    position: relative;
-    padding: 10px 30px;
-    margin: 0px 15px;
-    text-decoration: none;
-    font-size: 1rem;
-    transition: 0.2s;
-    letter-spacing: 2px;
-    text-transform: capitalize;
-    overflow: hidden;
-  }
-  .btn:hover{
-    background-color: #000000;
-    color: whitesmoke;
-    box-shadow: 0 10px 10px #4d4b4b;
-    transition-delay: 0.2s;
-  }
-  .btn:before{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 10px;
-    height: 10px;
-    border-top: 2px solid #000000;
-    border-left: 2px solid #000000;
-    transition: 0.2s;
-    transition-delay: 0.2s;
-  }
-  .btn:hover:before{
-    width: 100%;
-    height: 100%;
-    transition-delay: 0s;
-  }
-  .btn:hover:after{
-    width: 100%;
-    height: 100%;
-    transition-delay: 0s;
-  }
-  .btn:after{
-    content: "";
-    position: absolute;
-    bottom:  0;
-    right: 0;
-    width: 10px;
-    height: 10px;
-    border-bottom: 2px solid #000000;
-    border-right: 2px solid #000000;
-    transition: 0.5s;
-    transition-delay: 0.5s;
-  }
+  color: #000000;
+  position: relative;
+  padding: 10px 30px;
+  margin: 0px 15px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: 0.2s;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+  overflow: hidden;
+}
+.btn:hover {
+  background-color: #000000;
+  color: whitesmoke;
+  box-shadow: 0 10px 10px #4d4b4b;
+  transition-delay: 0.2s;
+}
+.btn:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid #000000;
+  border-left: 2px solid #000000;
+  transition: 0.2s;
+  transition-delay: 0.2s;
+}
+.btn:hover:before {
+  width: 100%;
+  height: 100%;
+  transition-delay: 0s;
+}
+.btn:hover:after {
+  width: 100%;
+  height: 100%;
+  transition-delay: 0s;
+}
+.btn:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border-bottom: 2px solid #000000;
+  border-right: 2px solid #000000;
+  transition: 0.5s;
+  transition-delay: 0.5s;
+}
