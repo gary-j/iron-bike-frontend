@@ -4,9 +4,9 @@ import LoyaltyIcon from '@mui/icons-material/Loyalty';
 
 const Container = styled.div`
   height: 50px;
-  width:50%;
+
+  width:100%;
   margin: auto;
-  margin-bottom: 10px; 
   border : 1px solid #d32f2f;
   border-radius: 5px;
   background-color: #d32f2f;

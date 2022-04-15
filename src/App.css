@@ -16,6 +16,14 @@
   margin-left: 10px;
   padding-top: 10px;
 }
+.Link{
+  text-decoration: none;
+  color: #000000;
+}
+.Link:hover{
+  color: #4d4b4b;
+}
+
 
 /* Special Button */
 

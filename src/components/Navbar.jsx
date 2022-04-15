@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { mobile } from "../Responsive";
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import { Link } from 'react-router-dom';
 
 
 const Container = styled.div`
@@ -81,17 +82,25 @@ const Navbar = () => {
         </SearchContainer>
       </Left>
       <Center>
+      <Link to="/" className='Link'>
       <Logo src='https://res.cloudinary.com/ironbike/image/upload/v1649979569/Logo/Capture_d_e%CC%81cran_2022-04-15_a%CC%80_01.38.40_dmoy47.png'  alt='logo'>
       </Logo>
+      </Link>
       </Center>
       <Right>
+      <Link to="/login" className='Link'>
         <MenuItem>LOG IN</MenuItem>
+      </Link>
+      <Link to="/signup" className='Link'>
         <MenuItem>SIGN UP</MenuItem>
+      </Link>
+      <Link to="/shoppingcart" className='Link'>
         <MenuItem>
-          <Badge badgeContent={10} color="primary">
+          <Badge badgeContent={4} color="primary">
             <ShoppingCartTwoToneIcon />
           </Badge>
         </MenuItem>
+      </Link>
       </Right>
     </Wrapper>
   </Container>
