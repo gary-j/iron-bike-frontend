@@ -36,3 +36,34 @@ export const categories = [
     },
     
   ];
+
+  export const products = [
+    {
+      id:1,
+      img:"https://res.cloudinary.com/ironbike/image/upload/v1649846404/Products/Nutrition/Drinks/STC_NUTRITION_VEGETAL_PROTEIN_Recovery_Drink_750_g_oqjwvm.jpg",
+    },
+    {
+      id:2,
+      img:"https://res.cloudinary.com/ironbike/image/upload/v1649846404/Products/Nutrition/Drinks/POWERBAR_RECOVERY_2.0_Recovery_Drink_1.14_kg_xgmlaz.jpg",
+    },
+    {
+      id:3,
+      img:"https://res.cloudinary.com/ironbike/image/upload/v1649846404/Products/Nutrition/Drinks/STC_NUTRITION_PREMIUM_WHEY_Recovery_Drink_Chocolat_750g_k4y2s1.jpg",
+    },
+    {
+      id:4,
+      img:"https://res.cloudinary.com/ironbike/image/upload/v1649846405/Products/Nutrition/Drinks/ISOSTAR_HYDRATE_PERFORM_Energy_Drink_560_g_ql3svh.jpg",
+    },
+    {
+      id:5,
+      img:"https://res.cloudinary.com/ironbike/image/upload/v1649846404/Products/Nutrition/Drinks/POWERBAR_ISOACTIVE_Energy_Drink_600_g_n2f80f.jpg",
+    },
+    {
+      id:6,
+      img:"https://res.cloudinary.com/ironbike/image/upload/v1649846404/Products/Nutrition/Drinks/POWERBAR_5_ELECTROLYTES_Pack_of_12_Anti-cramp_Drink_Tubes_Tubes_of_10_Tablets_r3qgkf.jpg",
+    },
+    {
+      id:7,
+      img:"https://res.cloudinary.com/ironbike/image/upload/v1649846404/Products/Nutrition/Drinks/POWERBAR_ISOACTIVE_Energy_Drink_600_g_n2f80f.jpg",
+    },
+  ] 

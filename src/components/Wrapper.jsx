@@ -5,6 +5,7 @@ import { mobile } from "../Responsive";
 import { wrapperList } from "../dataTest";
 import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   width: 100%;
@@ -108,7 +109,9 @@ const Wrapper = () => {
             <InfoContainer>
               <Title>{item.title}</Title>
               <Desc>{item.description}</Desc>
+              <Link to="/products" className='Link'>
               <Button className='btn'>SHOP NOW</Button>
+              </Link>
             </InfoContainer>
           </Slide>
         ))}

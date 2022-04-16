@@ -6,9 +6,6 @@ const Container = styled.div`
   margin: 3px;
   height: 70vh;
   position: relative;
-  ${'' /* &:hover{
-  bottom: 10px;
-  } */}
 `;
 
 const Image = styled.img`
