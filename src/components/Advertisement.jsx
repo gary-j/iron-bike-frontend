@@ -19,7 +19,7 @@ const Container = styled.div`
 `;
 const Advertisement = () => {
   return (
-    <Container className='ShowTime'> 10% discount on Orders Over 500€ <LoyaltyIcon className='LoyaltyIcon'/></Container>
+    <Container className='ShowTime'> 10% Discount On Orders Over 500€ <LoyaltyIcon className='LoyaltyIcon'/></Container>
   )
 }
 

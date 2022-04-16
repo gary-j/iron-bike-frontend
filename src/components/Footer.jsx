@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -8,28 +9,56 @@ const Footer = () => {
         <div className="footerMenu">
             <h1 className="fMenuTitle">About Us</h1>
             <ul className="fList">
+            <Link to="/company" className='Link'>
                 <li className="fListItem">Company</li>
+            </Link>
+            <Link to="/contact" className='Link'>
                 <li className="fListItem">Contact</li>
+            </Link>
+            <Link to="/support" className='Link'>
                 <li className="fListItem">Support</li>
-                <li className="fListItem">Stores</li>
+            </Link>
+            <Link to="/store" className='Link'>
+                <li className="fListItem">Store</li>
+            </Link>
             </ul>
         </div>
         <div className="footerMenu">
+        <Link to="/brand" className='Link'>
             <h1 className="fMenuTitle">Brands</h1>
+            </Link>
             <ul className="fList">
+            <Link to="/brand/willier" className='Link'>
                 <li className="fListItem">Willier</li>
+            </Link>
+            <Link to="/brand/mavic" className='Link'>
                 <li className="fListItem">Mavic</li>
+            </Link>
+            <Link to="/brand/oakley" className='Link'>
                 <li className="fListItem">Oakley</li>
+            </Link>
+            <Link to="/brand/stc" className='Link'>
                 <li className="fListItem">Stc</li>
+            </Link>
             </ul>
         </div>
         <div className="footerMenu">
+        <Link to="/products" className='Link'>
             <h1 className="fMenuTitle">Products</h1>
+        </Link>
             <ul className="fList">
+            <Link to="/products/bikes" className='Link'>
                 <li className="fListItem">Bikes</li>
+            </Link>
+            <Link to="/products/accessory" className='Link'>
                 <li className="fListItem">Accessory</li>
+            </Link>
+            <Link to="/products/clothes" className='Link'>
                 <li className="fListItem">Clothes</li>
+            </Link>
+            <Link to="/products/nutrition" className='Link'>
                 <li className="fListItem">Nutrition</li>
+            </Link>
             </ul>
         </div>
         <div className="footerMenu">
