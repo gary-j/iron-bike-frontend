@@ -6,6 +6,8 @@ import LoginPage from "./pages/LoginPage";
 import ShoppingCart from "./pages/ShoppingCart";
 import ProductList from "./pages/ProductsList";
 import Product from "./pages/Product";
+import BrandPage from "./pages/BrandPage";
+import BrandListPage from "./pages/BrandListPage";
 
 const App = () => {
   return (
@@ -17,6 +19,8 @@ const App = () => {
         <Route path="/shoppingcart" element={<ShoppingCart />} />
         <Route path="/products" element={<ProductList />} />
         <Route path="/product" element={<Product />} />
+        <Route path="/brands" element={<BrandListPage />} />
+        <Route path="/brand" element={<BrandPage />} />
       </Routes>
     </div>
   );

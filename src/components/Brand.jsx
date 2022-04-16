@@ -1,6 +1,5 @@
+import React from "react";
 import styled from "styled-components";
-
-
 
 const Container = styled.div`
   flex: 1;
@@ -15,33 +14,23 @@ const Container = styled.div`
   border-radius: 10px;
 `;
 
-const Circle = styled.div`
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  background-color: white;
-  position: absolute;
-`;
-
 const Image = styled.img`
-  height: 75%;
+  height: 10%;
   z-index: 2;
   background-color: white;
   margin: 10px;
   transition: all 0.5s ease;
   &:hover {
-    ${'' /* background-color: #e9f5f5; */}
     transform: scale(1.1);
   }
 `;
 
-const Product = ({ item }) => {
+const Brand = ({ item }) => {
   return (
     <Container>
-      <Circle />
-      <Image src={item.img} />
+      <Image src={item.brandLogo} />
     </Container>
   );
 };
 
-export default Product;
+export default Brand;

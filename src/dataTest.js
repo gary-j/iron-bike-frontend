@@ -67,3 +67,34 @@ export const categories = [
       img:"https://res.cloudinary.com/ironbike/image/upload/v1649846404/Products/Nutrition/Drinks/POWERBAR_ISOACTIVE_Energy_Drink_600_g_n2f80f.jpg",
     },
   ] 
+
+  export const brandsList = [
+    {
+      id:1,
+      name: "Pinarello",
+      brandLogo: "https://res.cloudinary.com/ironbike/image/upload/v1649861921/Products/Brand/Pinarello_logo.svg_pdyfmc.png",
+      headquarters: "Italy",
+      madeIn: "Italy"
+    },
+    {
+      id:2,
+      name: "Willier Triestina",
+      brandLogo: "https://res.cloudinary.com/ironbike/image/upload/v1649861921/Products/Brand/Wilier_triestina_logo_gvptdy.png",
+      headquarters: "Italy",
+      madeIn: "Italy",
+    },
+    {
+      id:3,
+      name: "Isostar",
+      brandLogo: "https://res.cloudinary.com/ironbike/image/upload/v1649861921/Products/Brand/Isostar_logo.svg_aktlsc.png",
+      headquarters: "France",
+      madeIn: "France",
+    },
+    {
+      id:4,
+      name: "Shimano",
+      brandLogo:"https://res.cloudinary.com/ironbike/image/upload/v1649861921/Products/Brand/Shimano.svg_uearaw.png",
+      headquarters: "Japan",
+      madeIn: "Japan",
+    },
+  ] 
