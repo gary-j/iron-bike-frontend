@@ -23,21 +23,24 @@ export const categories = [
       id: 1,
       img: "https://res.cloudinary.com/ironbike/image/upload/v1650012282/Products/Nutrition/Drinks/olimp-sport-nutrition-vita-min-plus-e1574409697684_pibm9q.jpg",
       title: "SPORT NUTRITION",
+      categories: "Nutrition",
     },
     {
       id: 2,
       img: "https://res.cloudinary.com/ironbike/image/upload/v1649983536/Products/accessory/600x600-265543_16432085702286_wxqmjm.png",
       title: "BIKE ACCESSORY",
+      categories: "Accessory",
     },
     {
       id: 3,
       img: "https://res.cloudinary.com/ironbike/image/upload/v1649969624/Products/Clothes/600x600-170684_15687106786451_auwldb.jpg",
       title: "RIDERS GEAR",
+      categories: "Clothes",
     },
     
   ];
 
-  export const products = [
+  export const productsEx = [
     {
       id:1,
       img:"https://res.cloudinary.com/ironbike/image/upload/v1649846404/Products/Nutrition/Drinks/STC_NUTRITION_VEGETAL_PROTEIN_Recovery_Drink_750_g_oqjwvm.jpg",

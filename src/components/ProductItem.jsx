@@ -1,6 +1,5 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-
-
 
 const Container = styled.div`
   flex: 1;
@@ -30,17 +29,20 @@ const Image = styled.img`
   margin: 10px;
   transition: all 0.5s ease;
   &:hover {
-    ${'' /* background-color: #e9f5f5; */}
     transform: scale(1.1);
   }
 `;
 
 const Product = ({ item }) => {
   return (
-    <Container>
-      <Circle />
-      <Image src={item.img} />
-    </Container>
+    <>
+      <Link to={`/product/${item._id}`}>
+        <Container>
+          <Circle />
+          <Image src={item.image} />
+        </Container>
+      </Link>
+    </>
   );
 };
 

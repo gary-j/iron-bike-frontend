@@ -4,7 +4,8 @@ import Advertisement from "../components/Advertisement";
 import Products from "../components/Products";
 import Footer from "../components/Footer";
 import { mobile } from "../Responsive";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
 
 const Container = styled.div``;
 
@@ -37,28 +38,38 @@ const Select = styled.select`
 const Option = styled.option``;
 
 const ProductList = () => {
+
+  const location = useLocation()
+  const cat = location.pathname.split("/")[2]
+  const [filters, setFilters] = useState({})
+  const [sort, setSort] = useState("newest")
+
+  const handleFilter = (e) => {
+    const value = e.target.value;
+    setFilters({
+      ...filters,
+      [e.target.name]: value 
+    })
+    console.log(value)
+  } 
+
   return (
     <Container>
       <Navbar />
       <Advertisement />
-      <Title>ALL PRODUCTS</Title>
+      <Title>{cat}</Title>
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products:</FilterText>
-          <Select>
-            <Option disabled selected>
-              Category
-            </Option>
+          <Select name="category" onChange={handleFilter}>
+            <Option>All Categories</Option>
             <Option>Bikes</Option>
             <Option>Accessory</Option>
             <Option>Clothes</Option>
             <Option>Nutrition</Option>
           </Select>
-          <Select>
-            <Option disabled selected>
-              Size
-            </Option>
-            <Option>XS</Option>
+          <Select name="size" onChange={handleFilter}>
+            <Option> All Size</Option>
             <Option>S</Option>
             <Option>M</Option>
             <Option>L</Option>
@@ -66,16 +77,16 @@ const ProductList = () => {
           </Select>
         </Filter>
         <Filter>
-          <FilterText>Sort Products:</FilterText>
-          <Select>
-            <Option selected>Newest</Option>
-            <Option>Price (asc)</Option>
-            <Option>Price (desc)</Option>
+          <FilterText>Sort By Price:</FilterText>
+          <Select onChange={(e)=> setSort(e.target.value)}>
+            <Option defaultValue="price" value="price">Price</Option>
+            <Option value="high">Price (High)</Option>
+            <Option value="low">Price (Low)</Option>
           </Select>
         </Filter>
       </FilterContainer>
       <Link to="/product" className='Link'>
-      <Products />
+      <Products cat={cat} filters={filters} sort={sort}/>
       </Link>
       <Footer />
     </Container>

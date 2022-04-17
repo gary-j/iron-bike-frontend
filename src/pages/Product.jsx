@@ -5,6 +5,10 @@ import Advertisement from "../components/Advertisement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { mobile } from "../Responsive";
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import  {publicRequest}  from "../requestAxios";
+
 
 const Container = styled.div``;
 
@@ -16,6 +20,7 @@ const Wrapper = styled.div`
 
 const ImgContainer = styled.div`
   flex: 1;
+  margin-right: 50px;
 `;
 
 const Image = styled.img`
@@ -35,51 +40,18 @@ const InfoContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-weight: 200;
+  font-size: 60px;
+  font-weight: 300;
+  margin-bottom: 60px;
+  text-decoration: 3px underline #12996d;
 `;
 
-const Desc = styled.p`
-  margin: 20px 0px;
-`;
-
-const Price = styled.span`
-  font-weight: 100;
-  font-size: 40px;
-`;
-
-const FilterContainer = styled.div`
-  width: 50%;
-  margin: 30px 0px;
+const Description = styled.div`
   display: flex;
-  justify-content: space-between;
-  ${mobile({ width: "100%" })}
+  flex-direction: column;
 `;
 
-const Filter = styled.div`
-  display: flex;
-  align-items: center;
-`;
 
-const FilterTitle = styled.span`
-  font-size: 20px;
-  font-weight: 200;
-`;
-
-const FilterColor = styled.div`
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: ${(props) => props.color};
-  margin: 0px 5px;
-  cursor: pointer;
-`;
-
-const FilterSize = styled.select`
-  margin-left: 10px;
-  padding: 5px;
-`;
-
-const FilterSizeOption = styled.option``;
 
 const AddContainer = styled.div`
   width: 50%;
@@ -114,44 +86,58 @@ const Button = styled.button`
   cursor: pointer;
   font-weight: 500;
 `;
+const Info = styled.p`
+  flex: 1;
+  font-size: 30px;
+  margin: 10px;
+  color: black;
+`;
+const InfoResult = styled.span`
+  font-size: 25px;
+  margin: 10px;
+  color: #12996d;
+`;
 
 const Product = () => {
+
+  const location = useLocation()
+  const id = location.pathname.split("/")[2]
+  const [product, setProduct] = useState({})
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await publicRequest.get("/products/" + id);
+        setProduct(res.data);
+      } catch {}
+    };
+    getProduct();
+  }, [id]);
+  
   return (
     <Container>
       <Navbar />
       <Advertisement />
       <Wrapper>
         <ImgContainer>
-          <Image src="https://res.cloudinary.com/ironbike/image/upload/v1649846404/Products/Nutrition/Drinks/STC_NUTRITION_VEGETAL_PROTEIN_Recovery_Drink_750_g_oqjwvm.jpg" />
+          <Image src={product.image} />
         </ImgContainer>
         <InfoContainer>
-          <Title>STC NUTRITION VEGETAL PROTEIN Recovery Drink</Title>
-          <Desc>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-            venenatis, dolor in finibus malesuada, lectus ipsum porta nunc, at
-            iaculis arcu nisi sed mauris. Nulla fermentum vestibulum ex, eget
-            tristique tortor pretium ut. Curabitur elit justo, consequat id
-            condimentum ac, volutpat ornare.
-          </Desc>
-          <Price>50 €</Price>
-          <FilterContainer>
-            <Filter>
-              <FilterTitle>Color</FilterTitle>
-              <FilterColor color="black" />
-              <FilterColor color="darkblue" />
-              <FilterColor color="gray" />
-            </Filter>
-            <Filter>
-              <FilterTitle>Size</FilterTitle>
-              <FilterSize>
-                <FilterSizeOption>XS</FilterSizeOption>
-                <FilterSizeOption>S</FilterSizeOption>
-                <FilterSizeOption>M</FilterSizeOption>
-                <FilterSizeOption>L</FilterSizeOption>
-                <FilterSizeOption>XL</FilterSizeOption>
-              </FilterSize>
-            </Filter>
-          </FilterContainer>
+          <Title>{product.productName}</Title>
+          <Description>
+          <Info>
+            Color: <InfoResult>{product.color}</InfoResult>
+          </Info>
+          <Info>
+            Size: <InfoResult>{product.size}</InfoResult>
+          </Info>
+          <Info>
+            Weight: <InfoResult>{product.weight} Kg</InfoResult>
+          </Info>
+          <Info>
+            Price: <InfoResult>{product.price} €</InfoResult>
+          </Info>
+          </Description>
           <AddContainer>
             <AmountContainer>
               <RemoveCircleOutlineOutlinedIcon />
