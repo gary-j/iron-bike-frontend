@@ -24,20 +24,20 @@ const Footer = () => {
             </ul>
         </div>
         <div className="footerMenu">
-        <Link to="/brand" className='Link'>
+        <Link to="/brands" className='Link'>
             <h1 className="fMenuTitle">Brands</h1>
             </Link>
             <ul className="fList">
-            <Link to="/brand/willier" className='Link'>
+            <Link to="/brands/willier" className='Link'>
                 <li className="fListItem">Willier</li>
             </Link>
             <Link to="/brand/mavic" className='Link'>
                 <li className="fListItem">Mavic</li>
             </Link>
-            <Link to="/brand/oakley" className='Link'>
+            <Link to="/brands/oakley" className='Link'>
                 <li className="fListItem">Oakley</li>
             </Link>
-            <Link to="/brand/stc" className='Link'>
+            <Link to="/brands/stc" className='Link'>
                 <li className="fListItem">Stc</li>
             </Link>
             </ul>
