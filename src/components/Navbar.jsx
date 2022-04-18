@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
 import { Badge } from "@material-ui/core";
 import styled from "styled-components";
 import { mobile } from "../Responsive";
-import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import { Link } from 'react-router-dom';
-
+import ShoppingCartTwoToneIcon from "@mui/icons-material/ShoppingCartTwoTone";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../context/cart.context";
 
 const Container = styled.div`
   ${mobile({ height: "50px" })}
@@ -31,7 +32,7 @@ const Flag = styled.img`
 `;
 
 const SearchContainer = styled.div`
-  border: 0.5px solid #D3D3D3;
+  border: 0.5px solid #d3d3d3;
   border-radius: 3px;
   display: flex;
   align-items: center;
@@ -45,14 +46,14 @@ const Input = styled.input`
 `;
 
 const Center = styled.div`
-  ${'' /* flex: 1; */}
+  ${"" /* flex: 1; */}
   text-align: center;
 `;
 
 const Logo = styled.img`
-    width: 200px;
-    background-size: cover;
-  ${mobile({ width: '80px', height: '80px' })}
+  width: 200px;
+  background-size: cover;
+  ${mobile({ width: "80px", height: "80px" })}
 `;
 const Right = styled.div`
   flex: 1;
@@ -70,46 +71,43 @@ const MenuItem = styled.div`
 `;
 
 const Navbar = () => {
+  const { cartCount } = useContext(CartContext);
   return (
     <Container>
-    <Wrapper>
-      <Left>
-        <Flag src='https://res.cloudinary.com/ironbike/image/upload/v1650010645/Logo/united-kingdom_g7bjfr.png'>
-        </Flag>
-        <SearchContainer>
-          <Input placeholder="Search" />
-          <SearchOutlinedIcon style={{ color: "gray", fontSize: 16 }} />
-        </SearchContainer>
-      </Left>
-      <Center>
-      <Link to="/" className='Link'>
-      <Logo src='https://res.cloudinary.com/ironbike/image/upload/v1649979569/Logo/Capture_d_e%CC%81cran_2022-04-15_a%CC%80_01.38.40_dmoy47.png'  alt='logo'>
-      </Logo>
-      </Link>
-      </Center>
-      <Right>
-      <Link to="/login" className='Link'>
-        <MenuItem>LOG IN</MenuItem>
-      </Link>
-      <Link to="/signup" className='Link'>
-        <MenuItem>SIGN UP</MenuItem>
-      </Link>
-      <Link to="/shoppingcart" className='Link'>
-        <MenuItem>
-          <Badge badgeContent={2} color="primary">
-            <ShoppingCartTwoToneIcon />
-          </Badge>
-        </MenuItem>
-      </Link>
-      </Right>
-    </Wrapper>
-  </Container>
+      <Wrapper>
+        <Left>
+          <Flag src="https://res.cloudinary.com/ironbike/image/upload/v1650010645/Logo/united-kingdom_g7bjfr.png"></Flag>
+          <SearchContainer>
+            <Input placeholder="Search" />
+            <SearchOutlinedIcon style={{ color: "gray", fontSize: 16 }} />
+          </SearchContainer>
+        </Left>
+        <Center>
+          <Link to="/" className="Link">
+            <Logo
+              src="https://res.cloudinary.com/ironbike/image/upload/v1649979569/Logo/Capture_d_e%CC%81cran_2022-04-15_a%CC%80_01.38.40_dmoy47.png"
+              alt="logo"
+            ></Logo>
+          </Link>
+        </Center>
+        <Right>
+          <Link to="/login" className="Link">
+            <MenuItem>LOG IN</MenuItem>
+          </Link>
+          <Link to="/signup" className="Link">
+            <MenuItem>SIGN UP</MenuItem>
+          </Link>
+          <Link to="/shoppingcart" className="Link cart-icon">
+            <MenuItem>
+              <Badge badgeContent={cartCount} color="primary">
+                <ShoppingCartTwoToneIcon />
+              </Badge>
+            </MenuItem>
+          </Link>
+        </Right>
+      </Wrapper>
+    </Container>
+  );
+};
 
-  )
-}
-
-export default Navbar
-
-
-
-
+export default Navbar;

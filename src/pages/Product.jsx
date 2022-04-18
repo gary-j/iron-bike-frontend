@@ -7,8 +7,7 @@ import Navbar from "../components/Navbar";
 import { mobile } from "../Responsive";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import  {publicRequest}  from "../requestAxios";
-
+import { publicRequest } from "../requestAxios";
 
 const Container = styled.div``;
 
@@ -50,8 +49,6 @@ const Description = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
-
 
 const AddContainer = styled.div`
   width: 50%;
@@ -99,9 +96,8 @@ const InfoResult = styled.span`
 `;
 
 const Product = () => {
-
-  const {slug} = useParams()
-  const [product, setProduct] = useState({})
+  const { slug } = useParams();
+  const [product, setProduct] = useState({});
 
   useEffect(() => {
     const getProduct = async () => {
@@ -112,7 +108,7 @@ const Product = () => {
     };
     getProduct();
   }, [slug]);
-  
+
   return (
     <Container>
       <Navbar />
@@ -124,18 +120,18 @@ const Product = () => {
         <InfoContainer>
           <Title>{product.productName}</Title>
           <Description>
-          <Info>
-            Color: <InfoResult>{product.color}</InfoResult>
-          </Info>
-          <Info>
-            Size: <InfoResult>{product.size}</InfoResult>
-          </Info>
-          <Info>
-            Weight: <InfoResult>{product.weight} Kg</InfoResult>
-          </Info>
-          <Info>
-            Price: <InfoResult>{product.price} €</InfoResult>
-          </Info>
+            <Info>
+              Color: <InfoResult>{product.color}</InfoResult>
+            </Info>
+            <Info>
+              Size: <InfoResult>{product.size}</InfoResult>
+            </Info>
+            <Info>
+              Weight: <InfoResult>{product.weight} Kg</InfoResult>
+            </Info>
+            <Info>
+              Price: <InfoResult>{product.price} €</InfoResult>
+            </Info>
           </Description>
           <AddContainer>
             <AmountContainer>
