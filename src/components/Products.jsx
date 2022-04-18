@@ -8,7 +8,7 @@ const Container = styled.div`
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
 `;
 
 const Products = ({ cat, filters, sort }) => {

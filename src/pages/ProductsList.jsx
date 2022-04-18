@@ -11,11 +11,13 @@ const Container = styled.div``;
 
 const Title = styled.h1`
   margin: 20px;
+  color: black;
+  text-decoration: 3px underline #12996d;
 `;
 
 const FilterContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 `;
 
 const Filter = styled.div`

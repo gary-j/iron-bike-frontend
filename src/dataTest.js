@@ -27,9 +27,9 @@ export const categories = [
     },
     {
       id: 2,
-      img: "https://res.cloudinary.com/ironbike/image/upload/v1649983536/Products/accessory/600x600-265543_16432085702286_wxqmjm.png",
-      title: "BIKE ACCESSORY",
-      categories: "Accessory",
+      img: "https://res.cloudinary.com/ironbike/image/upload/v1650271363/Products/Bike/Road%20Bike/FOCUS_Izalco_Max_8_9_petrol_610x610_dvhovx.jpg",
+      title: "BIKES ",
+      categories: "Bikes",
     },
     {
       id: 3,

@@ -36,7 +36,7 @@ const Image = styled.img`
 const Product = ({ item }) => {
   return (
     <>
-      <Link to={`/product/${item._id}`}>
+      <Link to={`/product/${item.slug}`}>
         <Container>
           <Circle />
           <Image src={item.image} />
