@@ -47,16 +47,16 @@ const Footer = () => {
             <h1 className="fMenuTitle">Products</h1>
         </Link>
             <ul className="fList">
-            <Link to="/products/bikes" className='Link'>
+            <Link to="/products/Bikes" className='Link'>
                 <li className="fListItem">Bikes</li>
             </Link>
-            <Link to="/products/accessory" className='Link'>
+            <Link to="/products/Accessory" className='Link'>
                 <li className="fListItem">Accessory</li>
             </Link>
-            <Link to="/products/clothes" className='Link'>
+            <Link to="/products/Clothes" className='Link'>
                 <li className="fListItem">Clothes</li>
             </Link>
-            <Link to="/products/nutrition" className='Link'>
+            <Link to="/products/Nutrition" className='Link'>
                 <li className="fListItem">Nutrition</li>
             </Link>
             </ul>

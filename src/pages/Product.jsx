@@ -5,7 +5,7 @@ import Advertisement from "../components/Advertisement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { mobile } from "../Responsive";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import  {publicRequest}  from "../requestAxios";
 
@@ -100,19 +100,18 @@ const InfoResult = styled.span`
 
 const Product = () => {
 
-  const location = useLocation()
-  const id = location.pathname.split("/")[2]
+  const {slug} = useParams()
   const [product, setProduct] = useState({})
 
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const res = await publicRequest.get("/products/" + id);
+        const res = await publicRequest.get("/products/" + slug);
         setProduct(res.data);
       } catch {}
     };
     getProduct();
-  }, [id]);
+  }, [slug]);
   
   return (
     <Container>
