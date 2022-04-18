@@ -4,15 +4,17 @@ import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOu
 import Advertisement from "../components/Advertisement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
 import { mobile } from "../Responsive";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import  {publicRequest}  from "../requestAxios";
-
+import { publicRequest } from "../requestAxios";
+import { useContext } from "react";
+import { CartContext } from "../context/cart.context";
 
 const Container = styled.div``;
 
-const Wrapper = styled.div`
+const ProductContainer = styled.div`
   padding: 50px;
   display: flex;
   ${mobile({ padding: "10px", flexDirection: "column" })}
@@ -51,9 +53,9 @@ const Description = styled.div`
   flex-direction: column;
 `;
 
+const AddtoCartContainer = styled.div`
+  border: 2px solid blue;
 
-
-const AddContainer = styled.div`
   width: 50%;
   display: flex;
   align-items: center;
@@ -67,7 +69,7 @@ const AmountContainer = styled.div`
   font-weight: 700;
 `;
 
-const Amount = styled.span`
+const Quantity = styled.span`
   width: 30px;
   height: 30px;
   border-radius: 10px;
@@ -99,54 +101,85 @@ const InfoResult = styled.span`
 `;
 
 const Product = () => {
-
-  const {slug} = useParams()
-  const [product, setProduct] = useState({})
-
+  const { slug } = useParams();
+  const [product, setProduct] = useState({});
+  const { addOneToCart, removeOneToCart } = useContext(CartContext);
+  const [productQty, setProductQty] = useState(0);
+  const checkQuantity = () => {
+    setProductQty(productQty <= 0 ? 0 : productQty - 1);
+  };
   useEffect(() => {
     const getProduct = async () => {
       try {
         const res = await publicRequest.get("/products/" + slug);
+        console.log(res.data, "LE PRODUIT");
         setProduct(res.data);
-      } catch {}
+      } catch (e) {
+        console.log(e);
+        //redirect ou appel composant errorPage
+      }
     };
     getProduct();
   }, [slug]);
-  
+
   return (
     <Container>
       <Navbar />
       <Advertisement />
-      <Wrapper>
+      <ProductContainer>
         <ImgContainer>
           <Image src={product.image} />
         </ImgContainer>
         <InfoContainer>
           <Title>{product.productName}</Title>
           <Description>
-          <Info>
-            Color: <InfoResult>{product.color}</InfoResult>
-          </Info>
-          <Info>
-            Size: <InfoResult>{product.size}</InfoResult>
-          </Info>
-          <Info>
-            Weight: <InfoResult>{product.weight} Kg</InfoResult>
-          </Info>
-          <Info>
-            Price: <InfoResult>{product.price} €</InfoResult>
-          </Info>
+            <Info>
+              Color: <InfoResult>{product.color}</InfoResult>
+            </Info>
+            <Info>
+              Size: <InfoResult>{product.size}</InfoResult>
+            </Info>
+            <Info>
+              Weight: <InfoResult>{product.weight} Kg</InfoResult>
+            </Info>
+            <Info>
+              Price: <InfoResult>{product.price} €</InfoResult>
+            </Info>
           </Description>
-          <AddContainer>
+          <AddtoCartContainer>
             <AmountContainer>
-              <RemoveCircleOutlineOutlinedIcon />
-              <Amount>1</Amount>
-              <AddCircleOutlineOutlinedIcon />
+              <button className="removeOne">
+                <RemoveCircleOutlineOutlinedIcon
+                  className="removeOne"
+                  onClick={(e) => {
+                    removeOneToCart(e, product);
+                    // setProductQty(productQty - 1);
+                    checkQuantity();
+                  }}
+                />
+              </button>
+              <Quantity>{productQty}</Quantity>
+              <AddCircleOutlineOutlinedIcon
+                onClick={(e) => {
+                  addOneToCart(e, product);
+                  setProductQty(productQty + 1);
+                }}
+              />
             </AmountContainer>
-            <Button className="btn">ADD TO CART</Button>
-          </AddContainer>
+            <Link to="/shoppingcart" className="Link cart-icon">
+              <Button
+                className="btn"
+                onClick={(e) => {
+                  addOneToCart(e, product);
+                  setProductQty(productQty + 1);
+                }}
+              >
+                ADD TO CART
+              </Button>
+            </Link>
+          </AddtoCartContainer>
         </InfoContainer>
-      </Wrapper>
+      </ProductContainer>
       <Footer />
     </Container>
   );

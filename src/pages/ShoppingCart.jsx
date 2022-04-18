@@ -7,6 +7,8 @@ import Navbar from "../components/Navbar";
 import RemoveCircleOutlineOutlinedIcon from "@mui/icons-material/RemoveCircleOutlineOutlined";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../context/cart.context";
 
 const Container = styled.div``;
 
@@ -130,7 +132,7 @@ const Summary = styled.div`
   justify-content: space-between;
   flex-direction: column;
   flex: 1;
-  border: 0.5px solid #D3D3D3;
+  border: 0.5px solid #d3d3d3;
   border-radius: 10px;
   padding: 20px;
   height: 50vh;
@@ -162,6 +164,8 @@ const Button = styled.button`
 `;
 
 const ShoppingCart = () => {
+  const { cartCount, updateCartCount } = useContext(CartContext);
+
   return (
     <Container>
       <Navbar />
@@ -169,19 +173,20 @@ const ShoppingCart = () => {
       <Wrapper>
         <Title>Your shopping cart</Title>
         <Top>
-        <Link to="/products" className='Link'>
-          <TopButton className="btn">CONTINUE SHOPPING</TopButton>
-        </Link>
+          <Link to="/products" className="Link">
+            <TopButton className="btn">CONTINUE SHOPPING</TopButton>
+          </Link>
           <TopTexts>
             <TopText>Shopping Bag(2)</TopText>
           </TopTexts>
-          <Link to="/" className='Link'>
-          <TopButton className="btn">HOME PAGE</TopButton>
+          <Link to="/" className="Link">
+            <TopButton className="btn">HOME PAGE</TopButton>
           </Link>
         </Top>
         <Bottom>
           <Info>
             <Product>
+              <button onClick={updateCartCount}>TEST</button>
               <ProductDetail>
                 <Image src="https://res.cloudinary.com/ironbike/image/upload/v1649969273/Products/Bike/MTB/FOCUS_Jam_6_8_wei__grau_600x600_kclqtz.jpg" />
                 <Details>
@@ -251,8 +256,8 @@ const ShoppingCart = () => {
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>2210 €</SummaryItemPrice>
             </SummaryItem>
-            <Link to="/stripeLink" className='Link'>
-            <Button className="btn">CHECKOUT NOW</Button>
+            <Link to="/stripeLink" className="Link">
+              <Button className="btn">CHECKOUT NOW</Button>
             </Link>
           </Summary>
         </Bottom>
