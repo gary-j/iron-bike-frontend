@@ -53,7 +53,7 @@ const Description = styled.div`
   flex-direction: column;
 `;
 
-const AddtoCartContainer = styled.div`
+const AddToCartContainer = styled.div`
   border: 2px solid blue;
 
   width: 50%;
@@ -99,6 +99,12 @@ const InfoResult = styled.span`
   margin: 10px;
   color: #12996d;
 `;
+const LogoBrand = styled.img`
+  width: 125px;
+  height: 125px;
+  margin: 10px;
+`;
+
 
 const Product = () => {
   const { slug } = useParams();
@@ -112,11 +118,11 @@ const Product = () => {
     const getProduct = async () => {
       try {
         const res = await publicRequest.get('/products/' + slug);
-        console.log(res.data, 'LE PRODUIT');
         setProduct(res.data);
+        console.log(res.data);
       } catch (e) {
         console.log(e);
-        //redirect ou appel composant errorPage
+        //redirect ou appel component errorPage
       }
     };
     getProduct();
@@ -128,25 +134,76 @@ const Product = () => {
       <Advertisement />
       <ProductContainer>
         <ImgContainer>
-          <Image src={product.image} />
+          <Image src={product?.image} />
         </ImgContainer>
         <InfoContainer>
-          <Title>{product.productName}</Title>
+          <Title>{product?.productName}</Title>
+          <Link to={`/brands/${product?.brand?.slug}`}>
+          <LogoBrand src={product?.brand?.brandLogo}/>
+          </Link>
+          {/* <img  alt=''/> */}
           <Description>
+          { product?.color &&          
             <Info>
-              Color: <InfoResult>{product.color}</InfoResult>
-            </Info>
+              Color: <InfoResult>{product?.color}</InfoResult>
+            </Info>}
+            { product?.categoryBike &&
             <Info>
-              Size: <InfoResult>{product.size}</InfoResult>
-            </Info>
+            Category: <InfoResult>{product?.categoryBike}</InfoResult>
+            </Info>}
+            { product?.frameMaterials &&
             <Info>
-              Weight: <InfoResult>{product.weight} Kg</InfoResult>
-            </Info>
+            Frame material: <InfoResult>{product?.frameMaterials}</InfoResult>
+            </Info>}
+            { product?.equipment &&
             <Info>
-              Price: <InfoResult>{product.price} €</InfoResult>
+            Equipment: <InfoResult>{product?.equipment}</InfoResult>
+            </Info>}
+            { product?.size &&
+            <Info>
+              Size: <InfoResult>{product?.size}</InfoResult>
+            </Info>}
+            { product?.weight &&
+              <Info>
+                Weight: <InfoResult>{product?.weight} Kg</InfoResult>
+              </Info>}
+              { product?.features &&
+              <Info>
+              Features: <InfoResult>{product?.features}</InfoResult>
+              </Info>}
+              { product?.sexCategory &&
+              <Info>
+              Type: <InfoResult>{product?.sexCategory}</InfoResult>
+              </Info>}
+              { product?.ReflectiveEquipment &&
+              <Info>
+              Reflective Equipment: <InfoResult>{product?.ReflectiveEquipment}</InfoResult>
+              </Info>}
+              { product?.rainProtection &&
+              <Info>
+              Rain Protection: <InfoResult>{product?.rainProtection}</InfoResult>
+              </Info>}
+              { product?.flavor &&
+              <Info>
+              Flavor: <InfoResult>{product?.flavor}</InfoResult>
+              </Info>}
+              { product?.toTake &&
+              <Info>
+              To Take: <InfoResult>{product?.toTake}</InfoResult>
+              </Info>}
+              { product?.vegan &&
+              <Info>
+              Vegan: <InfoResult>{product?.vegan}</InfoResult>
+              </Info>}
+              { product?.modelYears &&
+              <Info>
+              Model Years: <InfoResult>{product?.modelYears}</InfoResult>
+              </Info>}
+            <Info>
+              Price: <InfoResult>{product?.price} €</InfoResult>
             </Info>
           </Description>
-          <AddtoCartContainer>
+          <AddToCartContainer>
             <AmountContainer>
               <button className='removeOne'>
                 <RemoveCircleOutlineOutlinedIcon
@@ -177,7 +234,7 @@ const Product = () => {
                 ADD TO CART
               </Button>
             </Link>
-          </AddtoCartContainer>
+          </AddToCartContainer>
         </InfoContainer>
       </ProductContainer>
       <Footer />
