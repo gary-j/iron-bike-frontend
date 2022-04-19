@@ -119,14 +119,15 @@ const LogoBrand = styled.img`
 `;
 
 const Product = () => {
-  const [loading, setLoading] = useState(false);
 
+  const [loading, setLoading] = useState(false);
   const { slug } = useParams();
   const [product, setProduct] = useState({});
   const { addOneToCart, removeOneToCart } = useContext(CartContext);
-  const [productQty, setProductQty] = useState(0);
+  const [productQty, setProductQty] = useState(1);
+  
   const checkQuantity = () => {
-    setProductQty(productQty <= 0 ? 0 : productQty - 1);
+    setProductQty(productQty <= 1 ? 1 : productQty - 1);
   };
   useEffect(() => {
     const getProduct = async () => {
@@ -137,7 +138,7 @@ const Product = () => {
         console.log(res.data);
       } catch (e) {
         console.log(e);
-        //redirect ou appel component errorPage
+        //redirect or call component errorPage
       }
     };
     getProduct();
