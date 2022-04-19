@@ -213,11 +213,13 @@ button {
   font-size: 2.4rem;
   margin-top: 100px;
 }
+
 .CompanyPage .container {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
+
 .CompanyPage .profile {
   padding: 50px 0px;
   height: fit-content;
@@ -234,12 +236,14 @@ button {
   border-radius: 50%;
   padding: inherit;
 }
+
 .CompanyPage h2 {
   text-align: center;
   text-decoration: 3px underline #12996d;
   margin: 30px 0px;
   font-size: 32px;
 }
+
 .CompanyPage .descPage {
   margin: auto;
   text-align: justify;
