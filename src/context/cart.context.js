@@ -63,18 +63,31 @@ function CartProviderWrapper(props) {
 
     console.log(cartArray, '-1');
   };
-  //   const removeOneToCart = (e) => {
-  //     console.log("event : ", e.target.value, "remove target");
+  const getSubTotal = () => {
+    const subtotal = cartArray.reduce((previousItem, currentItem) => {
+      return previousItem + currentItem.quantityInCart * currentItem.price;
+    }, 0);
+    return subtotal;
+  };
+  const getTotalToPay = (discount = 0) => {
+    const totalAmount = cartArray.reduce((previousItem, currentItem) => {
+      return previousItem + currentItem.quantityInCart * currentItem.price;
+    }, 0);
+    console.log('>>>>>>>>>>>>>', totalAmount);
+    return totalAmount - discount > 0 ? totalAmount - discount : 0;
+  };
 
-  //     if (cartCount > 0) {
-  //       setCartCount(cartCount - 1);
-  //     } else {
-  //       return;
-  //     }
-  //   };
   return (
     <CartContext.Provider
-      value={{ cartArray, addOneToCart, removeOneToCart, cartCount }}>
+      value={{
+        addOneToCart,
+        removeOneToCart,
+        cartCount,
+        cartArray,
+        setCartArray,
+        getSubTotal,
+        getTotalToPay,
+      }}>
       {props.children}
     </CartContext.Provider>
   );
