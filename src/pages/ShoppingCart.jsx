@@ -168,15 +168,23 @@ const Button = styled.button`
 `;
 
 const ShoppingCart = () => {
-  const { cartArray, cartCount, addOneToCart, removeOneToCart } =
-    useContext(CartContext);
-  const [product, setProduct] = useState({});
-  const [productQty, setProductQty] = useState(0);
-  //to be updated, 'cause several products
-  const checkQuantity = () => {
-    setProductQty(productQty <= 0 ? 0 : productQty - 1);
-  };
+  const {
+    addOneToCart,
+    removeOneToCart,
+    cartCount,
+    cartArray,
+    setCartArray,
+    getSubTotal,
+    getTotalToPay,
+  } = useContext(CartContext);
+  // const [product, setProduct] = useState({});
+  // const [productQty, setProductQty] = useState(0);
+  // const checkQuantity = () => {
+  //   setProductQty(productQty <= 0 ? 0 : productQty - 1);
+  // };
+
   console.log(cartArray, 'CART ARRAY');
+  //
   return (
     <Container>
       <Navbar />
@@ -207,7 +215,7 @@ const ShoppingCart = () => {
                           <b>Product: {item.productName}</b>
                         </ProductName>
                         <ProductId>
-                          <b>ID:{item._id}</b>
+                          <b>Unit price: {item.price.toFixed(2)} €</b>
                         </ProductId>
                         <ProductColor>{item.color}</ProductColor>
                         <ProductSize>
@@ -217,15 +225,21 @@ const ShoppingCart = () => {
                     </ItemQtyAndPrice>
                     <PriceDetail>
                       <ProductAmountContainer>
-                        <button className='addOne'>
-                          <AddCircleOutlineOutlinedIcon />
-                        </button>
-                        <Quantity>{item.quantityInCart}</Quantity>
-                        <button className='removeOne'>
+                        <button
+                          className='removeOne'
+                          onClick={(e) => removeOneToCart(e, item)}>
                           <RemoveCircleOutlineOutlinedIcon className='removeOne' />
                         </button>
+                        <Quantity>{item.quantityInCart}</Quantity>
+                        <button
+                          className='addOne'
+                          onClick={(e) => addOneToCart(e, item)}>
+                          <AddCircleOutlineOutlinedIcon />
+                        </button>
                       </ProductAmountContainer>
-                      <ProductPrice> {item.price} €</ProductPrice>
+                      <ProductPrice>
+                        {(item.price * item.quantityInCart).toFixed(2)} €
+                      </ProductPrice>
                     </PriceDetail>
                   </ProductRow>
                   <Hr />
@@ -236,20 +250,22 @@ const ShoppingCart = () => {
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
-              <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>2210 €</SummaryItemPrice>
+              <SummaryItemText>subtotal</SummaryItemText>
+              <SummaryItemPrice>{getSubTotal()} €</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
-              <SummaryItemText>Estimated Shipping</SummaryItemText>
-              <SummaryItemPrice>0 €</SummaryItemPrice>
+              <SummaryItemText>Free worldwide shipping</SummaryItemText>
+              {/* <SummaryItemPrice>0 €</SummaryItemPrice> */}
             </SummaryItem>
             <SummaryItem>
-              <SummaryItemText>Discount</SummaryItemText>
-              <SummaryItemPrice>0 €</SummaryItemPrice>
+              <div>
+                <label>Discount</label>
+                <input type='text' name='' id=''></input>
+              </div>
             </SummaryItem>
             <SummaryItem type='total'>
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>2210 €</SummaryItemPrice>
+              <SummaryItemPrice>{getTotalToPay()}</SummaryItemPrice>
             </SummaryItem>
             <Link to='/stripeLink' className='Link'>
               <Button className='btn'>CHECKOUT NOW</Button>
