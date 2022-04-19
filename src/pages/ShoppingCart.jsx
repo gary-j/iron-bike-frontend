@@ -1,14 +1,13 @@
-import React from "react";
-import { mobile } from "../Responsive";
-import styled from "styled-components";
-import Advertisement from "../components/Advertisement";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
-import RemoveCircleOutlineOutlinedIcon from "@mui/icons-material/RemoveCircleOutlineOutlined";
-import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { CartContext } from "../context/cart.context";
+import { mobile } from '../Responsive';
+import styled from 'styled-components';
+import Advertisement from '../components/Advertisement';
+import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
+import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { CartContext } from '../context/cart.context';
 
 const Container = styled.div``;
 
@@ -16,7 +15,7 @@ const Wrapper = styled.div`
   margin-top: 30px;
   margin-bottom: 60px;
   padding: 20px;
-  ${mobile({ padding: "10px" })}
+  ${mobile({ padding: '10px' })}
 `;
 
 const Title = styled.h1`
@@ -42,7 +41,7 @@ const TopButton = styled.button`
 `;
 
 const TopTexts = styled.div`
-  ${mobile({ display: "none" })}
+  ${mobile({ display: 'none' })}
 `;
 const TopText = styled.span`
   text-decoration: underline;
@@ -53,20 +52,23 @@ const TopText = styled.span`
 const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
-  ${mobile({ flexDirection: "column" })}
+  ${mobile({ flexDirection: 'column' })}
 `;
 
 const Info = styled.div`
+  border: 2px solid green;
   flex: 3;
 `;
 
-const Product = styled.div`
+const ProductRow = styled.div`
+  border: 2px solid blue;
   display: flex;
   justify-content: space-between;
-  ${mobile({ flexDirection: "column" })}
+  ${mobile({ flexDirection: 'column' })}
 `;
 
-const ProductDetail = styled.div`
+const ItemQtyAndPrice = styled.div`
+  border: 2px solid green;
   flex: 2;
   display: flex;
 `;
@@ -96,6 +98,7 @@ const ProductColor = styled.div`
 const ProductSize = styled.span``;
 
 const PriceDetail = styled.div`
+  border: 3px solid pink;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -112,13 +115,13 @@ const ProductAmountContainer = styled.div`
 const ProductAmount = styled.div`
   font-size: 24px;
   margin: 15px;
-  ${mobile({ margin: "5px 15px" })}
+  ${mobile({ margin: '5px 15px' })}
 `;
 
 const ProductPrice = styled.div`
   font-size: 30px;
   font-weight: 200;
-  ${mobile({ marginBottom: "20px" })}
+  ${mobile({ marginBottom: '20px' })}
 `;
 
 const Hr = styled.hr`
@@ -146,8 +149,8 @@ const SummaryItem = styled.div`
   margin: 30px 0px;
   display: flex;
   justify-content: space-between;
-  font-weight: ${(props) => props.type === "total" && "500"};
-  font-size: ${(props) => props.type === "total" && "24px"};
+  font-weight: ${(props) => props.type === 'total' && '500'};
+  font-size: ${(props) => props.type === 'total' && '24px'};
 `;
 
 const SummaryItemText = styled.span``;
@@ -164,8 +167,9 @@ const Button = styled.button`
 `;
 
 const ShoppingCart = () => {
-  const { cartCount, updateCartCount } = useContext(CartContext);
-
+  const { cartArray, cartCount, addOneToCart, removeOneToCart } =
+    useContext(CartContext);
+  console.log(cartArray, 'CART ARRAY');
   return (
     <Container>
       <Navbar />
@@ -173,47 +177,53 @@ const ShoppingCart = () => {
       <Wrapper>
         <Title>Your shopping cart</Title>
         <Top>
-          <Link to="/products" className="Link">
-            <TopButton className="btn">CONTINUE SHOPPING</TopButton>
+          <Link to='/products' className='Link'>
+            <TopButton className='btn'>CONTINUE SHOPPING</TopButton>
           </Link>
           <TopTexts>
             <TopText>Shopping Bag(2)</TopText>
           </TopTexts>
-          <Link to="/" className="Link">
-            <TopButton className="btn">HOME PAGE</TopButton>
+          <Link to='/' className='Link'>
+            <TopButton className='btn'>HOME PAGE</TopButton>
           </Link>
         </Top>
         <Bottom>
           <Info>
-            <Product>
-              <button onClick={updateCartCount}>TEST</button>
-              <ProductDetail>
-                <Image src="https://res.cloudinary.com/ironbike/image/upload/v1649969273/Products/Bike/MTB/FOCUS_Jam_6_8_wei__grau_600x600_kclqtz.jpg" />
-                <Details>
-                  <ProductName>
-                    <b>Product:</b> FOCUS Jam 6
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b> 93813718293
-                  </ProductId>
-                  <ProductColor color="black" />
-                  <ProductSize>
-                    <b>Size:</b> M
-                  </ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <AddCircleOutlineOutlinedIcon />
-                  <ProductAmount>1</ProductAmount>
-                  <RemoveCircleOutlineOutlinedIcon />
-                </ProductAmountContainer>
-                <ProductPrice> 2130 €</ProductPrice>
-              </PriceDetail>
-            </Product>
-            <Hr />
-            <Product>
-              <ProductDetail>
+            {cartArray.map((item) => {
+              return (
+                <div key={item._id}>
+                  <ProductRow>
+                    <ItemQtyAndPrice>
+                      <Image src='https://res.cloudinary.com/ironbike/image/upload/v1649969273/Products/Bike/MTB/FOCUS_Jam_6_8_wei__grau_600x600_kclqtz.jpg' />
+                      <Details>
+                        <ProductName>
+                          <b>Product:</b> FOCUS Jam 6
+                        </ProductName>
+                        <ProductId>
+                          <b>ID:{item._id}</b>
+                        </ProductId>
+                        <ProductColor color='black' />
+                        <ProductSize>
+                          <b>Size:</b> M
+                        </ProductSize>
+                      </Details>
+                    </ItemQtyAndPrice>
+                    <PriceDetail>
+                      <ProductAmountContainer>
+                        <AddCircleOutlineOutlinedIcon />
+                        <ProductAmount>{item.quantity}</ProductAmount>
+                        <RemoveCircleOutlineOutlinedIcon />
+                      </ProductAmountContainer>
+                      <ProductPrice> 2130 €</ProductPrice>
+                    </PriceDetail>
+                  </ProductRow>
+                  <Hr />
+                </div>
+              );
+            })}
+
+            {/* <ProductRow>
+              <ItemQtyAndPrice>
                 <Image src="https://res.cloudinary.com/ironbike/image/upload/v1649846404/Products/Nutrition/Drinks/POWERBAR_5_ELECTROLYTES_Pack_of_12_Anti-cramp_Drink_Tubes_Tubes_of_10_Tablets_r3qgkf.jpg" />
                 <Details>
                   <ProductName>
@@ -227,7 +237,7 @@ const ShoppingCart = () => {
                     <b>Size:</b> M
                   </ProductSize>
                 </Details>
-              </ProductDetail>
+              </ItemQtyAndPrice>
               <PriceDetail>
                 <ProductAmountContainer>
                   <AddCircleOutlineOutlinedIcon />
@@ -236,7 +246,7 @@ const ShoppingCart = () => {
                 </ProductAmountContainer>
                 <ProductPrice>80 €</ProductPrice>
               </PriceDetail>
-            </Product>
+            </ProductRow> */}
           </Info>
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
@@ -252,12 +262,12 @@ const ShoppingCart = () => {
               <SummaryItemText>Discount</SummaryItemText>
               <SummaryItemPrice>0 €</SummaryItemPrice>
             </SummaryItem>
-            <SummaryItem type="total">
+            <SummaryItem type='total'>
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>2210 €</SummaryItemPrice>
             </SummaryItem>
-            <Link to="/stripeLink" className="Link">
-              <Button className="btn">CHECKOUT NOW</Button>
+            <Link to='/stripeLink' className='Link'>
+              <Button className='btn'>CHECKOUT NOW</Button>
             </Link>
           </Summary>
         </Bottom>
