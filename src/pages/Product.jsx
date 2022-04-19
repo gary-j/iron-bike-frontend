@@ -1,23 +1,23 @@
-import styled from "styled-components";
-import RemoveCircleOutlineOutlinedIcon from "@mui/icons-material/RemoveCircleOutlineOutlined";
-import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-import Advertisement from "../components/Advertisement";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
-import { Link } from "react-router-dom";
-import { mobile } from "../Responsive";
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { publicRequest } from "../requestAxios";
-import { useContext } from "react";
-import { CartContext } from "../context/cart.context";
+import styled from 'styled-components';
+import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import Advertisement from '../components/Advertisement';
+import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
+import { Link } from 'react-router-dom';
+import { mobile } from '../Responsive';
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { publicRequest } from '../requestAxios';
+import { useContext } from 'react';
+import { CartContext } from '../context/cart.context';
 
 const Container = styled.div``;
 
 const ProductContainer = styled.div`
   padding: 50px;
   display: flex;
-  ${mobile({ padding: "10px", flexDirection: "column" })}
+  ${mobile({ padding: '10px', flexDirection: 'column' })}
 `;
 
 const ImgContainer = styled.div`
@@ -29,7 +29,7 @@ const Image = styled.img`
   width: 100%;
   height: 100vh;
   object-fit: contain;
-  ${mobile({ height: "40vh" })}
+  ${mobile({ height: '40vh' })}
 `;
 
 const InfoContainer = styled.div`
@@ -38,7 +38,7 @@ const InfoContainer = styled.div`
   justify-content: center;
   flex: 1;
   padding: 0px 50px;
-  ${mobile({ padding: "10px" })}
+  ${mobile({ padding: '10px' })}
 `;
 
 const Title = styled.h1`
@@ -60,7 +60,7 @@ const AddtoCartContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  ${mobile({ width: "100%" })}
+  ${mobile({ width: '100%' })}
 `;
 
 const AmountContainer = styled.div`
@@ -111,8 +111,8 @@ const Product = () => {
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const res = await publicRequest.get("/products/" + slug);
-        console.log(res.data, "LE PRODUIT");
+        const res = await publicRequest.get('/products/' + slug);
+        console.log(res.data, 'LE PRODUIT');
         setProduct(res.data);
       } catch (e) {
         console.log(e);
@@ -148,32 +148,32 @@ const Product = () => {
           </Description>
           <AddtoCartContainer>
             <AmountContainer>
-              <button className="removeOne">
+              <button className='removeOne'>
                 <RemoveCircleOutlineOutlinedIcon
-                  className="removeOne"
+                  className='removeOne'
                   onClick={(e) => {
                     removeOneToCart(e, product);
-                    // setProductQty(productQty - 1);
                     checkQuantity();
                   }}
                 />
               </button>
               <Quantity>{productQty}</Quantity>
-              <AddCircleOutlineOutlinedIcon
-                onClick={(e) => {
-                  addOneToCart(e, product);
-                  setProductQty(productQty + 1);
-                }}
-              />
+              <button className='addOne'>
+                <AddCircleOutlineOutlinedIcon
+                  onClick={(e) => {
+                    addOneToCart(e, product);
+                    setProductQty(productQty + 1);
+                  }}
+                />
+              </button>
             </AmountContainer>
-            <Link to="/shoppingcart" className="Link cart-icon">
+            <Link to='/shoppingcart' className='Link cart-icon'>
               <Button
-                className="btn"
+                className='btn'
                 onClick={(e) => {
                   addOneToCart(e, product);
                   setProductQty(productQty + 1);
-                }}
-              >
+                }}>
                 ADD TO CART
               </Button>
             </Link>

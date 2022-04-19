@@ -6,6 +6,7 @@ import Navbar from '../components/Navbar';
 import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import { CartContext } from '../context/cart.context';
 
@@ -112,7 +113,7 @@ const ProductAmountContainer = styled.div`
   margin-bottom: 20px;
 `;
 
-const ProductAmount = styled.div`
+const Quantity = styled.div`
   font-size: 24px;
   margin: 15px;
   ${mobile({ margin: '5px 15px' })}
@@ -169,6 +170,12 @@ const Button = styled.button`
 const ShoppingCart = () => {
   const { cartArray, cartCount, addOneToCart, removeOneToCart } =
     useContext(CartContext);
+  const [product, setProduct] = useState({});
+  const [productQty, setProductQty] = useState(0);
+  //to be updated, 'cause several products
+  const checkQuantity = () => {
+    setProductQty(productQty <= 0 ? 0 : productQty - 1);
+  };
   console.log(cartArray, 'CART ARRAY');
   return (
     <Container>
@@ -194,59 +201,37 @@ const ShoppingCart = () => {
                 <div key={item._id}>
                   <ProductRow>
                     <ItemQtyAndPrice>
-                      <Image src='https://res.cloudinary.com/ironbike/image/upload/v1649969273/Products/Bike/MTB/FOCUS_Jam_6_8_wei__grau_600x600_kclqtz.jpg' />
+                      <Image src={item.image} />
                       <Details>
                         <ProductName>
-                          <b>Product:</b> FOCUS Jam 6
+                          <b>Product: {item.productName}</b>
                         </ProductName>
                         <ProductId>
                           <b>ID:{item._id}</b>
                         </ProductId>
-                        <ProductColor color='black' />
+                        <ProductColor>{item.color}</ProductColor>
                         <ProductSize>
-                          <b>Size:</b> M
+                          <b>Size:</b> {item.size[0]}
                         </ProductSize>
                       </Details>
                     </ItemQtyAndPrice>
                     <PriceDetail>
                       <ProductAmountContainer>
-                        <AddCircleOutlineOutlinedIcon />
-                        <ProductAmount>{item.quantity}</ProductAmount>
-                        <RemoveCircleOutlineOutlinedIcon />
+                        <button className='addOne'>
+                          <AddCircleOutlineOutlinedIcon />
+                        </button>
+                        <Quantity>{item.quantityInCart}</Quantity>
+                        <button className='removeOne'>
+                          <RemoveCircleOutlineOutlinedIcon className='removeOne' />
+                        </button>
                       </ProductAmountContainer>
-                      <ProductPrice> 2130 €</ProductPrice>
+                      <ProductPrice> {item.price} €</ProductPrice>
                     </PriceDetail>
                   </ProductRow>
                   <Hr />
                 </div>
               );
             })}
-
-            {/* <ProductRow>
-              <ItemQtyAndPrice>
-                <Image src="https://res.cloudinary.com/ironbike/image/upload/v1649846404/Products/Nutrition/Drinks/POWERBAR_5_ELECTROLYTES_Pack_of_12_Anti-cramp_Drink_Tubes_Tubes_of_10_Tablets_r3qgkf.jpg" />
-                <Details>
-                  <ProductName>
-                    <b>Product:</b> POWERBAR 5 ELECTROLYTES
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b> 938182123
-                  </ProductId>
-                  <ProductColor color="gray" />
-                  <ProductSize>
-                    <b>Size:</b> M
-                  </ProductSize>
-                </Details>
-              </ItemQtyAndPrice>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <AddCircleOutlineOutlinedIcon />
-                  <ProductAmount>3</ProductAmount>
-                  <RemoveCircleOutlineOutlinedIcon />
-                </ProductAmountContainer>
-                <ProductPrice>80 €</ProductPrice>
-              </PriceDetail>
-            </ProductRow> */}
           </Info>
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
