@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -10,16 +11,21 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  border: 4px solid #bdbdbd21;
-  border-radius: 10px;
+  ${
+    "" /* border: 4px solid #bdbdbd21; 
+  border-radius: 10px; */
+  }
 `;
 
 const Image = styled.img`
-  height: 10%;
-  z-index: 2;
-  background-color: white;
+  object-fit: contain;
+  display: block;
+  max-width: 100%;
+  padding: 20px;
+  height: 80%;
+  background-color: transparent;
   margin: 10px;
-  transition: all 0.5s ease;
+  transition: all 1.5s ease;
   &:hover {
     transform: scale(1.1);
   }
@@ -27,9 +33,15 @@ const Image = styled.img`
 
 const Brand = ({ item }) => {
   return (
-    <Container>
-      <Image src={item.brandLogo} />
-    </Container>
+    <>
+      <Container>
+      <div className="div-block">
+        <Link to={`/brand/${item.slug}`} className="linkItem">
+          <Image src={item.brandLogo} />
+        </Link>
+      </div>
+      </Container>
+    </>
   );
 };
 

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { useParams } from "react-router-dom";
 import { publicRequest } from "../requestAxios";
+import Footer from "../components/Footer";
 
 const Container = styled.div`
   width: 80vw;
@@ -91,6 +92,7 @@ const BrandPage = () => {
         </LeftBox>
         <RightBox src={brand?.brandLogo}/>
       </Container>
+      <Footer/>
     </div>
   );
 };
