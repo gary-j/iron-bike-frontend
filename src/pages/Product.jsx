@@ -1,35 +1,37 @@
-import styled from 'styled-components';
-import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import Advertisement from '../components/Advertisement';
-import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
-import { Link } from 'react-router-dom';
-import { mobile } from '../Responsive';
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { publicRequest } from '../requestAxios';
-import { useContext } from 'react';
-import { CartContext } from '../context/cart.context';
+import styled from "styled-components";
+import RemoveCircleOutlineOutlinedIcon from "@mui/icons-material/RemoveCircleOutlineOutlined";
+import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
+import Advertisement from "../components/Advertisement";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
+import { mobile } from "../Responsive";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { publicRequest } from "../requestAxios";
+import { useContext } from "react";
+import { CartContext } from "../context/cart.context";
 
 const Container = styled.div``;
 
 const ProductContainer = styled.div`
   padding: 50px;
   display: flex;
-  ${mobile({ padding: '10px', flexDirection: 'column' })}
+  ${mobile({ padding: "10px", flexDirection: "column" })}
 `;
 
 const ImgContainer = styled.div`
   flex: 1;
   margin-right: 50px;
+  border: none;
 `;
 
 const Image = styled.img`
   width: 100%;
   height: 100vh;
   object-fit: contain;
-  ${mobile({ height: '40vh' })}
+  border: none;
+  ${mobile({ height: "40vh" })}
 `;
 
 const InfoContainer = styled.div`
@@ -38,29 +40,30 @@ const InfoContainer = styled.div`
   justify-content: center;
   flex: 1;
   padding: 0px 50px;
-  ${mobile({ padding: '10px' })}
+  ${mobile({ padding: "10px" })}
 `;
 
 const Title = styled.h1`
-  font-size: 60px;
-  font-weight: 300;
+  font-size: 40px;
   margin-bottom: 60px;
   text-decoration: 3px underline #12996d;
 `;
 
 const Description = styled.div`
   display: flex;
+  border-top: 3px solid black;
   flex-direction: column;
+  margin-bottom: 25px;
+  margin-top: 25px;
+  padding-top: 25px;
 `;
 
 const AddToCartContainer = styled.div`
-  border: 2px solid blue;
-
   width: 50%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  ${mobile({ width: '100%' })}
+  ${mobile({ width: "100%" })}
 `;
 
 const AmountContainer = styled.div`
@@ -81,12 +84,14 @@ const Quantity = styled.span`
 `;
 
 const Button = styled.button`
-  padding: 20px;
-  margin: 4px 5px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  font-weight: 500;
+  padding: 13px;
+margin: 9px 30px;
+border: none;
+background: transparent;
+cursor: pointer;
+font-weight: 183;
+font-size: small;
+width: max-content;
 `;
 const Info = styled.p`
   flex: 1;
@@ -100,13 +105,14 @@ const InfoResult = styled.span`
   color: #12996d;
 `;
 const LogoBrand = styled.img`
-  width: 125px;
-  height: 125px;
-  margin: 10px;
+  width: 200px;
+  height: 50px;
+  margin: 20px;
 `;
 
-
 const Product = () => {
+  const [loading, setLoading] = useState(false)
+
   const { slug } = useParams();
   const [product, setProduct] = useState({});
   const { addOneToCart, removeOneToCart } = useContext(CartContext);
@@ -117,8 +123,9 @@ const Product = () => {
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const res = await publicRequest.get('/products/' + slug);
+        const res = await publicRequest.get("/products/" + slug);
         setProduct(res.data);
+        setLoading(true)
         console.log(res.data);
       } catch (e) {
         console.log(e);
@@ -134,80 +141,98 @@ const Product = () => {
       <Advertisement />
       <ProductContainer>
         <ImgContainer>
+        {loading && <>
           <Image src={product?.image} />
+        </>}
         </ImgContainer>
         <InfoContainer>
           <Title>{product?.productName}</Title>
-          <Link to={`/brands/${product?.brand?.slug}`}>
-          <LogoBrand src={product?.brand?.brandLogo}/>
+          <Link to={`/brand/${product?.brand?.slug}`}>
+            <LogoBrand src={product?.brand?.brandLogo} />
           </Link>
-          {/* <img  alt=''/> */}
           <Description>
-          { product?.color &&          
-            <Info>
-              Color: <InfoResult>{product?.color}</InfoResult>
-            </Info>}
-            { product?.categoryBike &&
-            <Info>
-            Category: <InfoResult>{product?.categoryBike}</InfoResult>
-            </Info>}
-            { product?.frameMaterials &&
-            <Info>
-            Frame material: <InfoResult>{product?.frameMaterials}</InfoResult>
-            </Info>}
-            { product?.equipment &&
-            <Info>
-            Equipment: <InfoResult>{product?.equipment}</InfoResult>
-            </Info>}
-            { product?.size &&
-            <Info>
-              Size: <InfoResult>{product?.size}</InfoResult>
-            </Info>}
-            { product?.weight &&
+            {product?.color && (
+              <Info>
+                Color: <InfoResult>{product?.color}</InfoResult>
+              </Info>
+            )}
+            {product?.categoryBike && (
+              <Info>
+                Category: <InfoResult>{product?.categoryBike}</InfoResult>
+              </Info>
+            )}
+            {product?.frameMaterials && (
+              <Info>
+                Frame material:{" "}
+                <InfoResult>{product?.frameMaterials}</InfoResult>
+              </Info>
+            )}
+            {product?.equipment && (
+              <Info>
+                Equipment: <InfoResult>{product?.equipment}</InfoResult>
+              </Info>
+            )}
+            {product?.size && (
+              <Info>
+                Size: <InfoResult>{product?.size}</InfoResult>
+              </Info>
+            )}
+            {product?.weight && (
               <Info>
                 Weight: <InfoResult>{product?.weight} Kg</InfoResult>
-              </Info>}
-              { product?.features &&
+              </Info>
+            )}
+            {product?.features && (
               <Info>
-              Features: <InfoResult>{product?.features}</InfoResult>
-              </Info>}
-              { product?.sexCategory &&
+                Features: <InfoResult>{product?.features}</InfoResult>
+              </Info>
+            )}
+            {product?.sexCategory && (
               <Info>
-              Type: <InfoResult>{product?.sexCategory}</InfoResult>
-              </Info>}
-              { product?.ReflectiveEquipment &&
+                Type: <InfoResult>{product?.sexCategory}</InfoResult>
+              </Info>
+            )}
+            {product?.ReflectiveEquipment && (
               <Info>
-              Reflective Equipment: <InfoResult>{product?.ReflectiveEquipment}</InfoResult>
-              </Info>}
-              { product?.rainProtection &&
+                Reflective Equipment:{" "}
+                <InfoResult>{product?.ReflectiveEquipment}</InfoResult>
+              </Info>
+            )}
+            {product?.rainProtection && (
               <Info>
-              Rain Protection: <InfoResult>{product?.rainProtection}</InfoResult>
-              </Info>}
-              { product?.flavor &&
+                Rain Protection:{" "}
+                <InfoResult>{product?.rainProtection}</InfoResult>
+              </Info>
+            )}
+            {product?.flavor && (
               <Info>
-              Flavor: <InfoResult>{product?.flavor}</InfoResult>
-              </Info>}
-              { product?.toTake &&
+                Flavor: <InfoResult>{product?.flavor}</InfoResult>
+              </Info>
+            )}
+            {product?.toTake && (
               <Info>
-              To Take: <InfoResult>{product?.toTake}</InfoResult>
-              </Info>}
-              { product?.vegan &&
+                To Take: <InfoResult>{product?.toTake}</InfoResult>
+              </Info>
+            )}
+            {product?.vegan && (
               <Info>
-              Vegan: <InfoResult>{product?.vegan}</InfoResult>
-              </Info>}
-              { product?.modelYears &&
+                Vegan: <InfoResult>{product?.vegan}</InfoResult>
+              </Info>
+            )}
+            {product?.modelYears && (
               <Info>
-              Model Years: <InfoResult>{product?.modelYears}</InfoResult>
-              </Info>}
+                Model Years: <InfoResult>{product?.modelYears}</InfoResult>
+              </Info>
+            )}
             <Info>
               Price: <InfoResult>{product?.price} €</InfoResult>
             </Info>
           </Description>
           <AddToCartContainer>
             <AmountContainer>
-              <button className='removeOne'>
+              <button className="removeOne">
                 <RemoveCircleOutlineOutlinedIcon
-                  className='removeOne'
+                  className="removeOne"
                   onClick={(e) => {
                     removeOneToCart(e, product);
                     checkQuantity();
@@ -215,7 +240,7 @@ const Product = () => {
                 />
               </button>
               <Quantity>{productQty}</Quantity>
-              <button className='addOne'>
+              <button className="addOne">
                 <AddCircleOutlineOutlinedIcon
                   onClick={(e) => {
                     addOneToCart(e, product);
@@ -224,13 +249,14 @@ const Product = () => {
                 />
               </button>
             </AmountContainer>
-            <Link to='/shoppingcart' className='Link cart-icon'>
+            <Link to="/shoppingcart" className="Link cart-icon">
               <Button
-                className='btn'
+                className="btn"
                 onClick={(e) => {
                   addOneToCart(e, product);
                   setProductQty(productQty + 1);
-                }}>
+                }}
+              >
                 ADD TO CART
               </Button>
             </Link>

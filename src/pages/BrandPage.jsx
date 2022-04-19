@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import { mobile } from "../Responsive";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
+import { useParams } from "react-router-dom";
+import { publicRequest } from "../requestAxios";
 
 const Container = styled.div`
   width: 80vw;
@@ -49,31 +51,45 @@ const InfoResult = styled.span`
 `;
 
 const BrandPage = () => {
+
+    const { slug } = useParams();
+    const [brand, setBrand] = useState({});
+
+    useEffect(() => {
+      const getBrand = async () => {
+        try {
+          const res = await publicRequest.get('/brand/' + slug);
+          setBrand(res.data);
+          console.log(res.data);
+        } catch (e) {
+          console.log(e);
+        }
+      };
+      getBrand();
+    }, [slug]);
+  
   return (
     <div>
       <Navbar />
       <Container>
         <LeftBox>
-          <Title>Pinarello</Title>
+          <Title>{brand?.name}</Title>
           <Description>
             <Info>
               Year of Foundation:
-              <InfoResult>1950</InfoResult>
+              <InfoResult>{brand?.foundationYear}</InfoResult>
             </Info>
             <Info>
               Head Quarter:
-              <InfoResult>Italy</InfoResult>
+              <InfoResult>{brand?.headquarters}</InfoResult>
             </Info>
             <Info>
               Factory Location:
-              <InfoResult>Italy</InfoResult>
+              <InfoResult>{brand?.madeIn}</InfoResult>
             </Info>
           </Description>
         </LeftBox>
-        <RightBox
-          src="https://res.cloudinary.com/ironbike/image/upload/v1649861921/Products/Brand/Pinarello_logo.svg_pdyfmc.png"
-          alt=" img of brand"
-        />
+        <RightBox src={brand?.brandLogo}/>
       </Container>
     </div>
   );

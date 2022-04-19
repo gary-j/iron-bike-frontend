@@ -10,24 +10,15 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  border: 4px solid #bdbdbd21;
-  border-radius: 10px;
-`;
-
-const Circle = styled.div`
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  background-color: white;
-  position: absolute;
+  ${'' /* border: 4px solid #bdbdbd21; 
+  border-radius: 10px; */}
 `;
 
 const Image = styled.img`
-  height: 75%;
-  z-index: 2;
-  background-color: white;
+  height: 80%;
+  background-color: transparent;
   margin: 10px;
-  transition: all 0.5s ease;
+  transition: all 1.5s ease;
   &:hover {
     transform: scale(1.1);
   }
@@ -36,12 +27,11 @@ const Image = styled.img`
 const Product = ({ item }) => {
   return (
     <>
-      <Link to={`/product/${item.slug}`}>
-        <Container>
-          <Circle />
+      <Container>
+        <Link className="linkItem" to={`/product/${item.slug}`}>
           <Image src={item.image} />
-        </Container>
-      </Link>
+        </Link>
+      </Container>
     </>
   );
 };
