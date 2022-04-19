@@ -87,7 +87,7 @@ const ProductList = () => {
           </Select>
         </Filter>
       </FilterContainer>
-      <Link to="/product" className='Link'>
+      <Link to="/product" className='linkItem'>
       <Products cat={cat} filters={filters} sort={sort}/>
       </Link>
       <Footer />

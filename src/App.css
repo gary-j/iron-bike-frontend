@@ -20,14 +20,13 @@ html {
   margin-left: 10px;
   padding-top: 10px;
 }
-.Link{
+.Link {
   text-decoration: none;
   color: #000000;
 }
-.Link:hover{
+.Link:hover {
   color: #4d4b4b;
 }
-
 
 /* Special Button */
 
@@ -83,10 +82,10 @@ html {
   transition: 0.5s;
   transition-delay: 0.5s;
 }
- 
- /* features */
 
- .features {
+/* features */
+
+.features {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -156,7 +155,7 @@ Footer {
   align-items: center;
 }
 
-.fIcons{
+.fIcons {
   display: flex;
   flex-direction: row;
   width: 50px;
@@ -164,20 +163,33 @@ Footer {
   margin-right: 20px;
   margin-bottom: 10px;
 }
-.fIcons img{
+.fIcons img {
   margin-right: 15px;
 }
 
-.copyright{
+.copyright {
   font-weight: 300;
   font-size: 24px;
 }
 
 /* Advertisement Show Time */
-.ShowTime{
-  color:  rgb(255, 255, 255);
+.ShowTime {
+  color: rgb(255, 255, 255);
   animation: blink 3s infinite;
   -webkit-animation: blink 6s infinite;
+}
+/* style for link router */
+
+.linkItem {
+  min-width: 280px;
+  height: 350px;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+button {
+  border: none;
+  background: transparent;
 }
 
 @-webkit-keyframes blink {
