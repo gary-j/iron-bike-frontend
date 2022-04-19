@@ -28,16 +28,16 @@ const Footer = () => {
             <h1 className="fMenuTitle">Brands</h1>
             </Link>
             <ul className="fList">
-            <Link to="/brands/willier" className='Link'>
+            <Link to="/brand/willier-triestina" className='Link'>
                 <li className="fListItem">Willier</li>
             </Link>
-            <Link to="/brand/mavic" className='Link'>
-                <li className="fListItem">Mavic</li>
+            <Link to="/brand/isostar" className='Link'>
+                <li className="fListItem">Isostar</li>
             </Link>
-            <Link to="/brands/oakley" className='Link'>
+            <Link to="/brand/oakley" className='Link'>
                 <li className="fListItem">Oakley</li>
             </Link>
-            <Link to="/brands/stc" className='Link'>
+            <Link to="/brand/stc-nutrition" className='Link'>
                 <li className="fListItem">Stc</li>
             </Link>
             </ul>

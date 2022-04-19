@@ -44,7 +44,7 @@ html {
 }
 .btn:hover {
   background-color: #000000;
-  color: whitesmoke;
+  color: #12996d;
   box-shadow: 0 10px 10px #4d4b4b;
   transition-delay: 0.2s;
 }
@@ -185,6 +185,13 @@ Footer {
   height: 350px;
   text-decoration: none;
   overflow: hidden;
+}
+.div-block{
+  min-width: 280px;
+  height: 350px;
+  text-decoration: none;
+  overflow: hidden;
+  background-size: contain;
 }
 
 button {

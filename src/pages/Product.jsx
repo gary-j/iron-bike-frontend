@@ -85,13 +85,13 @@ const Quantity = styled.span`
 
 const Button = styled.button`
   padding: 13px;
-margin: 9px 30px;
-border: none;
-background: transparent;
-cursor: pointer;
-font-weight: 183;
-font-size: small;
-width: max-content;
+  margin: 9px 30px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 183;
+  font-size: small;
+  width: max-content;
 `;
 const Info = styled.p`
   flex: 1;
@@ -105,13 +105,21 @@ const InfoResult = styled.span`
   color: #12996d;
 `;
 const LogoBrand = styled.img`
-  width: 200px;
-  height: 50px;
-  margin: 20px;
+  object-fit: contain;
+  display: block;
+  max-width: 100%;
+  padding: 20px;
+  height: 80%;
+  background-color: transparent;
+  margin: 10px;
+  transition: all 1.5s ease;
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 const Product = () => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const { slug } = useParams();
   const [product, setProduct] = useState({});
@@ -125,7 +133,7 @@ const Product = () => {
       try {
         const res = await publicRequest.get("/products/" + slug);
         setProduct(res.data);
-        setLoading(true)
+        setLoading(true);
         console.log(res.data);
       } catch (e) {
         console.log(e);
@@ -134,6 +142,7 @@ const Product = () => {
     };
     getProduct();
   }, [slug]);
+  console.log({ product });
 
   return (
     <Container>
@@ -141,9 +150,11 @@ const Product = () => {
       <Advertisement />
       <ProductContainer>
         <ImgContainer>
-        {loading && <>
-          <Image src={product?.image} />
-        </>}
+          {loading && (
+            <>
+              <Image src={product?.image} />
+            </>
+          )}
         </ImgContainer>
         <InfoContainer>
           <Title>{product?.productName}</Title>
