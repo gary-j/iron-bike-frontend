@@ -1,7 +1,6 @@
 import  axios  from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-// import { productsEx } from "../dataTest";
 import ProductItem from "./ProductItem";
 
 const Container = styled.div`
