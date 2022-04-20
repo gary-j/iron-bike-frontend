@@ -2,7 +2,12 @@ import styled from 'styled-components';
 import { mobile } from '../Responsive';
 import React from 'react';
 import Navbar from '../components/Navbar';
-import { Link } from 'react-router-dom';
+
+import { useContext, useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { AuthContext } from '../context/auth.context';
+import { API_URL } from '../consts';
 
 const Container = styled.div`
   width: 80vw;
@@ -60,21 +65,77 @@ const Links = styled.a`
 `;
 
 const SignupPage = () => {
+  const { storeToken, authenticateUser } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
+  const [errorMessage, setErrorMessage] = useState(undefined);
+
+  const handleUsername = (e) => setUsername(e.target.value);
+  const handleEmail = (e) => setEmail(e.target.value);
+  const handlePassword = (e) => setPassword(e.target.value);
+
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    // Create an object representing the request body
+    const requestBody = { username, email, password };
+
+    // Make an axios request to the API
+    // If POST request is successful redirect to login page
+    // If the request resolves with an error, set the error message in the state
+    axios
+      .post(`${API_URL}/auth/signup`, requestBody)
+      .then((response) => {
+        // console.log('JWT RETURNED', response.data);
+
+        storeToken(response.data.authToken);
+        authenticateUser();
+
+        navigate('/');
+      })
+      .catch((error) => {
+        const errorDescription = error.response.data.message;
+        setErrorMessage(errorDescription);
+      });
+  };
   return (
     <div>
       <Navbar />
       <Container>
         <Wrapper>
           <Title>SIGN UP</Title>
-          <Form>
-            <Input placeholder='username' />
-            <Input placeholder='email' />
-            <Input placeholder='password' />
-            <Button className='btn'>CONFIRM</Button>
+          <Form onSubmit={handleLoginSubmit}>
+            <Input
+              placeholder='username'
+              type='username'
+              name='username'
+              value={username}
+              onChange={handleUsername}
+            />
+            <Input
+              placeholder='email'
+              type='text'
+              name='email'
+              value={email}
+              onChange={handleEmail}
+            />
+            <Input
+              placeholder='password'
+              type='password'
+              name='password'
+              value={password}
+              onChange={handlePassword}
+            />
+            <Button type='submit' className='btn'>
+              CONFIRM
+            </Button>
             <Link to={'/login'}>
               <Links>ALREADY YOU HAVE AN ACCOUNT ?</Links>
             </Link>
           </Form>
+          {errorMessage && <p className='error-message'>{errorMessage}</p>}
         </Wrapper>
         <RightBox
           src='https://res.cloudinary.com/ironbike/image/upload/v1650037531/Main/bike_ys6xgn.png'

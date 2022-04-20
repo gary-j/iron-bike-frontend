@@ -3,7 +3,7 @@ import { mobile } from '../Responsive';
 import React from 'react';
 import Navbar from '../components/Navbar';
 
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context/auth.context';
