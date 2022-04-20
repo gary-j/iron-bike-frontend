@@ -8,6 +8,8 @@ import ProductList from "./pages/ProductsList";
 import Product from "./pages/Product";
 import BrandPage from "./pages/BrandPage";
 import BrandListPage from "./pages/BrandListPage";
+import CompanyPage from "./pages/CompanyPage";
+import ContactPage  from "./pages/ContactPage";
 
 const App = () => {
   return (
@@ -22,6 +24,8 @@ const App = () => {
         <Route path="/product/:slug" element={<Product />} />
         <Route path="/brands" element={<BrandListPage />} />
         <Route path="/brand/:slug" element={<BrandPage />} />
+        <Route path="/company" element={<CompanyPage />} />
+        <Route path="/contact" element={<ContactPage />} />
       </Routes>
     </div>
   );

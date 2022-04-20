@@ -88,18 +88,7 @@ const Details = styled.div`
   justify-content: space-around;
 `;
 
-const ProductName = styled.span``;
-
-const ProductId = styled.span``;
-
-const ProductColor = styled.div`
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: ${(props) => props.color};
-`;
-
-const ProductSize = styled.span``;
+const ProductText = styled.span``;
 
 const PriceDetail = styled.div`
   border: 3px solid pink;
@@ -211,21 +200,32 @@ const ShoppingCart = () => {
           <Info>
             {cartArray.map((item) => {
               return (
-                <div key={item._id}>
+                <div key={item?._id}>
                   <ProductRow>
                     <ItemQtyAndPrice>
-                      <Image src={item.image} />
+                      <Image src={item?.image} />
                       <Details>
-                        <ProductName>
-                          <b>Product: {item.productName}</b>
-                        </ProductName>
-                        <ProductId>
-                          <b>Unit price: {item.price.toFixed(2)} €</b>
-                        </ProductId>
-                        <ProductColor>{item.color}</ProductColor>
-                        <ProductSize>
-                          <b>Size:</b> {item.size[0]}
-                        </ProductSize>
+                        <ProductText>
+                          <b>Product: {item?.productName}</b>
+                        </ProductText>
+                        <ProductText>
+                          <b>Unit price: {item?.price.toFixed(2)} €</b>
+                        </ProductText>
+                        {item?.color &&
+                        <ProductText>
+                        <b>Color:</b> {item?.color}
+                        </ProductText>
+                        }
+                        {item?.size &&
+                        <ProductText>
+                          <b>Size:</b> {item?.size}
+                        </ProductText>
+                        }
+                        {item?.flavor &&
+                          <ProductText>
+                          <b>Flavor:</b> {item?.flavor}
+                        </ProductText>
+                        }
                       </Details>
                     </ItemQtyAndPrice>
                     <PriceDetail>

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { mobile } from "../Responsive";
 import React from "react";
 import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   width: 80vw;
@@ -47,14 +48,15 @@ const Button = styled.button`
   cursor: pointer;
   background-color: transparent;
   border: none;
-  width: 50%;
+  width: 60%;
 `;
 
-const Link = styled.a`
+const Links = styled.a`
   margin: 5px 0px;
   font-size: 12px;
   text-decoration: underline;
   cursor: pointer;
+  color: gray;
 `;
 
 const SignupPage = () => {
@@ -69,7 +71,9 @@ const SignupPage = () => {
             <Input placeholder="email" />
             <Input placeholder="password" />
             <Button className="btn">CONFIRM</Button>
-            <Link>ALREADY YOU HAVE AN ACCOUNT ?</Link>
+            <Link to={"/login"}>
+            <Links>ALREADY YOU HAVE AN ACCOUNT ?</Links>
+            </Link>
           </Form>
         </Wrapper>
         <RightBox

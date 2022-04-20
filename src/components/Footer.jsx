@@ -15,12 +15,6 @@ const Footer = () => {
             <Link to="/contact" className='Link'>
                 <li className="fListItem">Contact</li>
             </Link>
-            <Link to="/support" className='Link'>
-                <li className="fListItem">Support</li>
-            </Link>
-            <Link to="/store" className='Link'>
-                <li className="fListItem">Store</li>
-            </Link>
             </ul>
         </div>
         <div className="footerMenu">

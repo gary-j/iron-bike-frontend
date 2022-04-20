@@ -10,17 +10,24 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  ${'' /* border: 4px solid #bdbdbd21; 
-  border-radius: 10px; */}
+  ${
+    "" /* border: 4px solid #bdbdbd21; 
+  border-radius: 10px; */
+  }
 `;
 
 const Image = styled.img`
+  object-fit: contain;
+  display: block;
+  max-width: 100%;
+  padding: 20px;
   height: 80%;
   background-color: transparent;
   margin: 10px;
+  -webkit-transition: all 1.5s ease;
   transition: all 1.5s ease;
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
   }
 `;
 
