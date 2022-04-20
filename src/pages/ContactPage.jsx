@@ -61,7 +61,7 @@ const ContactPage = () => {
           <Title>Contact Us</Title>
           <Desc>
             <Info>
-              Mangers: <InfoText>Gary & Léo</InfoText>
+              Managers: <InfoText>Gary & Léo</InfoText>
             </Info>
             <Info>
               Address: <InfoText>226 Bd Voltaire, 75011 Paris</InfoText>

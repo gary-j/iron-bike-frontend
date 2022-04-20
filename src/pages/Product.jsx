@@ -125,8 +125,8 @@ const Product = () => {
   const [loading, setLoading] = useState(false);
   const { slug } = useParams();
   const [product, setProduct] = useState({});
-  const { addOneToCart, removeOneToCart } = useContext(CartContext);
-  const [productQty, setProductQty] = useState(1);
+  const { addOneToCart} = useContext(CartContext);
+  const [productQty, setProductQty] = useState(0);
 
   const checkQuantity = () => {
     setProductQty(productQty <= 1 ? 1 : productQty - 1);
@@ -243,26 +243,6 @@ const Product = () => {
             </Info>
           </Description>
           <AddToCartContainer>
-            <AmountContainer>
-              <button className="removeOne">
-                <RemoveCircleOutlineOutlinedIcon
-                  className="removeOne"
-                  onClick={(e) => {
-                    removeOneToCart(e, product);
-                    checkQuantity();
-                  }}
-                />
-              </button>
-              <Quantity>{productQty}</Quantity>
-              <button className="addOne">
-                <AddCircleOutlineOutlinedIcon
-                  onClick={(e) => {
-                    addOneToCart(e, product);
-                    setProductQty(productQty + 1);
-                  }}
-                />
-              </button>
-            </AmountContainer>
             <Link to="/shoppingcart" className="Link cart-icon">
               <Button
                 className="btn"
