@@ -23,7 +23,9 @@ const Products = ({ cat, filters, sort }) => {
             : "http://localhost:5005/api/products"
         );
         setProducts(res.data);
-      } catch (err) {}
+      } catch (err) {
+        console.log(err)
+      }
     };
     getProducts();
   }, [cat]);
@@ -32,8 +34,8 @@ const Products = ({ cat, filters, sort }) => {
     cat &&
       setFilteredProducts(
         products.filter((item) =>
-          Object.entries(filters).every(([key, value]) =>
-            item[key].includes(value)
+        Object.entries(filters).every(([key, value]) =>
+          item[key].includes(value)
           )
         )
       );
