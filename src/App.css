@@ -265,6 +265,7 @@ button {
   padding: 50px 0px;
   height: fit-content;
   margin: 0px 100px;
+  width: -moz-available;
 }
 
 .CompanyPage .imgProfile {
@@ -290,6 +291,12 @@ button {
   text-align: justify;
   width: 60%;
   margin-bottom: 100px;
+}
+
+/* InputDiscount */
+
+.InputDiscount{
+  border: none;
 }
 
 @-webkit-keyframes blink {

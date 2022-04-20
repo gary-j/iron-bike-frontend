@@ -28,7 +28,7 @@ const RightBox = styled.img`
 `;
 
 const Title = styled.h1`
-  font-size: 60px;
+  font-size: 50px;
   font-weight: 300;
   margin-bottom: 60px;
   text-decoration: 3px underline #12996d;

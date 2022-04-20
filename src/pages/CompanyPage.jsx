@@ -12,11 +12,11 @@ const CompanyPage = () => {
           <div className="profile">
             <img
               className="imgProfile"
-              src="https://ca.slack-edge.com/T033XUFUD09-U033GK6ACSH-329cd73f6141-512"
+              src="https://res.cloudinary.com/ironbike/image/upload/v1650474996/Main/Gary-J-no-background-round_xth5qm.png"
               alt="Gary"
             />
-            <h2>Gary XXX</h2>
-             </div>
+            <h2>Gary Jesoph</h2>
+          </div>
           <div className="profile">
             <img
               className="imgProfile"
@@ -26,8 +26,11 @@ const CompanyPage = () => {
             <h2>Léo Cheffi</h2>
           </div>
         </div>
-            <p className="descPage">
-            Leads the daily operations at Apptopia, including product development and global sales. Jonathan is passionate about people, sports, and really efficient processes.            </p>
+        <p className="descPage">
+          Leads the daily operations at Apptopia, including product development
+          and global sales. Jonathan is passionate about people, sports, and
+          really efficient processes.{" "}
+        </p>
       </div>
       <Footer />
     </>
