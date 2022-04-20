@@ -94,7 +94,7 @@ const LoginPage = (props) => {
         storeToken(response.data.authToken);
         authenticateUser();
 
-        navigate('/products');
+        navigate('/');
       })
       .catch((error) => {
         const errorDescription = error.response.data.message;
