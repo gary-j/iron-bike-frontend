@@ -3,12 +3,13 @@ import { mobile } from '../Responsive';
 import React from 'react';
 import Navbar from '../components/Navbar';
 
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context/auth.context';
+import { publicRequest } from '../requestAxios';
 
-const API_URL = 'http://localhost:5005/api';
+import { API_URL } from '../consts';
 
 const Container = styled.div`
   width: 80vw;
@@ -93,7 +94,7 @@ const LoginPage = (props) => {
         storeToken(response.data.authToken);
         authenticateUser();
 
-        navigate('/');
+        navigate('/products');
       })
       .catch((error) => {
         const errorDescription = error.response.data.message;
