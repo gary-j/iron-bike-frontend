@@ -11,7 +11,6 @@ import { publicRequest } from '../requestAxios';
 
 import { API_URL } from '../consts';
 
-
 const Container = styled.div`
   width: 80vw;
   height: 72vh;
@@ -90,12 +89,12 @@ const LoginPage = (props) => {
     axios
       .post(`${API_URL}/auth/login`, requestBody)
       .then((response) => {
-        console.log('JWT RETURNED', response.data);
+        // console.log('JWT RETURNED', response.data);
 
         storeToken(response.data.authToken);
         authenticateUser();
 
-        navigate('/products');
+        navigate('/');
       })
       .catch((error) => {
         const errorDescription = error.response.data.message;
@@ -108,7 +107,6 @@ const LoginPage = (props) => {
       <Container>
         <Wrapper>
           <Title>LOG IN</Title>
-
           <Form onSubmit={handleLoginSubmit}>
             <Input
               placeholder='email'
@@ -132,7 +130,6 @@ const LoginPage = (props) => {
             </Link>
             <Link to={'/signup'}>
               <Links>CREATE A NEW ACCOUNT</Links>
-
             </Link>
           </Form>
           {errorMessage && <p className='error-message'>{errorMessage}</p>}
