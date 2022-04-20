@@ -73,7 +73,7 @@ const MenuItem = styled.div`
 
 const Navbar = () => {
   const { cartCount } = useContext(CartContext);
-  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+  const { isLoggedIn, logOutUser } = useContext(AuthContext);
   const Navigate = useNavigate();
   //
   return (

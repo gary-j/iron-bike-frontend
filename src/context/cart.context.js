@@ -51,7 +51,7 @@ function CartProviderWrapper(props) {
           console.log('splice');
           copyOfCartArray.splice(i, 1);
           setCartCount(cartCount - 1);
-          removed = true;
+          // removed = true;
         }
       } else {
         console.log("product not in the array, can't remove !");
