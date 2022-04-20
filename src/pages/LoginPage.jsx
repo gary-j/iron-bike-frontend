@@ -55,7 +55,7 @@ const Button = styled.button`
   cursor: pointer;
   background-color: transparent;
   border: none;
-  width: 50%;
+  width: 15vw;
 `;
 
 const Links = styled.a`
