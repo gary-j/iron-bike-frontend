@@ -10,10 +10,6 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  ${
-    "" /* border: 4px solid #bdbdbd21; 
-  border-radius: 10px; */
-  }
 `;
 
 const Image = styled.img`

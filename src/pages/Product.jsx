@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import RemoveCircleOutlineOutlinedIcon from "@mui/icons-material/RemoveCircleOutlineOutlined";
-import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import Advertisement from "../components/Advertisement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
@@ -67,23 +65,6 @@ const AddToCartContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   ${mobile({ width: "100%" })}
-`;
-
-const AmountContainer = styled.div`
-  display: flex;
-  align-items: center;
-  font-weight: 700;
-`;
-
-const Quantity = styled.span`
-  width: 30px;
-  height: 30px;
-  border-radius: 10px;
-  border: 1px solid black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0px 10px;
 `;
 
 const Button = styled.button`

@@ -70,6 +70,13 @@ const ProductList = () => {
             <Option>Clothes</Option>
             <Option>Nutrition</Option>
           </Select>
+          <Select name="color" onChange={handleFilter}>
+            <Option>White</Option>
+            <Option>Black</Option>
+            <Option>Red</Option>
+            <Option>Green</Option>
+            <Option>Orange</Option>
+          </Select>
           <Select name="size" onChange={handleFilter}>
             <Option> All Size</Option>
             <Option>S</Option>
