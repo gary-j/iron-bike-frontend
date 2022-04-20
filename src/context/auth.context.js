@@ -7,7 +7,7 @@ const AuthContext = createContext();
 function AuthProviderWrapper(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [isAdmin, setIsAdmin] = useState(true);
+  const [setIsAdmin] = useState(true);
   const [user, setUser] = useState(null);
 
   /* 
@@ -16,7 +16,6 @@ function AuthProviderWrapper(props) {
   */
   const storeToken = (token) => {
     localStorage.setItem('authToken', token);
-    console.log('STORE TOKEN OK');
   };
   const removeToken = () => {
     // Upon logout, remove the token from the localStorage
