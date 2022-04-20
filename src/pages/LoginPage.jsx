@@ -11,6 +11,7 @@ import { publicRequest } from '../requestAxios';
 
 import { API_URL } from '../consts';
 
+
 const Container = styled.div`
   width: 80vw;
   height: 72vh;
@@ -107,6 +108,7 @@ const LoginPage = (props) => {
       <Container>
         <Wrapper>
           <Title>LOG IN</Title>
+
           <Form onSubmit={handleLoginSubmit}>
             <Input
               placeholder='email'
@@ -130,6 +132,7 @@ const LoginPage = (props) => {
             </Link>
             <Link to={'/signup'}>
               <Links>CREATE A NEW ACCOUNT</Links>
+
             </Link>
           </Form>
           {errorMessage && <p className='error-message'>{errorMessage}</p>}

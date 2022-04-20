@@ -98,7 +98,7 @@ const Wrapper = () => {
   return (
 <Container>
       <Arrow direction="left" onClick={() => handleClick("left")}>
-        <ArrowCircleLeftOutlinedIcon />
+        <ArrowCircleLeftOutlinedIcon sx={{color: '#12996d'}}/>
       </Arrow>
       <Slider slideIndex={slideIndex}>
         {wrapperList.map((item) => (
@@ -117,7 +117,7 @@ const Wrapper = () => {
         ))}
       </Slider>
       <Arrow direction="right" onClick={() => handleClick("right")}>
-        <ArrowCircleRightOutlinedIcon />
+        <ArrowCircleRightOutlinedIcon sx={{color: '#12996d'}}/>
       </Arrow>
     </Container>  )
 }
