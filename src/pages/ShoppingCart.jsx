@@ -1,14 +1,14 @@
-import { mobile } from '../Responsive';
-import styled from 'styled-components';
-import Advertisement from '../components/Advertisement';
-import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
-import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { useContext } from 'react';
-import { CartContext } from '../context/cart.context';
+import { mobile } from "../Responsive";
+import styled from "styled-components";
+import Advertisement from "../components/Advertisement";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import RemoveCircleOutlineOutlinedIcon from "@mui/icons-material/RemoveCircleOutlineOutlined";
+import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { CartContext } from "../context/cart.context";
 
 const Container = styled.div``;
 
@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   margin-top: 30px;
   margin-bottom: 60px;
   padding: 20px;
-  ${mobile({ padding: '10px' })}
+  ${mobile({ padding: "10px" })}
 `;
 
 const Title = styled.h1`
@@ -46,7 +46,7 @@ const TopButton = styled.button`
 `;
 
 const TopTexts = styled.div`
-  ${mobile({ display: 'none' })}
+  ${mobile({ display: "none" })}
 `;
 const TopText = styled.span`
   cursor: pointer;
@@ -56,23 +56,20 @@ const TopText = styled.span`
 const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
-  ${mobile({ flexDirection: 'column' })}
+  ${mobile({ flexDirection: "column" })}
 `;
 
 const Info = styled.div`
-  border: 2px solid green;
   flex: 3;
 `;
 
 const ProductRow = styled.div`
-  border: 2px solid blue;
   display: flex;
   justify-content: space-between;
-  ${mobile({ flexDirection: 'column' })}
+  ${mobile({ flexDirection: "column" })}
 `;
 
 const ItemQtyAndPrice = styled.div`
-  border: 2px solid green;
   flex: 2;
   display: flex;
 `;
@@ -91,7 +88,6 @@ const Details = styled.div`
 const ProductText = styled.span``;
 
 const PriceDetail = styled.div`
-  border: 3px solid pink;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -108,13 +104,13 @@ const ProductAmountContainer = styled.div`
 const Quantity = styled.div`
   font-size: 24px;
   margin: 15px;
-  ${mobile({ margin: '5px 15px' })}
+  ${mobile({ margin: "5px 15px" })}
 `;
 
 const ProductPrice = styled.div`
   font-size: 30px;
   font-weight: 200;
-  ${mobile({ marginBottom: '20px' })}
+  ${mobile({ marginBottom: "20px" })}
 `;
 
 const Hr = styled.hr`
@@ -144,8 +140,8 @@ const SummaryItem = styled.div`
   margin: 15px 0px;
   display: flex;
   justify-content: space-between;
-  font-weight: ${(props) => props.type === 'total' && '500'};
-  font-size: ${(props) => props.type === 'total' && '24px'};
+  font-weight: ${(props) => props.type === "total" && "500"};
+  font-size: ${(props) => props.type === "total" && "24px"};
 `;
 
 const SummaryItemText = styled.span``;
@@ -177,7 +173,7 @@ const ShoppingCart = () => {
   //   setProductQty(productQty <= 0 ? 0 : productQty - 1);
   // };
 
-  console.log(cartArray, 'CART ARRAY');
+  console.log(cartArray, "CART ARRAY");
   //
   return (
     <Container>
@@ -186,14 +182,14 @@ const ShoppingCart = () => {
       <Wrapper>
         <Title>Your shopping cart</Title>
         <Top>
-          <Link to='/products' className='Link'>
-            <TopButton className='btn'>CONTINUE SHOPPING</TopButton>
+          <Link to="/products" className="Link">
+            <TopButton className="btn">CONTINUE SHOPPING</TopButton>
           </Link>
           <TopTexts>
             <TopText>Shopping Bag({cartCount})</TopText>
           </TopTexts>
-          <Link to='/' className='Link'>
-            <TopButton className='btn'>HOME PAGE</TopButton>
+          <Link to="/" className="Link">
+            <TopButton className="btn">HOME PAGE</TopButton>
           </Link>
         </Top>
         <Bottom>
@@ -231,14 +227,16 @@ const ShoppingCart = () => {
                     <PriceDetail>
                       <ProductAmountContainer>
                         <button
-                          className='removeOne'
-                          onClick={(e) => removeOneToCart(e, item)}>
-                          <RemoveCircleOutlineOutlinedIcon className='removeOne' />
+                          className="removeOne"
+                          onClick={(e) => removeOneToCart(e, item)}
+                        >
+                          <RemoveCircleOutlineOutlinedIcon className="removeOne" />
                         </button>
                         <Quantity>{item.quantityInCart}</Quantity>
                         <button
-                          className='addOne'
-                          onClick={(e) => addOneToCart(e, item)}>
+                          className="addOne"
+                          onClick={(e) => addOneToCart(e, item)}
+                        >
                           <AddCircleOutlineOutlinedIcon />
                         </button>
                       </ProductAmountContainer>
@@ -260,20 +258,19 @@ const ShoppingCart = () => {
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Free worldwide shipping</SummaryItemText>
-              {/* <SummaryItemPrice>0 €</SummaryItemPrice> */}
             </SummaryItem>
             <SummaryItem>
               <div>
                 <label>Discount</label>
-                <input type='text' name='' id=''></input>
+                <input className="InputDiscount" type="text" name="" id=""></input>
               </div>
             </SummaryItem>
-            <SummaryItem type='total'>
+            <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>{getTotalToPay()}</SummaryItemPrice>
             </SummaryItem>
-            <Link to='/stripeLink' className='Link'>
-              <Button className='btn'>CHECKOUT NOW</Button>
+            <Link to="/stripeLink" className="Link">
+              <Button className="btn">CHECKOUT NOW</Button>
             </Link>
           </Summary>
         </Bottom>
