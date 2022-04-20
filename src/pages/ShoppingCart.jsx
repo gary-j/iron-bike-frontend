@@ -60,19 +60,16 @@ const Bottom = styled.div`
 `;
 
 const Info = styled.div`
-  border: 2px solid green;
   flex: 3;
 `;
 
 const ProductRow = styled.div`
-  border: 2px solid blue;
   display: flex;
   justify-content: space-between;
   ${mobile({ flexDirection: 'column' })}
 `;
 
 const ItemQtyAndPrice = styled.div`
-  border: 2px solid green;
   flex: 2;
   display: flex;
 `;
@@ -91,7 +88,6 @@ const Details = styled.div`
 const ProductText = styled.span``;
 
 const PriceDetail = styled.div`
-  border: 3px solid pink;
   flex: 1;
   display: flex;
   flex-direction: column;
