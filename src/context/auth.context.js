@@ -41,7 +41,7 @@ function AuthProviderWrapper(props) {
           const user = response.data;
           // Update state variables
           setIsLoggedIn(true);
-          if (user.roles?.admin) {
+          if (user?.isAdmin === true) {
             setIsAdmin(true);
           }
           setIsLoading(false);
