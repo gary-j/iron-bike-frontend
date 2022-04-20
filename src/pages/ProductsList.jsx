@@ -6,6 +6,15 @@ import Footer from "../components/Footer";
 import { mobile } from "../Responsive";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
+import BikeCategorySelect from "../components/filters/BikeCategorySelect";
+import AspectSelect from "../components/filters/AspectSelect";
+import FrameMaterialsSelect from "../components/filters/FrameMaterialsSelect";
+import GenderSelect from "../components/filters/GenderSelect";
+import TypeClothesSelect from "../components/filters/TypeClothesSelect";
+import ColorSelect from "../components/filters/ColorSelect";
+import SizeSelect from "../components/filters/SizeSelect";
+import FeaturesSelect from "../components/filters/FeaturesSelect";
+import VeganSelect from "../components/filters/VeganSelect";
 
 const Container = styled.div``;
 
@@ -82,82 +91,31 @@ const ProductList = () => {
         </div>
         }
           {(cat === "Bikes") &&
-          <Select name="categoryBike" onChange={handleFilter}>
-            <Option  value={''}>Category</Option>
-            <Option>Road Bike</Option>
-            <Option>Mountain Bike</Option>
-            <Option>City Bike</Option>
-            <Option>E-Bike</Option>
-          </Select>
+          <BikeCategorySelect handleFilter={handleFilter}/>
           }
           {(cat === "Nutrition") &&
-          <Select name="aspect" onChange={handleFilter}>
-            <Option value={''}>Aspect</Option>
-            <Option>Bars</Option>
-            <Option>Gels</Option>
-            <Option>Drinks</Option>
-            <Option>Energy Meals</Option>
-          </Select>
+          <AspectSelect handleFilter={handleFilter}/>
           }
           {(cat === "Bikes") &&
-          <Select name="frameMaterials" onChange={handleFilter}>
-            <Option  value={''}>Frame</Option>
-            <Option>Aluminum</Option>
-            <Option>Carbon</Option>
-            <Option>Titanium</Option>
-          </Select>
+          <FrameMaterialsSelect handleFilter={handleFilter}/>
           }
           {(cat === "Clothes") &&
-          <Select name="sexCategory" onChange={handleFilter}>
-            <Option value={''}>Gender</Option>
-            <Option>Men</Option>
-            <Option>Women</Option>
-          </Select>
+          <GenderSelect handleFilter={handleFilter}/>
           }
           {(cat === "Clothes") &&
-          <Select name="type" onChange={handleFilter}>
-            <Option value={''}>Type</Option>
-            <Option>Helmets</Option>
-            <Option>Jerseys</Option>
-            <Option>Trousers</Option>
-            <Option>Shoes</Option>
-            <Option>Glasses</Option>
-          </Select>
+          <TypeClothesSelect handleFilter={handleFilter}/>
           }
           {(cat === "Clothes"|| cat === "Bikes") &&
-          <Select name="color" onChange={handleFilter}>
-            <Option value={''}>Color</Option>
-            <Option>White</Option>
-            <Option>Black</Option>
-            <Option>Red</Option>
-            <Option>Green</Option>
-            <Option>Orange</Option>
-          </Select>
+         <ColorSelect handleFilter={handleFilter}/>
           }
           {(cat === "Clothes"|| cat === "Bikes") &&
-          <Select name="size" onChange={handleFilter}>
-            <Option value={''}>Size</Option>
-            <Option>S</Option>
-            <Option>M</Option>
-            <Option>L</Option>
-            <Option>XL</Option>
-          </Select>
+          <SizeSelect handleFilter={handleFilter}/>
           }
           {(cat === "Accessory") &&
-          <Select name="features" onChange={handleFilter}>
-            <Option value={''}>Features</Option>
-            <Option>GPS</Option>
-            <Option>Bluetooth</Option>
-            <Option>Heart Rate Monitor</Option>
-            <Option>Wireless</Option>
-          </Select>
+          <FeaturesSelect handleFilter={handleFilter}/>
           }
           {(cat === "Nutrition") &&
-          <Select name="vegan" onChange={handleFilter}>
-            <Option value={''}>Vegan</Option>
-            <Option>Yes</Option>
-            <Option>None</Option>
-          </Select>
+          <VeganSelect handleFilter={handleFilter}/>
           }
         </Filter>
         {(cat === "Bikes" || cat === "Nutrition" || cat === "Clothes" || cat === "Accessory") &&

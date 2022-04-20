@@ -1,13 +1,13 @@
-import  axios  from "axios";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import ProductItem from "./ProductItem";
 
 const Container = styled.div`
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 `;
 
 const Products = ({ cat, filters, sort }) => {
@@ -24,21 +24,23 @@ const Products = ({ cat, filters, sort }) => {
         );
         setProducts(res.data);
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
     };
     getProducts();
   }, [cat]);
 
   useEffect(() => {
-    cat &&
-      setFilteredProducts(
-        products.filter((item) =>
+    if (!cat) {
+      setFilteredProducts(products);
+    }
+    setFilteredProducts(
+      products.filter((item) =>
         Object.entries(filters).every(([key, value]) =>
           item[key].includes(value)
-          )
         )
-      );
+      )
+    );
   }, [products, cat, filters]);
 
   useEffect(() => {
@@ -59,9 +61,9 @@ const Products = ({ cat, filters, sort }) => {
 
   return (
     <Container>
-      {cat
-        ? filteredProducts.map((item) => <ProductItem item={item} key={item.id} />)
-        : products.map((item) => <ProductItem item={item} key={item.id} />)}
+      {filteredProducts.map((item) => (
+        <ProductItem item={item} key={item.id} />
+      ))}
     </Container>
   );
 };
