@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { mobile } from "../Responsive";
-import React from "react";
-import Navbar from "../components/Navbar";
-import { Link } from "react-router-dom";
+import styled from 'styled-components';
+import { mobile } from '../Responsive';
+import React from 'react';
+import Navbar from '../components/Navbar';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   width: 80vw;
@@ -18,7 +18,7 @@ const Wrapper = styled.div`
   padding: 20px;
   background-color: white;
   margin-right: 150px;
-  ${mobile({ width: "75%" })}
+  ${mobile({ width: '75%' })}
 `;
 
 const RightBox = styled.img`
@@ -48,7 +48,7 @@ const Button = styled.button`
   cursor: pointer;
   background-color: transparent;
   border: none;
-  width: 60%;
+  width: 15vw;
 `;
 
 const Links = styled.a`
@@ -67,18 +67,18 @@ const SignupPage = () => {
         <Wrapper>
           <Title>SIGN UP</Title>
           <Form>
-            <Input placeholder="username" />
-            <Input placeholder="email" />
-            <Input placeholder="password" />
-            <Button className="btn">CONFIRM</Button>
-            <Link to={"/login"}>
-            <Links>ALREADY YOU HAVE AN ACCOUNT ?</Links>
+            <Input placeholder='username' />
+            <Input placeholder='email' />
+            <Input placeholder='password' />
+            <Button className='btn'>CONFIRM</Button>
+            <Link to={'/login'}>
+              <Links>ALREADY YOU HAVE AN ACCOUNT ?</Links>
             </Link>
           </Form>
         </Wrapper>
         <RightBox
-          src="https://res.cloudinary.com/ironbike/image/upload/v1650037531/Main/bike_ys6xgn.png"
-          alt=""
+          src='https://res.cloudinary.com/ironbike/image/upload/v1650037531/Main/bike_ys6xgn.png'
+          alt=''
         />
       </Container>
     </div>
