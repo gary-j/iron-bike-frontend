@@ -6,7 +6,6 @@ import Footer from "../components/Footer";
 import { mobile } from "../Responsive";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { Button } from "@material-ui/core";
 
 const Container = styled.div``;
 
@@ -67,21 +66,20 @@ const ProductList = () => {
           <FilterText>Filter Products:</FilterText>
         }
         {(!cat) &&
-        <>
-
+        <div className="divBtn">
         <Link to={`/products/Bikes`}>
-        <Button className="btn">Bikes</Button>
+        <button className="categoryBtn">Bikes</button>
         </Link>
         <Link to={`/products/Clothes`}>
-        <Button className="btn">Clothes</Button>
+        <button className="categoryBtn">Clothes</button>
         </Link>
         <Link to={`/products/Accessory`}>
-        <Button className="btn">Accessory</Button>
+        <button className="categoryBtn">Accessory</button>
         </Link>
         <Link to={`/products/Nutrition`}>
-        <Button className="btn">Nutrition</Button>
+        <button className="categoryBtn">Nutrition</button>
         </Link>
-        </>
+        </div>
         }
           {(cat === "Bikes") &&
           <Select name="categoryBike" onChange={handleFilter}>
@@ -162,6 +160,7 @@ const ProductList = () => {
           </Select>
           }
         </Filter>
+        {(cat === "Bikes" || cat === "Nutrition" || cat === "Clothes" || cat === "Accessory") &&
         <Filter>
           <FilterText>Sort By Price:</FilterText>
           <Select onChange={(e)=> setSort(e.target.value)}>
@@ -170,6 +169,7 @@ const ProductList = () => {
             <Option value="low">Price (Low)</Option>
           </Select>
         </Filter>
+        }
       </FilterContainer>
       <Link to="/product" className='linkItem'>
       <Products cat={cat} filters={filters} sort={sort}/>
