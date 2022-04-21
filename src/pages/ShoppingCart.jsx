@@ -201,7 +201,7 @@ const ShoppingCart = () => {
             <button className="categoryBtn">Continue Shopping</button>
           </Link>
           <TopTexts>
-            <TopText>Shopping Bag({getCartQuantity})</TopText>
+            <TopText>Shopping Bag({getCartQuantity()})</TopText>
           </TopTexts>
           <Link to="/" className="Link">
             <button className="categoryBtn">Home Page</button>
@@ -270,38 +270,36 @@ const ShoppingCart = () => {
               <SummaryItemPrice>{getSubTotal().toFixed(2)} €</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
-              <SummaryItemText>Free worldwide shipping</SummaryItemText>
+              <SummaryItemText>Discount</SummaryItemText>
+              <SummaryItemPrice>{getSubTotal() > 1000 ? "- 150.00" : "0"} €</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
-              <div>
-                <label>Discount</label>
-                <input
-                  className='InputDiscount'
-                  type='text'
-                  name=''
-                  id=''></input>
-              </div>
+              <SummaryItemText>Free worldwide shipping</SummaryItemText>
             </SummaryItem>
             <SummaryItem type='total'>
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>{getTotalToPay().toFixed(2)} €</SummaryItemPrice>
+              <SummaryItemPrice>{getTotalToPay().toFixed(2) > 1000 ? (getTotalToPay() - 150).toFixed(2) : getTotalToPay().toFixed(2) } €</SummaryItemPrice>
             </SummaryItem>
-            {stripeToken ? (<span className="spanProcessing">Processing ... Please wait</span>) : (
+
+            {stripeToken  ? (<span className="spanProcessing">Processing ... Please wait</span>) : (
             <StripeCheckout
               name="Iron Bike"
               image="../images/logo-iron-bike.png"
               billingAddress
               shippingAddress
-              description={`Your total is ${getTotalToPay()} €`}
-              amount={getTotalToPay() * 100}
+              description={`Your total is ${getTotalToPay() >  1000 ? (getTotalToPay() - 150).toFixed(2) : getTotalToPay().toFixed(2)} €`}
+              amount={(getTotalToPay() >  1000 ? (getTotalToPay() - 150) : getTotalToPay()) * 100}
               token={onToken}
               stripeKey={STRIPE_KEY}
               local='auto'
               currency="eur"
             >
+              {(user === null) ? (<span className="spanProcessing">Please connect to your account or create one to make the checkout</span>):
               <Button className="btn">CHECKOUT NOW</Button>
+            }
             </StripeCheckout>
-            )}
+            )
+            }
           </Summary>
         </Bottom>
       </Wrapper>
