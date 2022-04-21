@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { publicRequest } from "../requestAxios";
 import Brand from "./Brand";
 
 const Container = styled.div`
@@ -17,7 +17,7 @@ const Brands = () => {
   useEffect(() => {
     const getBrands = async () => {
       try {
-        const res = await axios.get("http://localhost:5005/api/brand");
+        const res = await publicRequest.get("/brand");
         setBrandsList(res.data);
       } catch (err) {
         console.log(err)
