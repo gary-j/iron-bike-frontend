@@ -3,11 +3,10 @@ import { mobile } from '../Responsive';
 import React from 'react';
 import Navbar from '../components/Navbar';
 
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { AuthContext } from '../context/auth.context';
-import { API_URL } from '../consts';
+import { publicRequest } from '../requestAxios';
 
 const Container = styled.div`
   width: 80vw;
@@ -85,8 +84,8 @@ const SignupPage = () => {
     // Make an axios request to the API
     // If POST request is successful redirect to login page
     // If the request resolves with an error, set the error message in the state
-    axios
-      .post(`${API_URL}/auth/signup`, requestBody)
+    publicRequest
+      .post(`/auth/signup`, requestBody)
       .then((response) => {
         // console.log('JWT RETURNED', response.data);
 
