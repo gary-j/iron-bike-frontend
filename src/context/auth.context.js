@@ -1,7 +1,9 @@
 import { useState, useEffect, createContext, useCallback } from 'react';
 import { publicRequest } from '../requestAxios';
 
+
 const AuthContext = createContext();
+
 
 function AuthProviderWrapper(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -20,8 +22,9 @@ function AuthProviderWrapper(props) {
     // Upon logout, remove the token from the localStorage
     localStorage.removeItem('authToken');
   };
-
+  
   const authenticateUser = useCallback(() => {
+    
     // Get the stored token from the localStorage
     const storedToken = localStorage.getItem('authToken');
 
@@ -71,6 +74,7 @@ function AuthProviderWrapper(props) {
   useEffect(() => {
     authenticateUser();
   }, [authenticateUser]);
+
 
   return (
     <AuthContext.Provider

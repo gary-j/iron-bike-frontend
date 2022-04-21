@@ -294,7 +294,7 @@ const ShoppingCart = () => {
               local='auto'
               currency="eur"
             >
-              {(user === null) ? (<span className="spanProcessing">Please connect to your account or create one to make the checkout</span>):
+              {(user === null) || getTotalToPay() === 0 ? (<span className="spanProcessing">Please connect to your account or add product to the cart to make the checkout</span>):
               <Button className="btn">CHECKOUT NOW</Button>
             }
             </StripeCheckout>

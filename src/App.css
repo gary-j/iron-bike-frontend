@@ -271,7 +271,7 @@ button {
 .CompanyPage .imgProfile {
   object-fit: contain;
   display: block;
-  max-width: 100%;
+  width: 50%;
   height: 50%;
   background-color: transparent;
   margin: auto;
@@ -320,7 +320,7 @@ button {
 /* Processing span */
 
 .spanProcessing{
-  margin: 15px;
+  margin: auto;
   color: #d32f2f;
 }
 
