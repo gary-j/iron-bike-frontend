@@ -14,7 +14,6 @@ function CartProviderWrapper(props) {
     let added = false;
     copyOfCartArray.forEach((cartItem) => {
       if (cartItem?._id === itemToAdd?._id) {
-        console.log('Appel if 1');
         cartItem.quantityInCart++;
         added = true;
       }

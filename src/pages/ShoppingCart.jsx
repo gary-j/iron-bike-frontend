@@ -5,12 +5,15 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import RemoveCircleOutlineOutlinedIcon from "@mui/icons-material/RemoveCircleOutlineOutlined";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 // import { useEffect, useState } from "react";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../context/cart.context";
+import StripeCheckout from "react-stripe-checkout";
+import { publicRequest } from "../requestAxios";
+import{STRIPE_KEY} from '../consts';
 
-const Container = styled.div``;
+const Container = styled.div``; 
 
 const Wrapper = styled.div`
   margin-top: 30px;
@@ -157,7 +160,34 @@ const Button = styled.button`
   font-weight: 600;
 `;
 
+
 const ShoppingCart = () => {
+  const [stripeToken, setStripeToken] = useState(null);
+  const navigate = useNavigate()
+
+  const onToken = (token) => {
+    setStripeToken(token);
+  };
+
+  useEffect(() => {
+    const makeRequest = async () => {
+      try {
+           await publicRequest.post("/checkout/payment", {
+          tokenId: stripeToken.id,
+          amount: 500,
+        });
+        navigate("/success");
+  
+      } catch (err){
+        console.log(err)
+      }
+    };
+    stripeToken && makeRequest();
+  }, [stripeToken, navigate]);
+
+  
+
+
   const {
     addOneToCart,
     removeOneToCart,
@@ -269,9 +299,24 @@ const ShoppingCart = () => {
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>{getTotalToPay()} €</SummaryItemPrice>
             </SummaryItem>
-            <Link to="/stripeLink" className="Link">
+            {stripeToken ? (<span>Processing ... Please wait</span>) : (
+
+            <StripeCheckout
+              name="Iron Bike"
+              image="../images/logo-iron-bike.png"
+              billingAddress
+              shippingAddress
+              description={`Your total is ${getTotalToPay()} €`}
+              amount={getTotalToPay() * 100}
+              token={onToken}
+              stripeKey={STRIPE_KEY}
+              local='auto'
+              currency="eur"
+            >
               <Button className="btn">CHECKOUT NOW</Button>
-            </Link>
+            </StripeCheckout>
+            )}
+            
           </Summary>
         </Bottom>
       </Wrapper>
