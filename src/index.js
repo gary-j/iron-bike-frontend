@@ -10,7 +10,7 @@ ReactDOM.render(
     <BrowserRouter>
       <AuthProviderWrapper>
         <CartProviderWrapper>
-          <ScrollToTop />
+          <ScrollToTop/>
           <App />
         </CartProviderWrapper>
       </AuthProviderWrapper>

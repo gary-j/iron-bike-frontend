@@ -27,12 +27,23 @@ const Image = styled.img`
   }
 `;
 
+const Info = styled.span`
+  width: 100%;
+  text-align: center;
+  background-color: transparent;
+  margin: auto;
+`;
+
 const Product = ({ item }) => {
   return (
     <>
       <Container>
         <Link className="linkItem" to={`/product/${item.slug}`}>
           <Image src={item.image} />
+          <div className="productItem">
+          <Info className="nameProduct">{item.productName}</Info>
+          <Info className="priceProduct">{item.price} €</Info>
+          </div>
         </Link>
       </Container>
     </>
