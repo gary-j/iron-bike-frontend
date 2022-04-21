@@ -49,13 +49,9 @@ const CategoryItem = ({ item }) => {
       <Link to={`/products/${item.categories}`}>
         <Title>{item.title}</Title>
       </Link>
-      <Link to={`/products/${item.categories}`}>
         <Image src={item.img} />
-      </Link>
       <Info>
-        <Link to={`/products/${item.categories}`}>
           <Button className="btn">{item.categories}</Button>
-        </Link>
       </Info>
     </Container>
   );
