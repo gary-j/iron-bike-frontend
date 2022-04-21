@@ -1,35 +1,7 @@
-
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router";
-import { publicRequest } from "../requestAxios";
+import { Link } from "react-router-dom";
 
 const Success = () => {
-  const location = useLocation();
-  //in Cart.jsx I sent data and cart. Please check that page for the changes.(in video it's only data)
-  const data = location.state.stripeData;
-  const cart = location.state.cart;
-  // const currentUser = useSelector((state) => state.user.currentUser);
-  const [orderId, setOrderId] = useState(null);
-
-  useEffect(() => {
-    const createOrder = async () => {
-      try {
-        const res = await publicRequest.post("/orders", {
-          // userId: currentUser._id,
-          products: cart.products.map((item) => ({
-            productId: item._id,
-            quantity: item._quantity,
-          })),
-          amount: cart.total,
-          address: data.billing_details.address,
-        });
-        setOrderId(res.data._id);
-      } catch {}
-    };
-    data && createOrder();
-  }, [cart, data]);
-  // currentUser
-
+ 
   return (
     <div
       style={{
@@ -40,11 +12,12 @@ const Success = () => {
         justifyContent: "center",
       }}
     >
-      {orderId
-        ? `Order has been created successfully. Your order number is ${orderId}`
-        : `Successfull. Your order is being prepared...`}
-      <button style={{ padding: 10, marginTop: 20 }}>Go to Homepage</button>
-    </div>
+    <p> THANKS FOR YOU ORDER</p>
+    <img src="../images/success.png" alt=""/>
+
+      <Link to={`/`}>
+        <button className="categoryBtn">Back To Home Page</button>
+        </Link>    </div>
   );
 };
 

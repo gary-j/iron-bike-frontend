@@ -10,6 +10,7 @@ import BrandPage from "./pages/BrandPage";
 import BrandListPage from "./pages/BrandListPage";
 import CompanyPage from "./pages/CompanyPage";
 import ContactPage  from "./pages/ContactPage";
+import Success from "./pages/Success";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/brand/:slug" element={<BrandPage />} />
         <Route path="/company" element={<CompanyPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/success" element={<Success />} />
       </Routes>
     </div>
   );
