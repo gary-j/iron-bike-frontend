@@ -197,14 +197,7 @@ const ShoppingCart = () => {
     getSubTotal,
     getTotalToPay,
   } = useContext(CartContext);
-  // const [product, setProduct] = useState({});
-  // const [productQty, setProductQty] = useState(0);
-  // const checkQuantity = () => {
-  //   setProductQty(productQty <= 0 ? 0 : productQty - 1);
-  // };
 
-  console.log(cartArray, "CART ARRAY");
-  //
   return (
     <Container>
       <Navbar />
@@ -213,13 +206,13 @@ const ShoppingCart = () => {
         <Title>Your shopping cart</Title>
         <Top>
           <Link to="/products" className="Link">
-            <TopButton className="btn">CONTINUE SHOPPING</TopButton>
+            <button className="categoryBtn">Continue Shopping</button>
           </Link>
           <TopTexts>
             <TopText>Shopping Bag({cartCount})</TopText>
           </TopTexts>
           <Link to="/" className="Link">
-            <TopButton className="btn">HOME PAGE</TopButton>
+            <button className="categoryBtn">Home Page</button>
           </Link>
         </Top>
         <Bottom>
@@ -283,7 +276,7 @@ const ShoppingCart = () => {
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
-              <SummaryItemText>subtotal</SummaryItemText>
+              <SummaryItemText>Subtotal</SummaryItemText>
               <SummaryItemPrice>{getSubTotal()} €</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
@@ -299,8 +292,7 @@ const ShoppingCart = () => {
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>{getTotalToPay()} €</SummaryItemPrice>
             </SummaryItem>
-            {stripeToken ? (<span>Processing ... Please wait</span>) : (
-
+            {stripeToken ? (<span className="spanProcessing">Processing ... Please wait</span>) : (
             <StripeCheckout
               name="Iron Bike"
               image="../images/logo-iron-bike.png"
@@ -316,7 +308,6 @@ const ShoppingCart = () => {
               <Button className="btn">CHECKOUT NOW</Button>
             </StripeCheckout>
             )}
-            
           </Summary>
         </Bottom>
       </Wrapper>

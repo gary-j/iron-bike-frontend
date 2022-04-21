@@ -297,6 +297,31 @@ button {
 
 .InputDiscount{
   border: none;
+  display: contents;
+  overflow: hidden;
+  overflow: visible;
+}
+/* product List Page */
+
+.productItem{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.priceProduct{
+  color: #12996d;
+  font-size: 14px;
+}
+.nameProduct{
+  color: #000000;
+}
+
+/* Processing span */
+
+.spanProcessing{
+  margin: 15px;
+  color: #d32f2f;
 }
 
 @-webkit-keyframes blink {
