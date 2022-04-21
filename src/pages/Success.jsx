@@ -41,7 +41,8 @@ margin-bottom: 40px;
 
 
 const Success = () => {
-  const user = useContext(AuthContext)   
+  const {user} = useContext(AuthContext)   
+  console.log(user);
  
   return (
     <div>
@@ -49,10 +50,18 @@ const Success = () => {
     <Container>
       <Wrapper>
         <Title>PAYMENT SUCCESSFUL</Title>
-        <Paragraph>{user.name} your order is confirmed now !</Paragraph>
-        <Paragraph>You will receive a confirmation and your order will be shipped within 48h </Paragraph>
+        <Paragraph>Thank you 
+        {user &&
+        <span className="SuccessUsername"> {user.username[0].toUpperCase() + user.username.slice(1)} </span> 
+        }
+        for your purchase</Paragraph>
         <br/>
-        <Paragraph>Thank you for your purchase {user.name}</Paragraph>
+        <Paragraph>Your order is confirmed now ! check your email: 
+        {user &&
+        <span className="SuccessEmail"> {user.email}</span>
+        }
+        </Paragraph>
+        <Paragraph>You will receive a confirmation and your order will be shipped within 48h </Paragraph>
       <Link to={`/`}>
         <button className="categoryBtn">Back To Home Page</button>
         </Link>   

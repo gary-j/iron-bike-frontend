@@ -324,6 +324,21 @@ button {
   color: #d32f2f;
 }
 
+/* Success Page */
+
+.SuccessUsername{
+  color: #12996d !important;
+}
+
+.SuccessUsername::first-letter{
+  color: #12996d;
+  text-transform: uppercase !important;
+}
+
+.SuccessEmail{
+  color: #12996d;
+}
+
 @-webkit-keyframes blink {
   20%,
   24%,

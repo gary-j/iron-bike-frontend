@@ -72,7 +72,7 @@ const MenuItem = styled.div`
 `;
 
 const Navbar = () => {
-  const { cartCount } = useContext(CartContext);
+  const { getCartQuantity } = useContext(CartContext);
   const { isLoggedIn, logOutUser } = useContext(AuthContext);
   const Navigate = useNavigate();
   //
@@ -104,7 +104,7 @@ const Navbar = () => {
               </Link>
               <Link to='/shoppingcart' className='Link cart-icon'>
                 <MenuItem>
-                  <Badge badgeContent={cartCount} color='primary'>
+                  <Badge badgeContent={getCartQuantity()} color='primary'>
                     <ShoppingCartTwoToneIcon sx={{ color: '#12996d' }} />
                   </Badge>
                 </MenuItem>
@@ -123,7 +123,7 @@ const Navbar = () => {
             </MenuItem>
             <Link to='/shoppingcart' className='Link cart-icon'>
               <MenuItem>
-                <Badge badgeContent={cartCount} color='primary'>
+                <Badge badgeContent={getCartQuantity()} color='primary'>
                   <ShoppingCartTwoToneIcon sx={{ color: '#12996d' }} />
                 </Badge>
               </MenuItem>

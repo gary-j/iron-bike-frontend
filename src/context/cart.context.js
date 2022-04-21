@@ -75,6 +75,16 @@ function CartProviderWrapper(props) {
     return totalAmount - discount > 0 ? totalAmount - discount : 0;
   };
 
+  const getCartQuantity = () => {
+    // const copyOfCartArray = JSON.parse(JSON.stringify(cartArray));
+    const totalQuantity = cartArray.reduce((previousItem, currentItem) => {
+      return previousItem + currentItem.quantityInCart;
+      
+    }, 0);
+    console.log('>>>>>>>>>>>>>', totalQuantity);
+    return totalQuantity
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -83,6 +93,7 @@ function CartProviderWrapper(props) {
         cartCount,
         cartArray,
         setCartArray,
+        getCartQuantity,
         getSubTotal,
         getTotalToPay,
       }}>

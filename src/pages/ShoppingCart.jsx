@@ -38,17 +38,6 @@ const Top = styled.div`
   margin-top: 50px;
 `;
 
-const TopButton = styled.button`
-  padding: 13px;
-  margin: 9px 30px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  font-weight: 183;
-  font-size: small;
-  width: max-content;
-`;
-
 const TopTexts = styled.div`
   ${mobile({ display: 'none' })}
 `;
@@ -166,6 +155,15 @@ const ShoppingCart = () => {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const userToken = localStorage.getItem('authToken');
+  const {
+    addOneToCart,
+    removeOneToCart,
+    cartArray,
+    setCartArray,
+    getCartQuantity,
+    getSubTotal,
+    getTotalToPay,
+  } = useContext(CartContext);
 
   const onToken = (token) => {
     setStripeToken(token);
@@ -174,30 +172,23 @@ const ShoppingCart = () => {
   useEffect(() => {
     const makeRequest = async () => {
       try {
-        const res = await publicRequest.post('/checkout/payment', {
+        await publicRequest.post('/checkout/payment', {
           tokenId: stripeToken.id,
           amount: getTotalToPay() * 100,
           user: user,
           userToken: userToken,
         });
-        console.log(res.data, 'reponse de stripe front-end');
-        navigate('/success');
+        await getCartQuantity(0)
+        await setCartArray([])
+        navigate('/success');        
       } catch (err) {
         console.log(err);
       }
     };
     stripeToken && makeRequest();
-  }, [stripeToken, navigate]);
 
-  const {
-    addOneToCart,
-    removeOneToCart,
-    cartCount,
-    cartArray,
-    // setCartArray,
-    getSubTotal,
-    getTotalToPay,
-  } = useContext(CartContext);
+  }, [stripeToken, navigate, setCartArray, getTotalToPay, user, userToken]);
+
 
   return (
     <Container>
@@ -210,7 +201,7 @@ const ShoppingCart = () => {
             <button className="categoryBtn">Continue Shopping</button>
           </Link>
           <TopTexts>
-            <TopText>Shopping Bag({cartCount})</TopText>
+            <TopText>Shopping Bag({getCartQuantity})</TopText>
           </TopTexts>
           <Link to="/" className="Link">
             <button className="categoryBtn">Home Page</button>
@@ -276,7 +267,7 @@ const ShoppingCart = () => {
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>{getSubTotal()} €</SummaryItemPrice>
+              <SummaryItemPrice>{getSubTotal().toFixed(2)} €</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Free worldwide shipping</SummaryItemText>
@@ -293,7 +284,7 @@ const ShoppingCart = () => {
             </SummaryItem>
             <SummaryItem type='total'>
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>{getTotalToPay()} €</SummaryItemPrice>
+              <SummaryItemPrice>{getTotalToPay().toFixed(2)} €</SummaryItemPrice>
             </SummaryItem>
             {stripeToken ? (<span className="spanProcessing">Processing ... Please wait</span>) : (
             <StripeCheckout
