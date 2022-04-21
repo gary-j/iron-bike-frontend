@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Advertisement from "../components/Advertisement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { mobile } from "../Responsive";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -118,15 +118,16 @@ const Product = () => {
         const res = await publicRequest.get("/products/" + slug);
         setProduct(res.data);
         setLoading(true);
-        console.log(res.data);
+        // console.log(res.data);
       } catch (e) {
-        console.log(e);
+        // console.log(e);
+        Navigate('/products')
         //redirect or call component errorPage
       }
     };
     getProduct();
   }, [slug]);
-  console.log({ product });
+  // console.log({ product });
 
   return (
     <Container>

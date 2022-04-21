@@ -41,17 +41,16 @@ function CartProviderWrapper(props) {
     }
     copyOfCartArray.forEach((cartItem, i) => {
       if (cartItem?._id === itemToRemove?._id) {
-        console.log(' match');
+        // console.log(' match');
         if (cartItem.quantityInCart > 1) {
-          console.log('Appel > 1');
           cartItem.quantityInCart--;
           setCartCount(cartCount - 1);
           removed = true;
         } else {
-          console.log('splice');
+          // console.log('splice');
           copyOfCartArray.splice(i, 1);
           setCartCount(cartCount - 1);
-          // removed = true;
+          removed = true;
         }
       } else {
         console.log("product not in the array, can't remove !");

@@ -6,7 +6,7 @@ import Navbar from "../components/Navbar";
 import RemoveCircleOutlineOutlinedIcon from "@mui/icons-material/RemoveCircleOutlineOutlined";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { CartContext } from "../context/cart.context";
 
@@ -163,7 +163,7 @@ const ShoppingCart = () => {
     removeOneToCart,
     cartCount,
     cartArray,
-    setCartArray,
+    // setCartArray,
     getSubTotal,
     getTotalToPay,
   } = useContext(CartContext);
