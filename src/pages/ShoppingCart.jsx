@@ -267,7 +267,7 @@ const ShoppingCart = () => {
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>{getTotalToPay()}</SummaryItemPrice>
+              <SummaryItemPrice>{getTotalToPay()} €</SummaryItemPrice>
             </SummaryItem>
             <Link to="/stripeLink" className="Link">
               <Button className="btn">CHECKOUT NOW</Button>
