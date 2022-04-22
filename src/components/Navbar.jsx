@@ -40,6 +40,7 @@ const SearchContainer = styled.div`
   align-items: center;
   margin-left: 25px;
   padding: 5px;
+  display: none;
 `;
 
 const Input = styled.input`
@@ -48,7 +49,6 @@ const Input = styled.input`
 `;
 
 const Center = styled.div`
-  ${"" /* flex: 1; */}
   text-align: center;
 `;
 

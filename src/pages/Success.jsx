@@ -5,6 +5,7 @@ import React, { useContext } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { AuthContext } from "../context/auth.context";
+import Page404 from "./Page404";
 
 const Container = styled.div`
   width: 80vw;
@@ -39,11 +40,20 @@ const Paragraph = styled.p`
   margin-bottom: 40px;
 `;
 
+
 const Success = () => {
+  const stripeToken = localStorage.getItem('stripe-token');
+  console.log(stripeToken)
+
   const { user } = useContext(AuthContext);
   console.log(user);
-
+  
   return (
+    
+    <div>
+  {!stripeToken ?  (
+    <Page404/>
+  ):(
     <div>
       <Navbar />
       <Container>
@@ -69,12 +79,15 @@ const Success = () => {
             within 48h{" "}
           </Paragraph>
           <Link to={`/`}>
-            <button className="categoryBtn">Back To Home Page</button>
+            <button className="categoryBtn" onClick={()=>localStorage.removeItem('stripeToken')}>Back To Home Page</button>
           </Link>
         </Wrapper>
         <RightBox src="../images/success.png" alt="success" />
       </Container>
       <Footer />
+    </div>
+  )
+  }
     </div>
   );
 };

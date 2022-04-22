@@ -11,6 +11,7 @@ import BrandListPage from "./pages/BrandListPage";
 import CompanyPage from "./pages/CompanyPage";
 import ContactPage  from "./pages/ContactPage";
 import Success from "./pages/Success";
+import Page404 from "./pages/Page404";
 
 const App = () => {
   return (
@@ -28,6 +29,19 @@ const App = () => {
         <Route path="/company" element={<CompanyPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/success" element={<Success />} />
+        <Route path="/*" element={<Page404 />} />
+        <Route path="/success/*" element={<Page404 />} />
+        <Route path="/contact/*" element={<Page404 />} />
+        <Route path="/company/*" element={<Page404 />} />
+        <Route path="/signup/*" element={<Page404 />} />
+        <Route path="/login/*" element={<Page404 />} />
+        <Route path="/company/*" element={<Page404 />} />
+        <Route path="/shoppingcart/*" element={<Page404 />} />
+        <Route path="/products/*" element={<Page404 />} />
+        <Route path="/product/*" element={<Page404 />} />
+        <Route path="/company/*" element={<Page404 />} />
+        <Route path="/brands/*" element={<Page404 />} />
+        <Route path="/brand/*" element={<Page404 />} />
       </Routes>
     </div>
   );

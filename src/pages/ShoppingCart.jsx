@@ -6,7 +6,6 @@ import Navbar from "../components/Navbar";
 import RemoveCircleOutlineOutlinedIcon from "@mui/icons-material/RemoveCircleOutlineOutlined";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import { Link, useNavigate } from "react-router-dom";
-// import { useEffect, useState } from "react";
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../context/cart.context";
 import { AuthContext } from "../context/auth.context.js";
@@ -25,8 +24,9 @@ const Wrapper = styled.div`
 
 const Title = styled.h1`
   font-weight: 300;
-  text-align: center;
+  text-align: center !important;
   text-decoration: 3px underline #12996d;
+  ${mobile({ textAlign: "center" })}
 `;
 
 const Top = styled.div`
@@ -150,6 +150,13 @@ const Button = styled.button`
   font-weight: 600;
 `;
 
+const MenuItem = styled.div`
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 25px;
+  ${mobile({ fontSize: "12px", marginLeft: "10px" })}
+`;
+
 const ShoppingCart = () => {
   const [stripeToken, setStripeToken] = useState(null);
   const navigate = useNavigate();
@@ -174,10 +181,15 @@ const ShoppingCart = () => {
       try {
         await publicRequest.post("/checkout/payment", {
           tokenId: stripeToken.id,
-          amount: getTotalToPay() * 100,
+          amount: (getTotalToPay() > 1000
+          ? getTotalToPay() - 150
+          : getTotalToPay()) * 100,
           user: user,
           userToken: userToken,
         });
+        localStorage.setItem('stripe-token', stripeToken.id);
+        console.log('stripe-token', stripeToken.id);
+
         await getCartQuantity(0);
         await setCartArray([]);
         navigate("/success");
@@ -285,14 +297,11 @@ const ShoppingCart = () => {
               <SummaryItemPrice>
                 {getTotalToPay().toFixed(2) > 1000
                   ? (getTotalToPay() - 150).toFixed(2)
-                  : getTotalToPay().toFixed(2)}{" "}
+                  : getTotalToPay().toFixed(2)}
                 €
               </SummaryItemPrice>
             </SummaryItem>
-
-            {stripeToken ? (
-              <span className="spanProcessing">Processing ... Please wait</span>
-            ) : (
+            {getTotalToPay() > 0 && user !== null ? (
               <StripeCheckout
                 name="Iron Bike"
                 image="../images/logo-iron-bike.png"
@@ -304,24 +313,32 @@ const ShoppingCart = () => {
                     : getTotalToPay().toFixed(2)
                 } €`}
                 amount={
-                  (getTotalToPay() > 1000
+                  ((getTotalToPay() > 1000
                     ? getTotalToPay() - 150
-                    : getTotalToPay()) * 100
+                    : getTotalToPay()) * 100).toFixed(2)
                 }
                 token={onToken}
                 stripeKey={STRIPE_KEY}
                 local="auto"
-                currency="eur"
+                currency="EUR"
               >
-                {user === null || getTotalToPay() === 0 ? (
-                  <span className="spanProcessing">
-                    Please connect to your account or add product to the cart to
-                    make the checkout
-                  </span>
-                ) : (
-                  <Button className="btn">CHECKOUT NOW</Button>
-                )}
+                <Button className="btn">CHECKOUT NOW</Button>
               </StripeCheckout>
+            ) : (
+              <>
+                <span className="spanProcessing">
+                  Please connect to your account add product to the cart to
+                  make the checkout
+                </span>
+                <div className="btnDownCartPage">
+                <Link to="/login" className="Link">
+                  <MenuItem>LOG IN</MenuItem>
+                </Link>
+                <Link to="/signup" className="Link">
+                  <MenuItem>SIGN UP</MenuItem>
+                </Link>
+                </div>
+              </>
             )}
           </Summary>
         </Bottom>

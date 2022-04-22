@@ -323,6 +323,7 @@ button {
 
 .spanProcessing {
   margin: auto;
+  text-align: center;
   color: #d32f2f;
 }
 
@@ -332,6 +333,15 @@ button {
   color: #12996d !important;
 }
 
+/* No found Page */
+
+.pageNoFound{
+  display: flex;
+}
+.pageNoFoundImage{
+  margin: auto;
+}
+
 .SuccessUsername::first-letter {
   color: #12996d;
   text-transform: uppercase !important;
@@ -339,6 +349,13 @@ button {
 
 .SuccessEmail {
   color: #12996d;
+}
+
+/* btnDownCartPage */
+
+.btnDownCartPage{
+  display: flex;
+  justify-content: center;
 }
 
 @-webkit-keyframes blink {
@@ -442,5 +459,8 @@ button {
   .CompanyPage .descPage {
     font-size: unset;
     letter-spacing: 0px;
+  }
+  .btnDownCartPage{
+    padding-top: 1em;
   }
 }
