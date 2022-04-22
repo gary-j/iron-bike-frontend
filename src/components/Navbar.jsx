@@ -41,6 +41,7 @@ const SearchContainer = styled.div`
   margin-left: 25px;
   padding: 5px;
   display: none;
+  ${mobile({ display: "block ruby" })}
 `;
 
 const Input = styled.input`
