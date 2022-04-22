@@ -1,12 +1,16 @@
-# iron-bike-frontend
-BICYCLES E-SHOP  [Gary J. and Leo C.]
+## iron-bike-frontend
 
-• Stripe Payment working
-• Main purpose done 
-• USER CAN : 
-__• Create an account
-__• Log in, log out
-__• Manipulate and see shopping cart
-__• Buy products 
-__• PAY via Stripe !
+# BICYCLES E-SHOP
 
+### By Gary Jesoph and [Leo Cheffi](https://github.com/MrRinbex)
+
+#### V.0.1.0
+
+- Stripe Payment working
+- Main purpose done
+- USER CAN :
+  Create an account
+- Log in, log out
+- Manipulate and see shopping cart
+- Buy products
+- PAY via Stripe !
