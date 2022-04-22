@@ -6,7 +6,6 @@ import Navbar from "../components/Navbar";
 import RemoveCircleOutlineOutlinedIcon from "@mui/icons-material/RemoveCircleOutlineOutlined";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import { Link, useNavigate } from "react-router-dom";
-// import { useEffect, useState } from "react";
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../context/cart.context";
 import { AuthContext } from "../context/auth.context.js";
@@ -182,10 +181,15 @@ const ShoppingCart = () => {
       try {
         await publicRequest.post("/checkout/payment", {
           tokenId: stripeToken.id,
-          amount: getTotalToPay() * 100,
+          amount: (getTotalToPay() > 1000
+          ? getTotalToPay() - 150
+          : getTotalToPay()) * 100,
           user: user,
           userToken: userToken,
         });
+        localStorage.setItem('stripe-token', stripeToken.id);
+        console.log('stripe-token', stripeToken.id);
+
         await getCartQuantity(0);
         await setCartArray([]);
         navigate("/success");
@@ -293,7 +297,7 @@ const ShoppingCart = () => {
               <SummaryItemPrice>
                 {getTotalToPay().toFixed(2) > 1000
                   ? (getTotalToPay() - 150).toFixed(2)
-                  : getTotalToPay().toFixed(2)}{" "}
+                  : getTotalToPay().toFixed(2)}
                 €
               </SummaryItemPrice>
             </SummaryItem>
@@ -309,14 +313,14 @@ const ShoppingCart = () => {
                     : getTotalToPay().toFixed(2)
                 } €`}
                 amount={
-                  (getTotalToPay() > 1000
+                  ((getTotalToPay() > 1000
                     ? getTotalToPay() - 150
-                    : getTotalToPay()) * 100
+                    : getTotalToPay()) * 100).toFixed(2)
                 }
                 token={onToken}
                 stripeKey={STRIPE_KEY}
                 local="auto"
-                currency="eur"
+                currency="EUR"
               >
                 <Button className="btn">CHECKOUT NOW</Button>
               </StripeCheckout>
