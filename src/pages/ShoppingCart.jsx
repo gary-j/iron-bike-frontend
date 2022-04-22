@@ -312,11 +312,7 @@ const ShoppingCart = () => {
                     ? (getTotalToPay() - 150).toFixed(2)
                     : getTotalToPay().toFixed(2)
                 } €`}
-                amount={
-                  ((getTotalToPay() > 1000
-                    ? getTotalToPay() - 150
-                    : getTotalToPay()) * 100).toFixed(2)
-                }
+                amount={getTotalToPay() * 100}
                 token={onToken}
                 stripeKey={STRIPE_KEY}
                 local="auto"
