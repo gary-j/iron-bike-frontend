@@ -38,99 +38,102 @@ const FilterText = styled.span`
   font-size: 20px;
   font-weight: 600;
   margin-right: 20px;
-  ${mobile({ marginRight: "0px" })}
+  ${mobile({ marginRight: "0px", fontSize: "17px", marginBottom: "10px" })}
 `;
 
 const Select = styled.select`
   padding: 10px;
   margin-right: 20px;
-  ${mobile({ margin: "10px 0px" })}
+  ${mobile({ margin: "10px 0px", width: "100px", fontSize: "x-small"  })}
 `;
-const Option = styled.option``;
+const Option = styled.option`
+  ${mobile({ fontSize: "x-small" })}
+`;
 
 const ProductList = () => {
+  const location = useLocation();
+  const cat = location.pathname.split("/")[2];
+  const [filters, setFilters] = useState({});
+  const [sort, setSort] = useState("newest");
 
-  const location = useLocation()
-  const cat = location.pathname.split("/")[2]
-  const [filters, setFilters] = useState({})
-  const [sort, setSort] = useState("newest")
-  
   const handleFilter = (e) => {
-    const value = e.target.value;      
-        setFilters({
-          ...filters,
-          [e.target.name]: value 
-        })
-    console.log(value)
-  } 
+    const value = e.target.value;
+    setFilters({
+      ...filters,
+      [e.target.name]: value,
+    });
+    console.log(value);
+  };
 
   return (
     <Container>
-      <Navbar />
       <Advertisement />
+      <div className="NavbarProductsList">
+        <Navbar />
+      </div>
       <Title>{cat}</Title>
       <FilterContainer>
         <Filter>
-        {(cat === "Bikes" || cat === "Nutrition" || cat === "Clothes" || cat === "Accessory") &&
-          <FilterText>Filter Products:</FilterText>
-        }
-        {(!cat) &&
-        <div className="divBtn">
-        <Link to={`/products/Bikes`}>
-        <button className="categoryBtn">Bikes</button>
-        </Link>
-        <Link to={`/products/Clothes`}>
-        <button className="categoryBtn">Clothes</button>
-        </Link>
-        <Link to={`/products/Accessory`}>
-        <button className="categoryBtn">Accessory</button>
-        </Link>
-        <Link to={`/products/Nutrition`}>
-        <button className="categoryBtn">Nutrition</button>
-        </Link>
-        </div>
-        }
-          {(cat === "Bikes") &&
-          <BikeCategorySelect handleFilter={handleFilter}/>
-          }
-          {(cat === "Nutrition") &&
-          <AspectSelect handleFilter={handleFilter}/>
-          }
-          {(cat === "Bikes") &&
-          <FrameMaterialsSelect handleFilter={handleFilter}/>
-          }
-          {(cat === "Clothes") &&
-          <GenderSelect handleFilter={handleFilter}/>
-          }
-          {(cat === "Clothes") &&
-          <TypeClothesSelect handleFilter={handleFilter}/>
-          }
-          {(cat === "Clothes"|| cat === "Bikes") &&
-         <ColorSelect handleFilter={handleFilter}/>
-          }
-          {(cat === "Clothes"|| cat === "Bikes") &&
-          <SizeSelect handleFilter={handleFilter}/>
-          }
-          {(cat === "Accessory") &&
-          <FeaturesSelect handleFilter={handleFilter}/>
-          }
-          {(cat === "Nutrition") &&
-          <VeganSelect handleFilter={handleFilter}/>
-          }
+          {(cat === "Bikes" ||
+            cat === "Nutrition" ||
+            cat === "Clothes" ||
+            cat === "Accessory") && <FilterText>Filter Products:</FilterText>}
+          {!cat && (
+            <div className="divBtn">
+              <Link to={`/products/Bikes`}>
+                <button className="categoryBtn">Bikes</button>
+              </Link>
+              <Link to={`/products/Clothes`}>
+                <button className="categoryBtn">Clothes</button>
+              </Link>
+              <Link to={`/products/Accessory`}>
+                <button className="categoryBtn">Accessory</button>
+              </Link>
+              <Link to={`/products/Nutrition`}>
+                <button className="categoryBtn">Nutrition</button>
+              </Link>
+            </div>
+          )}
+          {cat === "Bikes" && (
+            <BikeCategorySelect handleFilter={handleFilter} />
+          )}
+          {cat === "Nutrition" && <AspectSelect handleFilter={handleFilter} />}
+          {cat === "Bikes" && (
+            <FrameMaterialsSelect handleFilter={handleFilter} />
+          )}
+          {cat === "Clothes" && <GenderSelect handleFilter={handleFilter} />}
+          {cat === "Clothes" && (
+            <TypeClothesSelect handleFilter={handleFilter} />
+          )}
+          {(cat === "Clothes" || cat === "Bikes") && (
+            <ColorSelect handleFilter={handleFilter} />
+          )}
+          {(cat === "Clothes" || cat === "Bikes") && (
+            <SizeSelect handleFilter={handleFilter} />
+          )}
+          {cat === "Accessory" && (
+            <FeaturesSelect handleFilter={handleFilter} />
+          )}
+          {cat === "Nutrition" && <VeganSelect handleFilter={handleFilter} />}
         </Filter>
-        {(cat === "Bikes" || cat === "Nutrition" || cat === "Clothes" || cat === "Accessory") &&
-        <Filter>
-          <FilterText>Sort By Price:</FilterText>
-          <Select onChange={(e)=> setSort(e.target.value)}>
-            <Option defaultValue="price" value="price">Price</Option>
-            <Option value="high">Price (High)</Option>
-            <Option value="low">Price (Low)</Option>
-          </Select>
-        </Filter>
-        }
+        {(cat === "Bikes" ||
+          cat === "Nutrition" ||
+          cat === "Clothes" ||
+          cat === "Accessory") && (
+          <Filter>
+            <FilterText>Sort By Price:</FilterText>
+            <Select onChange={(e) => setSort(e.target.value)}>
+              <Option defaultValue="price" value="price">
+                Price
+              </Option>
+              <Option value="high">Price (High)</Option>
+              <Option value="low">Price (Low)</Option>
+            </Select>
+          </Filter>
+        )}
       </FilterContainer>
-      <Link to="/product" className='linkItem'>
-      <Products cat={cat} filters={filters} sort={sort}/>
+      <Link to="/product" className="linkItem">
+        <Products cat={cat} filters={filters} sort={sort} />
       </Link>
       <Footer />
     </Container>

@@ -7,6 +7,8 @@ const Container = styled.div`
   margin: 3px;
   height: 70vh;
   position: relative;
+  ${mobile({ marginTop: "50px" })}
+
 `;
 
 const Image = styled.img`
@@ -42,6 +44,7 @@ const Button = styled.button`
   padding: 10px;
   border: none;
   cursor: pointer;
+  ${mobile({ display: "none" })}
 `;
 
 const CategoryItem = ({ item }) => {

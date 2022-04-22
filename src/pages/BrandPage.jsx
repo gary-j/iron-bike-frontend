@@ -13,6 +13,11 @@ const Container = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  ${mobile({
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "baseline",
+  })}
 `;
 
 const LeftBox = styled.div`
@@ -20,7 +25,7 @@ const LeftBox = styled.div`
   padding: 20px;
   background-color: white;
   margin-right: 150px;
-  ${mobile({ width: "75%" })}
+  ${mobile({ width: "100vw" })}
 `;
 
 const RightBox = styled.img`
@@ -37,6 +42,7 @@ const Title = styled.h1`
 const Description = styled.div`
   display: flex;
   flex-direction: column;
+  ${mobile({ marginBottom: "20px" })}
 `;
 
 const Info = styled.p`
@@ -44,34 +50,37 @@ const Info = styled.p`
   font-size: 30px;
   margin: 10px;
   color: black;
+  ${mobile({ fontSize: "20px" })}
 `;
 const InfoResult = styled.span`
   font-size: 25px;
   margin: 10px;
   color: #12996d;
+  ${mobile({ fontSize: "18px" })}
 `;
 
 const BrandPage = () => {
+  const { slug } = useParams();
+  const [brand, setBrand] = useState({});
 
-    const { slug } = useParams();
-    const [brand, setBrand] = useState({});
+  useEffect(() => {
+    const getBrand = async () => {
+      try {
+        const res = await publicRequest.get("/brand/" + slug);
+        setBrand(res.data);
+        console.log(res.data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getBrand();
+  }, [slug]);
 
-    useEffect(() => {
-      const getBrand = async () => {
-        try {
-          const res = await publicRequest.get('/brand/' + slug);
-          setBrand(res.data);
-          console.log(res.data);
-        } catch (e) {
-          console.log(e);
-        }
-      };
-      getBrand();
-    }, [slug]);
-  
   return (
     <div>
-      <Navbar />
+      <div className="NavbarProductsList">
+        <Navbar />
+      </div>
       <Container>
         <LeftBox>
           <Title>{brand?.name}</Title>
@@ -90,9 +99,9 @@ const BrandPage = () => {
             </Info>
           </Description>
         </LeftBox>
-        <RightBox src={brand?.brandLogo}/>
+        <RightBox src={brand?.brandLogo} />
       </Container>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
