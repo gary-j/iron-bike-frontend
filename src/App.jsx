@@ -11,6 +11,7 @@ import BrandListPage from "./pages/BrandListPage";
 import CompanyPage from "./pages/CompanyPage";
 import ContactPage  from "./pages/ContactPage";
 import Success from "./pages/Success";
+import Page404 from "./pages/Page404";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/company" element={<CompanyPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/success" element={<Success />} />
+        <Route path="/*" element={<Page404 />} />
       </Routes>
     </div>
   );

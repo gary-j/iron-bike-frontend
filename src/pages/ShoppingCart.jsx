@@ -25,8 +25,9 @@ const Wrapper = styled.div`
 
 const Title = styled.h1`
   font-weight: 300;
-  text-align: center;
+  text-align: center !important;
   text-decoration: 3px underline #12996d;
+  ${mobile({ textAlign: "center" })}
 `;
 
 const Top = styled.div`
@@ -148,6 +149,13 @@ const Button = styled.button`
   border: none;
   background: transparent;
   font-weight: 600;
+`;
+
+const MenuItem = styled.div`
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 25px;
+  ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
 
 const ShoppingCart = () => {
@@ -289,10 +297,7 @@ const ShoppingCart = () => {
                 €
               </SummaryItemPrice>
             </SummaryItem>
-
-            {stripeToken ? (
-              <span className="spanProcessing">Processing ... Please wait</span>
-            ) : (
+            {getTotalToPay() > 0 && user !== null ? (
               <StripeCheckout
                 name="Iron Bike"
                 image="../images/logo-iron-bike.png"
@@ -313,15 +318,23 @@ const ShoppingCart = () => {
                 local="auto"
                 currency="eur"
               >
-                {user === null || getTotalToPay() === 0 ? (
-                  <span className="spanProcessing">
-                    Please connect to your account or add product to the cart to
-                    make the checkout
-                  </span>
-                ) : (
-                  <Button className="btn">CHECKOUT NOW</Button>
-                )}
+                <Button className="btn">CHECKOUT NOW</Button>
               </StripeCheckout>
+            ) : (
+              <>
+                <span className="spanProcessing">
+                  Please connect to your account add product to the cart to
+                  make the checkout
+                </span>
+                <div className="btnDownCartPage">
+                <Link to="/login" className="Link">
+                  <MenuItem>LOG IN</MenuItem>
+                </Link>
+                <Link to="/signup" className="Link">
+                  <MenuItem>SIGN UP</MenuItem>
+                </Link>
+                </div>
+              </>
             )}
           </Summary>
         </Bottom>
