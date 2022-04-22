@@ -48,6 +48,7 @@ const Title = styled.h1`
   font-size: 40px;
   margin-bottom: 60px;
   text-decoration: 3px underline #12996d;
+  ${mobile({ fontSize: "30px" })}
 `;
 
 const Description = styled.div`
@@ -82,11 +83,13 @@ const Info = styled.p`
   font-size: 30px;
   margin: 10px;
   color: black;
+  ${mobile({ fontSize: "23px" })}
 `;
 const InfoResult = styled.span`
   font-size: 25px;
   margin: 10px;
   color: #12996d;
+  ${mobile({ fontSize: "19px" })}
 `;
 const LogoBrand = styled.img`
   object-fit: contain;
@@ -106,12 +109,12 @@ const Product = () => {
   const [loading, setLoading] = useState(false);
   const { slug } = useParams();
   const [product, setProduct] = useState({});
-  const { addOneToCart} = useContext(CartContext);
+  const { addOneToCart } = useContext(CartContext);
   const [productQty, setProductQty] = useState(0);
 
-  const checkQuantity = () => {
-    setProductQty(productQty <= 1 ? 1 : productQty - 1);
-  };
+  // const checkQuantity = () => {
+  //   setProductQty(productQty <= 1 ? 1 : productQty - 1);
+  // };
   useEffect(() => {
     const getProduct = async () => {
       try {
@@ -121,7 +124,7 @@ const Product = () => {
         // console.log(res.data);
       } catch (e) {
         // console.log(e);
-        Navigate('/products')
+        Navigate("/products");
         //redirect or call component errorPage
       }
     };
@@ -131,7 +134,9 @@ const Product = () => {
 
   return (
     <Container>
-      <Navbar />
+      <div className="NavbarProductsList">
+        <Navbar />
+      </div>
       <Advertisement />
       <ProductContainer>
         <ImgContainer>

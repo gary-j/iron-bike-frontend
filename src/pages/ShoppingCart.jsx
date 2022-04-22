@@ -1,18 +1,18 @@
-import { mobile } from '../Responsive';
-import styled from 'styled-components';
-import Advertisement from '../components/Advertisement';
-import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
-import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import { Link, useNavigate } from 'react-router-dom';
+import { mobile } from "../Responsive";
+import styled from "styled-components";
+import Advertisement from "../components/Advertisement";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import RemoveCircleOutlineOutlinedIcon from "@mui/icons-material/RemoveCircleOutlineOutlined";
+import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
+import { Link, useNavigate } from "react-router-dom";
 // import { useEffect, useState } from "react";
-import { useContext, useEffect, useState } from 'react';
-import { CartContext } from '../context/cart.context';
-import { AuthContext } from '../context/auth.context.js';
-import StripeCheckout from 'react-stripe-checkout';
-import { publicRequest } from '../requestAxios';
-import { STRIPE_KEY } from '../consts';
+import { useContext, useEffect, useState } from "react";
+import { CartContext } from "../context/cart.context";
+import { AuthContext } from "../context/auth.context.js";
+import StripeCheckout from "react-stripe-checkout";
+import { publicRequest } from "../requestAxios";
+import { STRIPE_KEY } from "../consts";
 
 const Container = styled.div``;
 
@@ -20,7 +20,7 @@ const Wrapper = styled.div`
   margin-top: 30px;
   margin-bottom: 60px;
   padding: 20px;
-  ${mobile({ padding: '10px' })}
+  ${mobile({ padding: "10px" })}
 `;
 
 const Title = styled.h1`
@@ -39,7 +39,7 @@ const Top = styled.div`
 `;
 
 const TopTexts = styled.div`
-  ${mobile({ display: 'none' })}
+  ${mobile({ display: "none" })}
 `;
 const TopText = styled.span`
   cursor: pointer;
@@ -49,7 +49,7 @@ const TopText = styled.span`
 const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
-  ${mobile({ flexDirection: 'column' })}
+  ${mobile({ flexDirection: "column" })}
 `;
 
 const Info = styled.div`
@@ -59,7 +59,7 @@ const Info = styled.div`
 const ProductRow = styled.div`
   display: flex;
   justify-content: space-between;
-  ${mobile({ flexDirection: 'column' })}
+  ${mobile({ flexDirection: "column" })}
 `;
 
 const ItemQtyAndPrice = styled.div`
@@ -97,13 +97,13 @@ const ProductAmountContainer = styled.div`
 const Quantity = styled.div`
   font-size: 24px;
   margin: 15px;
-  ${mobile({ margin: '5px 15px' })}
+  ${mobile({ margin: "5px 15px" })}
 `;
 
 const ProductPrice = styled.div`
   font-size: 30px;
   font-weight: 200;
-  ${mobile({ marginBottom: '20px' })}
+  ${mobile({ marginBottom: "20px" })}
 `;
 
 const Hr = styled.hr`
@@ -133,8 +133,8 @@ const SummaryItem = styled.div`
   margin: 15px 0px;
   display: flex;
   justify-content: space-between;
-  font-weight: ${(props) => props.type === 'total' && '500'};
-  font-size: ${(props) => props.type === 'total' && '24px'};
+  font-weight: ${(props) => props.type === "total" && "500"};
+  font-size: ${(props) => props.type === "total" && "24px"};
 `;
 
 const SummaryItemText = styled.span``;
@@ -154,7 +154,7 @@ const ShoppingCart = () => {
   const [stripeToken, setStripeToken] = useState(null);
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
-  const userToken = localStorage.getItem('authToken');
+  const userToken = localStorage.getItem("authToken");
   const {
     addOneToCart,
     removeOneToCart,
@@ -172,27 +172,27 @@ const ShoppingCart = () => {
   useEffect(() => {
     const makeRequest = async () => {
       try {
-        await publicRequest.post('/checkout/payment', {
+        await publicRequest.post("/checkout/payment", {
           tokenId: stripeToken.id,
           amount: getTotalToPay() * 100,
           user: user,
           userToken: userToken,
         });
-        await getCartQuantity(0)
-        await setCartArray([])
-        navigate('/success');        
+        await getCartQuantity(0);
+        await setCartArray([]);
+        navigate("/success");
       } catch (err) {
         console.log(err);
       }
     };
     stripeToken && makeRequest();
-
   }, [stripeToken, navigate, setCartArray, getTotalToPay, user, userToken]);
-
 
   return (
     <Container>
-      <Navbar />
+      <div className="NavbarProductsList">
+        <Navbar />
+      </div>
       <Advertisement />
       <Wrapper>
         <Title>Your shopping cart</Title>
@@ -204,7 +204,7 @@ const ShoppingCart = () => {
             <TopText>Shopping Bag({getCartQuantity()})</TopText>
           </TopTexts>
           <Link to="/" className="Link">
-            <button className="categoryBtn">Home Page</button>
+            <button className="categoryBtn hiddenBtn">Home Page</button>
           </Link>
         </Top>
         <Bottom>
@@ -242,14 +242,16 @@ const ShoppingCart = () => {
                     <PriceDetail>
                       <ProductAmountContainer>
                         <button
-                          className='removeOne'
-                          onClick={(e) => removeOneToCart(e, item)}>
-                          <RemoveCircleOutlineOutlinedIcon className='removeOne' />
+                          className="removeOne"
+                          onClick={(e) => removeOneToCart(e, item)}
+                        >
+                          <RemoveCircleOutlineOutlinedIcon className="removeOne" />
                         </button>
                         <Quantity>{item.quantityInCart}</Quantity>
                         <button
-                          className='addOne'
-                          onClick={(e) => addOneToCart(e, item)}>
+                          className="addOne"
+                          onClick={(e) => addOneToCart(e, item)}
+                        >
                           <AddCircleOutlineOutlinedIcon />
                         </button>
                       </ProductAmountContainer>
@@ -271,35 +273,56 @@ const ShoppingCart = () => {
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Discount</SummaryItemText>
-              <SummaryItemPrice>{getSubTotal() > 1000 ? "- 150.00" : "0"} €</SummaryItemPrice>
+              <SummaryItemPrice>
+                {getSubTotal() > 1000 ? "- 150.00" : "0"} €
+              </SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Free worldwide shipping</SummaryItemText>
             </SummaryItem>
-            <SummaryItem type='total'>
+            <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>{getTotalToPay().toFixed(2) > 1000 ? (getTotalToPay() - 150).toFixed(2) : getTotalToPay().toFixed(2) } €</SummaryItemPrice>
+              <SummaryItemPrice>
+                {getTotalToPay().toFixed(2) > 1000
+                  ? (getTotalToPay() - 150).toFixed(2)
+                  : getTotalToPay().toFixed(2)}{" "}
+                €
+              </SummaryItemPrice>
             </SummaryItem>
 
-            {stripeToken  ? (<span className="spanProcessing">Processing ... Please wait</span>) : (
-            <StripeCheckout
-              name="Iron Bike"
-              image="../images/logo-iron-bike.png"
-              billingAddress
-              shippingAddress
-              description={`Your total is ${getTotalToPay() >  1000 ? (getTotalToPay() - 150).toFixed(2) : getTotalToPay().toFixed(2)} €`}
-              amount={(getTotalToPay() >  1000 ? (getTotalToPay() - 150) : getTotalToPay()) * 100}
-              token={onToken}
-              stripeKey={STRIPE_KEY}
-              local='auto'
-              currency="eur"
-            >
-              {(user === null) || getTotalToPay() === 0 ? (<span className="spanProcessing">Please connect to your account or add product to the cart to make the checkout</span>):
-              <Button className="btn">CHECKOUT NOW</Button>
-            }
-            </StripeCheckout>
-            )
-            }
+            {stripeToken ? (
+              <span className="spanProcessing">Processing ... Please wait</span>
+            ) : (
+              <StripeCheckout
+                name="Iron Bike"
+                image="../images/logo-iron-bike.png"
+                billingAddress
+                shippingAddress
+                description={`Your total is ${
+                  getTotalToPay() > 1000
+                    ? (getTotalToPay() - 150).toFixed(2)
+                    : getTotalToPay().toFixed(2)
+                } €`}
+                amount={
+                  (getTotalToPay() > 1000
+                    ? getTotalToPay() - 150
+                    : getTotalToPay()) * 100
+                }
+                token={onToken}
+                stripeKey={STRIPE_KEY}
+                local="auto"
+                currency="eur"
+              >
+                {user === null || getTotalToPay() === 0 ? (
+                  <span className="spanProcessing">
+                    Please connect to your account or add product to the cart to
+                    make the checkout
+                  </span>
+                ) : (
+                  <Button className="btn">CHECKOUT NOW</Button>
+                )}
+              </StripeCheckout>
+            )}
           </Summary>
         </Bottom>
       </Wrapper>

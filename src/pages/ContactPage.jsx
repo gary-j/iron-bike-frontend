@@ -11,6 +11,11 @@ const Container = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  ${mobile({
+    flexDirection: "column",
+    width: "100vw",
+    justifyContent: "center",
+  })}
 `;
 
 const Wrapper = styled.div`
@@ -25,6 +30,7 @@ const ImageBox = styled.img`
   width: 50%;
   border: 3px solid gray;
   border-radius: 10px;
+  ${mobile({ width: "90vw" })}
 `;
 
 const Desc = styled.div`
@@ -37,6 +43,7 @@ const Title = styled.h1`
   font-weight: 300;
   margin: revert-layer;
   text-decoration: 3px underline #12996d;
+  ${mobile({ textAlign: "center" })}
 `;
 
 const Info = styled.p`
@@ -45,17 +52,21 @@ const Info = styled.p`
   margin: 10px;
   color: #12996d;
   width: max-content;
+  ${mobile({ fontSize: "22px" })}
 `;
 const InfoText = styled.span`
   font-size: 25px;
   margin: 10px;
   color: black;
+  ${mobile({ fontSize: "22px" })}
 `;
 
 const ContactPage = () => {
   return (
     <div>
-      <Navbar />
+      <div className="NavbarProductsList">
+        <Navbar />
+      </div>
       <Container>
         <Wrapper>
           <Title>Contact Us</Title>

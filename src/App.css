@@ -83,9 +83,9 @@ html {
   transition-delay: 0.5s;
 }
 
- /* button of all products */
+/* button of all products */
 
-.categoryBtn{
+.categoryBtn {
   color: #000000;
   position: relative;
   padding: 10px 30px;
@@ -97,7 +97,7 @@ html {
   text-transform: capitalize;
   overflow: hidden;
 }
-.categoryBtn:hover{
+.categoryBtn:hover {
   color: #12996d;
   position: relative;
   text-decoration: none;
@@ -291,11 +291,13 @@ button {
   text-align: justify;
   width: 60%;
   margin-bottom: 100px;
+  font-size: larger;
+  letter-spacing: 1px;
 }
 
 /* InputDiscount */
 
-.InputDiscount{
+.InputDiscount {
   border: none;
   display: contents;
   overflow: hidden;
@@ -303,39 +305,39 @@ button {
 }
 /* product List Page */
 
-.productItem{
+.productItem {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.priceProduct{
+.priceProduct {
   color: #12996d;
   font-size: 14px;
 }
-.nameProduct{
+.nameProduct {
   color: #000000;
 }
 
 /* Processing span */
 
-.spanProcessing{
+.spanProcessing {
   margin: auto;
   color: #d32f2f;
 }
 
 /* Success Page */
 
-.SuccessUsername{
+.SuccessUsername {
   color: #12996d !important;
 }
 
-.SuccessUsername::first-letter{
+.SuccessUsername::first-letter {
   color: #12996d;
   text-transform: uppercase !important;
 }
 
-.SuccessEmail{
+.SuccessEmail {
   color: #12996d;
 }
 
@@ -371,5 +373,74 @@ button {
   56%,
   100% {
     color: blanchedalmond;
+  }
+}
+
+/* RESPONSIVE */
+
+@media only screen and (max-width: 420px) {
+  .App {
+    padding: 0px;
+  }
+  .fIcons {
+    height: 25px;
+  }
+  .footerUp {
+    padding: 12px;
+  }
+  .fMenuTitle {
+    font-size: 15px;
+  }
+  .fListItem {
+    font-size: small;
+  }
+  .features {
+    padding: 0px;
+  }
+  .featureTitle {
+    font-size: 15px;
+    margin: 5px;
+  }
+  .featureDesc {
+    height: 108px;
+    width: auto;
+  }
+  .copyright {
+    font-size: 19px;
+  }
+  .NavbarProductsList {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+  }
+  .hiddenBtn {
+    display: none;
+  }
+  .categoryBtn {
+    margin-right: 20px;
+    font-size: 12px;
+    transition: 0.2s;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+    overflow: hidden;
+    width: 150px;
+    margin: 0;
+    padding: 10px;
+    margin-right: 15px;
+    margin-bottom: 20px;
+  }
+  .CompanyPage .profile {
+    margin: 0;
+  }
+  .CompanyPage .title {
+    font-size: 1.8rem;
+  }
+  .CompanyPage h2 {
+    margin: 19px 0px;
+    font-size: 23px;
+  }
+  .CompanyPage .descPage {
+    font-size: unset;
+    letter-spacing: 0px;
   }
 }

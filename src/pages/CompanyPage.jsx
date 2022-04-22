@@ -5,7 +5,9 @@ import Navbar from "../components/Navbar";
 const CompanyPage = () => {
   return (
     <>
-      <Navbar />
+      <div className="NavbarProductsList">
+        <Navbar />
+      </div>
       <div className="CompanyPage">
         <h1 className="title">Project contributed by</h1>
         <div className="container">
@@ -27,9 +29,12 @@ const CompanyPage = () => {
           </div>
         </div>
         <p className="descPage">
-          Leads the daily operations at Apptopia, including product development
-          and global sales. Jonathan is passionate about people, sports, and
-          really efficient processes.{" "}
+          Gary & Léo tow funny dev, creative and motivated by challenge. For
+          only one week the succeed to build a strong E-commerce App with a
+          beautiful font-end design and strong Api with many options Together
+          they lived a great experience 'Team Spirit' to reach all the
+          requirement for the final Project We hope you enjoy visiting our web
+          site. Cheers ✌️{" "}
         </p>
       </div>
       <Footer />
