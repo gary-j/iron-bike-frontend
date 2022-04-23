@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from "styled-components";
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
+import { mobile } from "../Responsive";
+
 
 const Container = styled.div`
   height: 50px;
@@ -16,6 +18,8 @@ const Container = styled.div`
   justify-content: center;
   font-size: 16px;
   font-weight: 500;
+  ${mobile({ borderRadius: "0px"})}
+
 `;
 const Advertisement = () => {
   return (

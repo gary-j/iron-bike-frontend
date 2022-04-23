@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useState } from "react";
 const CartContext = createContext();
 
 // Cart wrapper component
@@ -7,9 +7,9 @@ function CartProviderWrapper(props) {
   const [cartArray, setCartArray] = useState([]);
 
   const addOneToCart = (e, itemToAdd) => {
-    console.log(cartArray, 'cart array');
+    console.log(cartArray, "cart array");
 
-    console.log(itemToAdd, 'item to add');
+    console.log(itemToAdd, "item to add");
     const copyOfCartArray = JSON.parse(JSON.stringify(cartArray));
     let added = false;
     copyOfCartArray.forEach((cartItem) => {
@@ -29,13 +29,13 @@ function CartProviderWrapper(props) {
   const removeOneToCart = (e, itemToRemove) => {
     //
     const copyOfCartArray = JSON.parse(JSON.stringify(cartArray));
-    console.log(cartCount, 'cart count');
-    console.log(cartArray, 'cartArray');
-    console.log(itemToRemove, 'item to remove');
+    console.log(cartCount, "cart count");
+    console.log(cartArray, "cartArray");
+    console.log(itemToRemove, "item to remove");
     let removed = false;
     //
     if (cartArray.length === 0) {
-      console.log('return cuz empty array');
+      console.log("return cuz empty array");
       return;
     }
     copyOfCartArray.forEach((cartItem, i) => {
@@ -59,7 +59,7 @@ function CartProviderWrapper(props) {
 
     setCartArray(copyOfCartArray);
 
-    console.log(cartArray, '-1');
+    console.log(cartArray, "-1");
   };
   const getSubTotal = () => {
     const subtotal = cartArray.reduce((previousItem, currentItem) => {
@@ -71,7 +71,7 @@ function CartProviderWrapper(props) {
     const totalAmount = cartArray.reduce((previousItem, currentItem) => {
       return previousItem + currentItem.quantityInCart * currentItem.price;
     }, 0);
-    console.log('>>>>>>>>>>>>>', totalAmount);
+    console.log(">>>>>>>>>>>>>", totalAmount);
     return totalAmount - discount > 0 ? totalAmount - discount : 0;
   };
 
@@ -79,11 +79,10 @@ function CartProviderWrapper(props) {
     // const copyOfCartArray = JSON.parse(JSON.stringify(cartArray));
     const totalQuantity = cartArray.reduce((previousItem, currentItem) => {
       return previousItem + currentItem.quantityInCart;
-      
     }, 0);
-    console.log('>>>>>>>>>>>>>', totalQuantity);
-    return totalQuantity
-  }
+    console.log(">>>>>>>>>>>>>", totalQuantity);
+    return totalQuantity;
+  };
 
   return (
     <CartContext.Provider
@@ -96,7 +95,8 @@ function CartProviderWrapper(props) {
         getCartQuantity,
         getSubTotal,
         getTotalToPay,
-      }}>
+      }}
+    >
       {props.children}
     </CartContext.Provider>
   );

@@ -19,6 +19,7 @@ const BikeCategorySelect = ({ handleFilter }) => {
       <Option>Mountain Bike</Option>
       <Option>City Bike</Option>
       <Option>E-Bike</Option>
+      <Option>Kid Bike</Option>
     </Select>
   );
 };

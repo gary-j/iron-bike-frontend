@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import { publicRequest } from "../requestAxios";
 import { useContext } from "react";
 import { CartContext } from "../context/cart.context";
+import RemoveCircleOutlineOutlinedIcon from "@mui/icons-material/RemoveCircleOutlineOutlined";
+import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 
 const Container = styled.div``;
 
@@ -65,7 +67,7 @@ const AddToCartContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  ${mobile({ width: "100%" })}
+  ${mobile({ width: "100%", display: "flex", justifyContent: "center" })}
 `;
 
 const Button = styled.button`
@@ -105,32 +107,46 @@ const LogoBrand = styled.img`
   }
 `;
 
+const ProductAmountContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+`;
+
+const Quantity = styled.div`
+  font-size: 24px;
+  margin: 15px;
+  ${mobile({ margin: "5px 15px" })}
+`;
+
 const Product = () => {
   const [loading, setLoading] = useState(false);
   const { slug } = useParams();
   const [product, setProduct] = useState({});
-  const { addOneToCart } = useContext(CartContext);
+  const { addOneToCart, removeOneToCart } = useContext(CartContext);
   const [productQty, setProductQty] = useState(0);
 
-  // const checkQuantity = () => {
-  //   setProductQty(productQty <= 1 ? 1 : productQty - 1);
-  // };
   useEffect(() => {
     const getProduct = async () => {
       try {
         const res = await publicRequest.get("/products/" + slug);
         setProduct(res.data);
         setLoading(true);
-        // console.log(res.data);
       } catch (e) {
-        // console.log(e);
         Navigate("/products");
-        //redirect or call component errorPage
       }
     };
     getProduct();
   }, [slug]);
   // console.log({ product });
+
+  const handleQuantity = (type) => {
+    if (type === "dec") {
+      productQty > 0 && setProductQty(productQty - 1);
+    } else {
+      setProductQty(productQty + 1);
+    }
+  };
 
   return (
     <Container>
@@ -229,17 +245,33 @@ const Product = () => {
               Price: <InfoResult>{product?.price} €</InfoResult>
             </Info>
           </Description>
+          <ProductAmountContainer>
+            <button
+              className="removeOne"
+              onClick={(e) => {
+                removeOneToCart(e, product);
+                handleQuantity("dec");
+              }}
+            >
+              <RemoveCircleOutlineOutlinedIcon className="removeOne" />
+            </button>
+            <Quantity>{productQty}</Quantity>
+            <button
+              className="addOne"
+              onClick={(e) => {
+                addOneToCart(e, product);
+                handleQuantity(product);
+              }}
+            >
+              <AddCircleOutlineOutlinedIcon />
+            </button>
+          </ProductAmountContainer>
           <AddToCartContainer>
+            <Link to="/products" className="Link cart-icon">
+            <button className="btn">Continue Shopping</button>
+          </Link>
             <Link to="/shoppingcart" className="Link cart-icon">
-              <Button
-                className="btn"
-                onClick={(e) => {
-                  addOneToCart(e, product);
-                  setProductQty(productQty + 1);
-                }}
-              >
-                ADD TO CART
-              </Button>
+              <Button className="btn">GO TO CART</Button>
             </Link>
           </AddToCartContainer>
         </InfoContainer>
