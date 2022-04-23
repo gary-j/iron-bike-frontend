@@ -11,14 +11,14 @@ import { AuthContext } from "../context/auth.context";
 
 const Container = styled.div`
   ${"" /* ${mobile({ height: '50px' })} */}
-  ${mobile({ margin: "auto" })}
+  ${mobile({ margin: "auto", display: "flex" })}
 `;
 
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  ${mobile({ padding: "10px 1px" })}
+  ${mobile({ padding: "10px 1px", paddingLeft: "50px", display: "flex", width: '100vw' })}
 `;
 
 const Left = styled.div`
@@ -41,7 +41,7 @@ const SearchContainer = styled.div`
   margin-left: 25px;
   padding: 5px;
   display: none;
-  ${mobile({ display: "block ruby" })}
+  ${'' /* ${mobile({ display: "block ruby" })} */}
 `;
 
 const Input = styled.input`
@@ -51,6 +51,7 @@ const Input = styled.input`
 
 const Center = styled.div`
   text-align: center;
+${mobile({ paddingLeft: "inherit"})}
 `;
 
 const Logo = styled.img`
@@ -63,7 +64,7 @@ const Right = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  ${mobile({ flex: 2, justifyContent: "center" })}
+  ${mobile({ flex: 2, justifyContent: "start" })}
 `;
 
 const MenuItem = styled.div`
