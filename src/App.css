@@ -265,7 +265,7 @@ button {
   padding: 50px 0px;
   height: fit-content;
   margin: 0px 100px;
-  width: -moz-available;
+  width: 400px;
 }
 
 .CompanyPage .imgProfile {
