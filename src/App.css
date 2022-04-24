@@ -5,7 +5,10 @@ html {
 .App {
   padding: 0px 100px 20px 100px;
 }
-
+/* forms error-message */
+.error-message{
+  color: #d32f2f;
+}
 /* Component LandingPage */
 
 .LandingPage {
