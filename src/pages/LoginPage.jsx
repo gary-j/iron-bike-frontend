@@ -1,12 +1,12 @@
-import styled from "styled-components";
-import { mobile } from "../Responsive";
-import React from "react";
-import Navbar from "../components/Navbar";
+import styled from 'styled-components';
+import { mobile } from '../Responsive';
+import React from 'react';
+import Navbar from '../components/Navbar';
 
-import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/auth.context";
-import { publicRequest } from "../requestAxios";
+import { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/auth.context';
+import { publicRequest } from '../requestAxios';
 
 const Container = styled.div`
   width: 80vw;
@@ -15,7 +15,7 @@ const Container = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  ${mobile({ width: "100vw", height: "100vh" })}
+  ${mobile({ width: '100vw', height: '100vh' })}
 `;
 
 const Wrapper = styled.div`
@@ -23,12 +23,12 @@ const Wrapper = styled.div`
   padding: 20px;
   background-color: white;
   margin-right: 150px;
-  ${mobile({ width: "100vw", height: "66vh" })}
+  ${mobile({ width: '100vw', height: '66vh' })}
 `;
 
 const RightBox = styled.img`
   width: 300px;
-  ${mobile({ display: "none" })}
+  ${mobile({ display: 'none' })}
 `;
 
 const Title = styled.h1`
@@ -55,7 +55,7 @@ const Button = styled.button`
   background-color: transparent;
   border: none;
   width: 15vw;
-  ${mobile({ width: "40vw" })}
+  ${mobile({ width: '40vw' })}
 `;
 
 const Links = styled.a`
@@ -69,9 +69,9 @@ const Links = styled.a`
 const LoginPage = (props) => {
   const { storeToken, authenticateUser } = useContext(AuthContext);
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(undefined);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const navigate = useNavigate();
 
@@ -90,11 +90,12 @@ const LoginPage = (props) => {
       .post(`/auth/login`, requestBody)
       .then((response) => {
         // console.log('JWT RETURNED', response.data);
+        console.log(response, 'then response');
 
         storeToken(response.data.authToken);
         authenticateUser();
 
-        navigate("/");
+        navigate('/');
       })
       .catch((error) => {
         const errorDescription = error.response.data.message;
@@ -103,7 +104,7 @@ const LoginPage = (props) => {
   };
   return (
     <div>
-      <div className="NavbarProductsList">
+      <div className='NavbarProductsList'>
         <Navbar />
       </div>
       <Container>
@@ -111,34 +112,34 @@ const LoginPage = (props) => {
           <Title>LOG IN</Title>
           <Form onSubmit={handleLoginSubmit}>
             <Input
-              placeholder="email"
-              type="text"
-              name="email"
+              placeholder='email'
+              type='text'
+              name='email'
               value={email}
               onChange={handleEmail}
             />
             <Input
-              placeholder="password"
-              type="password"
-              name="password"
+              placeholder='password'
+              type='password'
+              name='password'
               value={password}
               onChange={handlePassword}
             />
-            <Button type="submit" className="btn">
+            {errorMessage && <p className='error-message'>{errorMessage}</p>}
+            <Button type='submit' className='btn'>
               SUBMIT
             </Button>
-            <Link to={"/contact"}>
+            <Link to={'/contact'}>
               <Links>DO NOT YOU REMEMBER THE PASSWORD?</Links>
             </Link>
-            <Link to={"/signup"}>
+            <Link to={'/signup'}>
               <Links>CREATE A NEW ACCOUNT</Links>
             </Link>
           </Form>
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
         </Wrapper>
         <RightBox
-          src="https://res.cloudinary.com/ironbike/image/upload/v1650037531/Main/bike_ys6xgn.png"
-          alt=""
+          src='https://res.cloudinary.com/ironbike/image/upload/v1650037531/Main/bike_ys6xgn.png'
+          alt=''
         />
       </Container>
     </div>

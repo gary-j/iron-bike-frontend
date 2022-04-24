@@ -1,12 +1,12 @@
-import styled from "styled-components";
-import { mobile } from "../Responsive";
-import React from "react";
-import Navbar from "../components/Navbar";
+import styled from 'styled-components';
+import { mobile } from '../Responsive';
+import React from 'react';
+import Navbar from '../components/Navbar';
 
-import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/auth.context";
-import { publicRequest } from "../requestAxios";
+import { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/auth.context';
+import { publicRequest } from '../requestAxios';
 
 const Container = styled.div`
   width: 80vw;
@@ -15,7 +15,7 @@ const Container = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  ${mobile({ width: "100vw", height: "100vh" })}
+  ${mobile({ width: '100vw', height: '100vh' })}
 `;
 
 const Wrapper = styled.div`
@@ -23,12 +23,12 @@ const Wrapper = styled.div`
   padding: 20px;
   background-color: white;
   margin-right: 150px;
-  ${mobile({ width: "100vw", height: "66vh" })}
+  ${mobile({ width: '100vw', height: '66vh' })}
 `;
 
 const RightBox = styled.img`
   width: 300px;
-  ${mobile({ display: "none" })}
+  ${mobile({ display: 'none' })}
 `;
 
 const Title = styled.h1`
@@ -55,7 +55,7 @@ const Button = styled.button`
   background-color: transparent;
   border: none;
   width: 15vw;
-  ${mobile({ width: "40vw" })}
+  ${mobile({ width: '40vw' })}
 `;
 
 const Links = styled.a`
@@ -70,10 +70,10 @@ const SignupPage = () => {
   const { storeToken, authenticateUser } = useContext(AuthContext);
 
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
-  const [errorMessage, setErrorMessage] = useState(undefined);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleUsername = (e) => setUsername(e.target.value);
   const handleEmail = (e) => setEmail(e.target.value);
@@ -95,7 +95,7 @@ const SignupPage = () => {
         storeToken(response.data.authToken);
         authenticateUser();
 
-        navigate("/");
+        navigate('/');
       })
       .catch((error) => {
         const errorDescription = error.response.data.message;
@@ -104,7 +104,7 @@ const SignupPage = () => {
   };
   return (
     <div>
-      <div className="NavbarProductsList">
+      <div className='NavbarProductsList'>
         <Navbar />
       </div>
       <Container>
@@ -112,38 +112,38 @@ const SignupPage = () => {
           <Title>SIGN UP</Title>
           <Form onSubmit={handleLoginSubmit}>
             <Input
-              placeholder="username"
-              type="username"
-              name="username"
+              placeholder='username'
+              type='username'
+              name='username'
               value={username}
               onChange={handleUsername}
             />
             <Input
-              placeholder="email"
-              type="text"
-              name="email"
+              placeholder='email'
+              type='text'
+              name='email'
               value={email}
               onChange={handleEmail}
             />
             <Input
-              placeholder="password"
-              type="password"
-              name="password"
+              placeholder='password'
+              type='password'
+              name='password'
               value={password}
               onChange={handlePassword}
             />
-            <Button type="submit" className="btn">
+            {errorMessage && <p className='error-message'>{errorMessage}</p>}
+            <Button type='submit' className='btn'>
               CONFIRM
             </Button>
-            <Link to={"/login"}>
+            <Link to={'/login'}>
               <Links>ALREADY YOU HAVE AN ACCOUNT ?</Links>
             </Link>
           </Form>
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
         </Wrapper>
         <RightBox
-          src="https://res.cloudinary.com/ironbike/image/upload/v1650037531/Main/bike_ys6xgn.png"
-          alt=""
+          src='https://res.cloudinary.com/ironbike/image/upload/v1650037531/Main/bike_ys6xgn.png'
+          alt=''
         />
       </Container>
     </div>
